@@ -1,0 +1,241 @@
+/*
+	Theme Name: Themebase
+	Theme URI: 
+	Author:  Veronika Udod
+	Author URI: 
+	Version: 2.0
+	Description: 
+	Tags: 
+	Licence: GPL v2 or later
+	License URI: http://www.gnu.org/licenses/gpl-2.0.html
+	Text Domain: ecoffset.it
+*/
+
+/* MAIN SETTINGS */
+
+:root {
+  --accent: #f74b32;
+  --white: #f0f0f0;
+  --black: #000000;
+  --lightlightgrey: #e5e5e5;
+  --lightgrey: #cccccc;
+  --grey: #737373;
+  --blue: #0089c0;
+  --green: #0bb47b;
+  --yellow: #fbe600;
+}
+
+body {
+  width: 100%;
+  overflow-x: hidden;
+  margin: 0;
+  transition: 0.5s;
+  background: var(--lightlightgrey);
+}
+
+html {
+  overflow-x: hidden;
+}
+
+@font-face {
+  font-family: "TINY5x3";
+  src: url("/wp-content/themes/themebase/inc/assets/fonts/TINY5x3GX.ttf")
+    format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+* {
+  font-family: "TINY5x3";
+}
+
+h1 {
+  font-size: 160px;
+}
+
+h2 {
+  font-size: 80px;
+  line-height: 60px;
+}
+
+h3 {
+  font-size: 60px;
+  line-height: 42px;
+}
+
+h4 {
+  font-size: 32px;
+}
+
+h5 {
+  font-size: 26px;
+}
+
+h6 {
+  font-size: 22px;
+}
+
+p {
+  font-size: 18px;
+  margin-bottom: 0;
+}
+
+button {
+  font-size: 16px;
+  line-height: 22px;
+}
+
+.max-w-1360 {
+  max-width: 1360px;
+  margin: auto;
+}
+
+.position-relative {
+  position: relative;
+}
+
+/* MAIN SETTINGS MOBILE */
+@media only screen and (max-width: 768px) {
+}
+
+/* NAVBAR */
+header {
+  position: fixed;
+  z-index: 99;
+  width: 100%;
+}
+
+/* Container generale per header */
+.header-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 24px 0;
+  gap: 80px;
+  max-width: 1360px;
+  margin: auto;
+}
+
+/* Menu a sinistra */
+.nav-left {
+  flex: 1;
+  text-align: left;
+}
+
+/* Menu a destra */
+.nav-right {
+  flex: 1;
+  text-align: right;
+}
+
+/* Contenitore del logo, centrato */
+.logo-container {
+  text-align: center;
+  flex: 0 1 auto; /* Impedisce che il logo cresca */
+}
+
+/* Immagine del logo */
+.logo {
+  max-width: 260px; /* Puoi regolare la dimensione del logo */
+}
+
+/* Menu principale */
+.main-menu {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  list-style: none;
+  margin-bottom: 0;
+}
+
+.main-menu li a {
+  position: relative;
+  text-decoration: none;
+  color: var(--lightgold);
+  text-transform: uppercase;
+  font-size: 15px;
+  transition: 0.5s;
+  display: inline-block;
+}
+
+.main-menu li a:hover {
+  color: var(--gold);
+  transform: translateY(-5px);
+}
+
+/* Modifiche per visualizzazione su dispositivi mobili */
+@media (max-width: 768px) {
+  .header-container {
+    flex-direction: column;
+  }
+
+  .nav-left,
+  .nav-right {
+    width: 100%;
+    text-align: center;
+  }
+
+  .logo-container {
+    margin-bottom: 10px;
+  }
+
+  .main-menu {
+    flex-direction: column;
+    gap: 10px;
+  }
+}
+/* NAVBAR MOBILE */
+@media only screen and (max-width: 768px) {
+}
+
+/*********CONTACT US************/
+/*.contact-us-form .form-control {
+    padding: 20px;
+    border-radius: 0;
+	color: var(--white);
+	text-transform: uppercase;
+ 	resize: none;
+	background-color: #333333;
+	border: 0;
+}
+
+.contact-us-form .form-control::placeholder {
+	color: var(--grey);
+	text-transform: uppercase;
+}
+
+.contact-us-form .btn-submit .form-control {
+   	background: transparent;
+	border: 1px solid var(--green);
+	color: var(--white);
+}
+
+.contact-us-form p{
+	margin-bottom: 24px;
+}
+
+.contact-us-form .wpcf7-acceptance input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    width: 14px;
+    height: 14px;
+    min-height: 14px;
+    border: 1px solid var(--white);
+    display: inline-block;
+    position: relative;
+    background-color: transparent;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+.contact-us-form .wpcf7-acceptance span{
+    color: var(--grey);
+	font-size: 14px;
+}
+
+.contact-us-form .wpcf7-acceptance input[type="checkbox"]:checked {
+    background-color: var(--white);
+}*/
