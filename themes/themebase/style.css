@@ -27,21 +27,23 @@
 
 body {
   width: 100%;
-  overflow-x: hidden;
+  height: 100vh;
+  overflow: hidden;
   margin: 0;
   transition: 0.5s;
   background: var(--lightlightgrey);
 }
 
 html {
-  overflow-x: hidden;
+  height: 100vh;
+  overflow: hidden;
 }
 
 @font-face {
   font-family: "TINY5x3";
   src: url("/wp-content/themes/themebase/inc/assets/fonts/TINY5x3GX.ttf")
-    format("truetype");
-  font-weight: normal;
+    format("truetype-variations");
+  font-weight: 100 900;
   font-style: normal;
   font-display: swap;
 }

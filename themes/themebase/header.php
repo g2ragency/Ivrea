@@ -42,7 +42,7 @@
 
   <div id="page" class="site">
     <header class="site-header">
-	  <div class="header-container">
+	  <div class="header-container d-none">
 		<!-- Menu a sinistra -->
 		<div class="nav-left">
 		  <?php
