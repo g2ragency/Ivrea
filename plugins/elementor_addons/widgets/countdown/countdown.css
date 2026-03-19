@@ -52,6 +52,7 @@
 /* MOBILE */
 @media only screen and (max-width: 768px) {
   .countdown-container {
+    flex-direction: column;
     gap: 24px;
   }
 
@@ -59,11 +60,11 @@
   .countdown-item span#hours,
   .countdown-item span#minutes,
   .countdown-item span#seconds {
-    font-size: 48px;
+    font-size: 66px;
   }
 
   .countdown-item .label {
-    font-size: 14px;
+    font-size: 24px;
     letter-spacing: 1px;
   }
 }

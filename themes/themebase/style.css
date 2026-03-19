@@ -50,9 +50,9 @@ html {
 
 @font-face {
   font-family: "Helvetica Now Display";
-  src: url("/wp-content/themes/themebase/inc/assets/fonts/HelveticaNowDisplayXBold.otf")
+  src: url("/wp-content/themes/themebase/inc/assets/fonts/HelveticaNowDisplay.otf")
     format("opentype");
-  font-weight: 800;
+  font-weight: normal;
   font-style: normal;
   font-display: swap;
 }
@@ -112,6 +112,11 @@ button {
 
 /* MAIN SETTINGS MOBILE */
 @media only screen and (max-width: 768px) {
+  html,
+  body {
+    height: auto;
+    overflow: auto;
+  }
 }
 
 /* NAVBAR */
