@@ -14,7 +14,7 @@
 /* MAIN SETTINGS */
 
 :root {
-  --accent: #f74b32;
+  --accent: #ff3333;
   --white: #f0f0f0;
   --black: #000000;
   --lightlightgrey: #e5e5e5;
@@ -44,6 +44,15 @@ html {
   src: url("/wp-content/themes/themebase/inc/assets/fonts/TINY5x3GX.ttf")
     format("truetype-variations");
   font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Helvetica Now Display";
+  src: url("/wp-content/themes/themebase/inc/assets/fonts/HelveticaNowDisplayXBold.otf")
+    format("opentype");
+  font-weight: 800;
   font-style: normal;
   font-display: swap;
 }
@@ -78,8 +87,12 @@ h6 {
   font-size: 22px;
 }
 
-p {
+p,
+p *,
+.elementor-widget-text-editor,
+.elementor-widget-text-editor * {
   font-size: 18px;
+  font-family: "Helvetica Now Display", sans-serif !important;
   margin-bottom: 0;
 }
 
