@@ -32,7 +32,7 @@
   font-family: "TINY5x3", monospace;
   font-size: 100px;
   font-weight: 140;
-  line-height: 1;
+  line-height: 0.6;
   color: var(--lightlightgrey);
 }
 
@@ -40,7 +40,7 @@
   font-family: "TINY5x3", monospace;
   font-size: 54px;
   font-weight: 140;
-  line-height: 1;
+  line-height: 0.6;
   color: #000000;
   letter-spacing: 2px;
 }

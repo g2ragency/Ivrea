@@ -77,6 +77,8 @@ body.home footer {
 
 * {
   font-family: "TINY5x3";
+  line-height: 0.6;
+  font-feature-settings: "ss03" 1;
 }
 
 h1 {
