@@ -30,15 +30,15 @@
 .countdown-item span#minutes,
 .countdown-item span#seconds {
   font-family: "TINY5x3", monospace;
-  font-size: 80px;
+  font-size: 100px;
   font-weight: 140;
   line-height: 1;
-  color: #ffffff;
+  color: var(--lightlightgrey);
 }
 
 .countdown-item .label {
   font-family: "TINY5x3", monospace;
-  font-size: 40px;
+  font-size: 54px;
   font-weight: 140;
   line-height: 1;
   color: #000000;

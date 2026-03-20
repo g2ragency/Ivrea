@@ -42,7 +42,7 @@
 
   <div id="page" class="site">
     <header class="site-header">
-	  <div class="header-container d-none">
+	  <div class="header-container">
 		<!-- Menu a sinistra -->
 		<div class="nav-left">
 		  <?php
@@ -56,7 +56,9 @@
 
 		<!-- Logo al centro -->
 		<div class="logo-container">
-		  <img src="/wp-content/uploads/2025/12/logo.png" alt="Logo" class="logo">
+		  <a href="<?php echo esc_url(home_url('/')); ?>" class="logo-link">
+		    EX MACHINA
+		  </a>
 		</div>
 
 		<!-- Menu a destra -->

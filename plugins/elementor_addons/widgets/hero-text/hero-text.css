@@ -1,0 +1,78 @@
+.hero-text-widget {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.hero-text-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 40px;
+}
+
+/* Titolo H1 */
+.hero-title {
+  font-family: "TINY5x3", monospace !important;
+  font-size: 140px !important;
+  font-weight: 140;
+  line-height: 0.85;
+  margin: 0 !important;
+  text-transform: uppercase;
+}
+
+/* Date */
+.hero-dates {
+  font-family: "TINY5x3", monospace;
+  font-size: 46px;
+  font-weight: 140;
+  line-height: 1;
+  text-align: right;
+  white-space: nowrap;
+  padding-top: 10px;
+}
+
+/* Sottotitolo */
+.hero-subtitle {
+  font-family: "TINY5x3", monospace;
+  font-size: 56px;
+  font-weight: 140;
+  line-height: 1;
+  margin-top: -4px;
+  text-transform: uppercase;
+}
+
+/* Parole e caratteri per l'effetto hover */
+.hero-text-widget .word {
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.hero-text-widget .char {
+  display: inline-block;
+  transition: font-weight 0.15s ease;
+  will-change: font-weight;
+}
+
+/* MOBILE */
+@media only screen and (max-width: 768px) {
+  .hero-text-top {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .hero-title {
+    font-size: 60px !important;
+  }
+
+  .hero-dates {
+    font-size: 24px;
+    text-align: left;
+  }
+
+  .hero-subtitle {
+    font-size: 28px;
+    margin-top: 8px;
+  }
+}

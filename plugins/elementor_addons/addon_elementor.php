@@ -125,9 +125,11 @@ final class Elementor_Addon_Widgets {
 		
 		//HOMEPAGE
 		require_once( __DIR__ . '/widgets/countdown/countdown.php' );
+		require_once( __DIR__ . '/widgets/hero-text/hero-text.php' );
 		
 		//HOMEPAGE
 		$widgets_manager->register( new \Elementor_Widget_Countdown() );
+		$widgets_manager->register( new \Elementor_Widget_Hero_Text() );
 		
 	
 	}	public function init_controls() {
