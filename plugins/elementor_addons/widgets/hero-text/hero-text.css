@@ -17,7 +17,7 @@
   font-family: "TINY5x3", monospace !important;
   font-size: 140px !important;
   font-weight: 140;
-  line-height: 0.6;
+  line-height: 0.8;
   margin: 0 !important;
   text-transform: uppercase;
 }
@@ -27,7 +27,7 @@
   font-family: "TINY5x3", monospace;
   font-size: 46px;
   font-weight: 140;
-  line-height: 0.6;
+  line-height: 0.8;
   text-align: right;
   white-space: nowrap;
   padding-top: 10px;
@@ -38,7 +38,7 @@
   font-family: "TINY5x3", monospace;
   font-size: 56px;
   font-weight: 140;
-  line-height: 0.6;
+  line-height: 0.8;
   margin-top: -4px;
   text-transform: uppercase;
 }
