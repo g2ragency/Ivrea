@@ -102,7 +102,7 @@ class Elementor_Widget_Hero_Text extends \Elementor\Widget_Base {
             [
                 'label' => __('Colore Sottotitolo', 'elementor_addon'),
                 'type' => \Elementor\Controls_Manager::COLOR,
-                'default' => '#f0f0f0',
+                'default' => '#000000',
             ]
         );
 
@@ -120,14 +120,12 @@ class Elementor_Widget_Hero_Text extends \Elementor\Widget_Base {
         ?>
 
         <div class="hero-text-widget" data-hover-effect="true">
-            <div class="hero-text-top">
-                <h1 class="hero-title" style="color: <?php echo esc_attr($title_color); ?>;" data-split-hover>
-                    <?php echo nl2br(esc_html($title)); ?>
-                </h1>
-                <div class="hero-dates" style="color: <?php echo esc_attr($dates_color); ?>;" data-split-hover>
-                    <?php echo nl2br(esc_html($dates)); ?>
-                </div>
+            <div class="hero-dates" style="color: <?php echo esc_attr($dates_color); ?>;" data-split-hover>
+                <?php echo nl2br(esc_html($dates)); ?>
             </div>
+            <h1 class="hero-title" style="color: <?php echo esc_attr($title_color); ?>;" data-split-hover>
+                <?php echo nl2br(esc_html($title)); ?>
+            </h1>
             <div class="hero-subtitle" style="color: <?php echo esc_attr($subtitle_color); ?>;" data-split-hover>
                 <?php echo esc_html($subtitle); ?>
             </div>
@@ -137,9 +135,17 @@ class Elementor_Widget_Hero_Text extends \Elementor\Widget_Base {
         (function () {
             "use strict";
 
-            var RADIUS = 120;
-            var MIN_WEIGHT = 100;
-            var MAX_WEIGHT = 900;
+            var RADIUS = 200;
+            var MIN_WEIGHT = 80;
+            var MAX_WEIGHT = 200;
+            var LERP_SPEED = 0.08;
+
+            var mouseX = -9999;
+            var mouseY = -9999;
+
+            function lerp(start, end, factor) {
+                return start + (end - start) * factor;
+            }
 
             function splitTextIntoChars(element) {
                 var html = element.innerHTML;
@@ -161,6 +167,8 @@ class Elementor_Widget_Hero_Text extends \Elementor\Widget_Base {
                             span.classList.add("char");
                             span.setAttribute("aria-hidden", "true");
                             span.textContent = words[w][i];
+                            span._currentWeight = MIN_WEIGHT;
+                            span._targetWeight = MIN_WEIGHT;
                             wordSpan.appendChild(span);
                         }
 
@@ -170,6 +178,8 @@ class Elementor_Widget_Hero_Text extends \Elementor\Widget_Base {
                             var space = document.createElement("span");
                             space.classList.add("char", "space");
                             space.innerHTML = "&nbsp;";
+                            space._currentWeight = MIN_WEIGHT;
+                            space._targetWeight = MIN_WEIGHT;
                             element.appendChild(space);
                         }
                     }
@@ -182,42 +192,70 @@ class Elementor_Widget_Hero_Text extends \Elementor\Widget_Base {
 
             function initHoverEffect(widget) {
                 var elements = widget.querySelectorAll("[data-split-hover]");
-
                 elements.forEach(function (el) {
                     splitTextIntoChars(el);
                 });
 
                 var allChars = widget.querySelectorAll(".char");
+                var isHovering = false;
+                var animationId = null;
 
-                widget.addEventListener("mousemove", function (e) {
-                    var mouseX = e.clientX;
-                    var mouseY = e.clientY;
+                function animate() {
+                    var needsUpdate = false;
 
                     allChars.forEach(function (charEl) {
-                        var charRect = charEl.getBoundingClientRect();
-                        var charCenterX = charRect.left + charRect.width / 2;
-                        var charCenterY = charRect.top + charRect.height / 2;
+                        if (isHovering) {
+                            var charRect = charEl.getBoundingClientRect();
+                            var charCenterX = charRect.left + charRect.width / 2;
+                            var charCenterY = charRect.top + charRect.height / 2;
 
-                        var distance = Math.sqrt(
-                            Math.pow(mouseX - charCenterX, 2) + Math.pow(mouseY - charCenterY, 2)
-                        );
+                            var dx = mouseX - charCenterX;
+                            var dy = mouseY - charCenterY;
+                            var distance = Math.sqrt(dx * dx + dy * dy);
 
-                        var weight;
-                        if (distance < RADIUS) {
-                            var ratio = 1 - distance / RADIUS;
-                            weight = MIN_WEIGHT + ratio * (MAX_WEIGHT - MIN_WEIGHT);
+                            if (distance < RADIUS) {
+                                var ratio = 1 - (distance / RADIUS);
+                                ratio = ratio * ratio;
+                                charEl._targetWeight = MIN_WEIGHT + ratio * (MAX_WEIGHT - MIN_WEIGHT);
+                            } else {
+                                charEl._targetWeight = MIN_WEIGHT;
+                            }
                         } else {
-                            weight = MIN_WEIGHT;
+                            charEl._targetWeight = MIN_WEIGHT;
                         }
 
-                        charEl.style.fontWeight = Math.round(weight);
+                        charEl._currentWeight = lerp(charEl._currentWeight, charEl._targetWeight, LERP_SPEED);
+
+                        if (Math.abs(charEl._currentWeight - charEl._targetWeight) > 0.5) {
+                            needsUpdate = true;
+                        }
+
+                        charEl.style.fontWeight = Math.round(charEl._currentWeight);
                     });
+
+                    if (needsUpdate || isHovering) {
+                        animationId = requestAnimationFrame(animate);
+                    } else {
+                        animationId = null;
+                    }
+                }
+
+                function startAnimation() {
+                    if (!animationId) {
+                        animationId = requestAnimationFrame(animate);
+                    }
+                }
+
+                widget.addEventListener("mousemove", function (e) {
+                    mouseX = e.clientX;
+                    mouseY = e.clientY;
+                    isHovering = true;
+                    startAnimation();
                 });
 
                 widget.addEventListener("mouseleave", function () {
-                    allChars.forEach(function (charEl) {
-                        charEl.style.fontWeight = "";
-                    });
+                    isHovering = false;
+                    startAnimation();
                 });
             }
 

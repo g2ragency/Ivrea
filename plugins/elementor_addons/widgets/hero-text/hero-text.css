@@ -1,43 +1,35 @@
 .hero-text-widget {
-  width: 100%;
-  display: flex;
+  display: inline-flex;
   flex-direction: column;
   gap: 0;
-}
-
-.hero-text-top {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 40px;
 }
 
 /* Titolo H1 */
 .hero-title {
   font-family: "TINY5x3", monospace !important;
-  font-size: 140px !important;
-  font-weight: 140;
-  line-height: 0.8;
+  font-size: 180px !important;
+  font-weight: 80;
+  line-height: 0.7;
   margin: 0 !important;
   text-transform: uppercase;
+  white-space: nowrap;
 }
 
 /* Date */
 .hero-dates {
   font-family: "TINY5x3", monospace;
   font-size: 46px;
-  font-weight: 140;
+  font-weight: 80;
   line-height: 0.8;
   text-align: right;
   white-space: nowrap;
-  padding-top: 10px;
 }
 
 /* Sottotitolo */
 .hero-subtitle {
   font-family: "TINY5x3", monospace;
   font-size: 56px;
-  font-weight: 140;
+  font-weight: 80;
   line-height: 0.8;
   margin-top: -4px;
   text-transform: uppercase;
@@ -51,8 +43,12 @@
 
 .hero-text-widget .char {
   display: inline-block;
-  transition: font-weight 0.15s ease;
   will-change: font-weight;
+  cursor: default;
+}
+
+.hero-text-widget:hover {
+  cursor: none;
 }
 
 /* MOBILE */
