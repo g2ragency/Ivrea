@@ -1,0 +1,113 @@
+.swiper-cards-widget {
+  width: 100%;
+  overflow: visible;
+}
+
+.swiper-cards-widget .swiper {
+  overflow: visible;
+}
+
+.swiper-cards-widget .swiper-slide {
+  width: auto;
+}
+
+.swiper-cards-widget .swiper-card {
+  background: var(--white);
+  border-radius: 5px;
+  padding: 24px;
+  width: 450px;
+  box-sizing: border-box;
+  min-height: 280px;
+}
+
+.swiper-cards-widget .swiper-card-title {
+  font-family: "TINY5x3", monospace !important;
+  font-feature-settings: "ss03" 1;
+  font-weight: 140;
+  line-height: 0.8;
+  color: var(--accent);
+  text-transform: uppercase;
+  margin: 0 0 20px 0;
+}
+
+.swiper-cards-widget .swiper-card-description {
+  font-family: "Helvetica Now Display", sans-serif !important;
+  font-size: 18px;
+  line-height: 1.4;
+  color: var(--grey);
+  margin: 0;
+}
+
+/* CONTROLS */
+.swiper-cards-widget .swiper-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 40px;
+  gap: 30px;
+}
+
+.swiper-cards-widget .swiper-scrollbar {
+  flex: 1;
+  height: 4px;
+  background: var(--lightgrey);
+  border-radius: 50px;
+  position: relative;
+  left: 0;
+}
+
+.swiper-cards-widget .swiper-scrollbar .swiper-scrollbar-drag {
+  background: var(--black);
+  border-radius: 0;
+  height: 4px;
+}
+
+.swiper-cards-widget .swiper-nav {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-shrink: 0;
+  position: relative;
+  top: -3px;
+}
+
+.swiper-cards-widget .swiper-button-prev,
+.swiper-cards-widget .swiper-button-next {
+  width: 42px;
+  height: 56px;
+  cursor: pointer;
+  color: var(--black);
+  transition: color 0.3s ease;
+  position: static;
+  margin: 0;
+}
+
+.swiper-cards-widget .swiper-button-prev:hover,
+.swiper-cards-widget .swiper-button-next:hover {
+  color: var(--black);
+}
+
+.swiper-cards-widget .swiper-button-prev::after,
+.swiper-cards-widget .swiper-button-next::after {
+  display: none;
+}
+
+.swiper-button-prev.swiper-button-disabled {
+  opacity: 0.2 !important;
+}
+
+/* MOBILE */
+@media only screen and (max-width: 768px) {
+  .swiper-cards-widget .swiper-card {
+    width: 300px;
+    padding: 24px;
+  }
+
+  .swiper-cards-widget .swiper-card-title {
+    font-size: 36px;
+  }
+
+  .swiper-cards-widget .swiper-card-description {
+    font-size: 16px;
+  }
+}

@@ -1,0 +1,30 @@
+.scroll-text-widget {
+  width: 100%;
+}
+
+.scroll-text-content {
+  font-family: "TINY5x3", monospace !important;
+  font-size: 60px !important;
+  font-weight: 140;
+  line-height: 42px !important;
+  text-transform: uppercase;
+  margin: 0 !important;
+  font-feature-settings: "ss03" 1;
+}
+
+.scroll-text-content .scroll-word {
+  display: inline;
+}
+
+.scroll-text-content .scroll-char {
+  display: inline;
+  transition: color 0.1s ease;
+}
+
+/* MOBILE */
+@media only screen and (max-width: 768px) {
+  .scroll-text-content {
+    font-size: 32px !important;
+    line-height: 24px !important;
+  }
+}
