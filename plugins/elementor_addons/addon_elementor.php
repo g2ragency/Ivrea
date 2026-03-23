@@ -128,12 +128,14 @@ final class Elementor_Addon_Widgets {
 		require_once( __DIR__ . '/widgets/hero-text/hero-text.php' );
 		require_once( __DIR__ . '/widgets/scroll-text/scroll-text.php' );
 		require_once( __DIR__ . '/widgets/swiper-cards/swiper-cards.php' );
+		require_once( __DIR__ . '/widgets/hover-text/hover-text.php' );
 		
 		//HOMEPAGE
 		$widgets_manager->register( new \Elementor_Widget_Countdown() );
 		$widgets_manager->register( new \Elementor_Widget_Hero_Text() );
 		$widgets_manager->register( new \Elementor_Widget_Scroll_Text() );
 		$widgets_manager->register( new \Elementor_Widget_Swiper_Cards() );
+		$widgets_manager->register( new \Elementor_Widget_Hover_Text() );
 		
 	
 	}	public function init_controls() {

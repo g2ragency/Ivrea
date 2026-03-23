@@ -1,28 +1,28 @@
 <?php
 if (!defined('ABSPATH')) exit;
 
-class Elementor_Widget_Hero_Text extends \Elementor\Widget_Base {
+class Elementor_Widget_Hover_Text extends \Elementor\Widget_Base {
 
     public function __construct($data = [], $args = null) {
         parent::__construct($data, $args);
 
-        wp_register_style('hero-text-css', plugins_url('hero-text.css', __FILE__));
+        wp_register_style('hover-text-css', plugins_url('hover-text.css', __FILE__));
     }
 
     public function get_style_depends() {
-        return ['hero-text-css'];
+        return ['hover-text-css'];
     }
 
     public function get_name() {
-        return 'hero_text';
+        return 'hover_text';
     }
 
     public function get_title() {
-        return __('Hero Text', 'elementor_addon');
+        return __('Hover Text', 'elementor_addon');
     }
 
     public function get_icon() {
-        return 'eicon-t-letter-bold';
+        return 'eicon-animation-text';
     }
 
     public function get_categories() {
@@ -33,44 +33,39 @@ class Elementor_Widget_Hero_Text extends \Elementor\Widget_Base {
         $this->start_controls_section(
             'content_section',
             [
-                'label' => __('Contenuti', 'elementor_addon'),
+                'label' => __('Contenuto', 'elementor_addon'),
                 'tab' => \Elementor\Controls_Manager::TAB_CONTENT,
             ]
         );
 
         $this->add_control(
-            'title_text',
+            'hover_text',
             [
-                'label' => __('Titolo', 'elementor_addon'),
+                'label' => __('Testo', 'elementor_addon'),
                 'type' => \Elementor\Controls_Manager::TEXTAREA,
-                'default' => "IVREA\nEX MACHINA",
+                'default' => 'HOVER TEXT',
                 'label_block' => true,
+                'description' => __('Usa Invio per andare a capo.', 'elementor_addon'),
             ]
         );
 
         $this->add_control(
-            'dates_text',
+            'hover_link',
             [
-                'label' => __('Date', 'elementor_addon'),
-                'type' => \Elementor\Controls_Manager::TEXTAREA,
-                'default' => "19-20-21\nGIUGNO '26",
-                'label_block' => true,
-            ]
-        );
-
-        $this->add_control(
-            'subtitle_text',
-            [
-                'label' => __('Sottotitolo', 'elementor_addon'),
-                'type' => \Elementor\Controls_Manager::TEXT,
-                'default' => 'LA CITTÀ CHE VIDE IL FUTURO',
+                'label' => __('Link', 'elementor_addon'),
+                'type' => \Elementor\Controls_Manager::URL,
+                'placeholder' => 'https://example.com',
+                'default' => [
+                    'url' => '',
+                    'is_external' => false,
+                    'nofollow' => false,
+                ],
                 'label_block' => true,
             ]
         );
 
         $this->end_controls_section();
 
-        // Style section
         $this->start_controls_section(
             'style_section',
             [
@@ -80,29 +75,40 @@ class Elementor_Widget_Hero_Text extends \Elementor\Widget_Base {
         );
 
         $this->add_control(
-            'title_color',
+            'text_color',
             [
-                'label' => __('Colore Titolo', 'elementor_addon'),
+                'label' => __('Colore Testo', 'elementor_addon'),
                 'type' => \Elementor\Controls_Manager::COLOR,
-                'default' => '#f0f0f0',
+                'default' => '#000000',
+                'selectors' => [
+                    '{{WRAPPER}} .hover-text-content' => 'color: {{VALUE}} !important;',
+                    '{{WRAPPER}} .hover-text-content .char' => 'color: {{VALUE}} !important;',
+                    '{{WRAPPER}} .hover-text-content .word' => 'color: {{VALUE}} !important;',
+                ],
             ]
         );
 
         $this->add_control(
-            'dates_color',
+            'font_size',
             [
-                'label' => __('Colore Date', 'elementor_addon'),
-                'type' => \Elementor\Controls_Manager::COLOR,
-                'default' => '#000000',
+                'label' => __('Font Size (px)', 'elementor_addon'),
+                'type' => \Elementor\Controls_Manager::NUMBER,
+                'default' => 80,
+                'min' => 12,
+                'max' => 400,
             ]
         );
 
         $this->add_control(
-            'subtitle_color',
+            'font_weight',
             [
-                'label' => __('Colore Sottotitolo', 'elementor_addon'),
-                'type' => \Elementor\Controls_Manager::COLOR,
-                'default' => '#000000',
+                'label' => __('Font Weight', 'elementor_addon'),
+                'type' => \Elementor\Controls_Manager::NUMBER,
+                'default' => 80,
+                'min' => 1,
+                'max' => 900,
+                'step' => 10,
+                'description' => __('Peso base del font (min). Al hover arriverà a +120.', 'elementor_addon'),
             ]
         );
 
@@ -111,24 +117,23 @@ class Elementor_Widget_Hero_Text extends \Elementor\Widget_Base {
 
     protected function render() {
         $settings = $this->get_settings_for_display();
-        $title = $settings['title_text'];
-        $dates = $settings['dates_text'];
-        $subtitle = $settings['subtitle_text'];
-        $title_color = $settings['title_color'];
-        $dates_color = $settings['dates_color'];
-        $subtitle_color = $settings['subtitle_color'];
+        $text = $settings['hover_text'];
+        $font_size = $settings['font_size'];
+        $font_weight = $settings['font_weight'];
+        $link = $settings['hover_link'];
+        $widget_id = $this->get_id();
+
+        $has_link = !empty($link['url']);
+        $target = (!empty($link['is_external'])) ? ' target="_blank"' : '';
+        $nofollow = (!empty($link['nofollow'])) ? ' rel="nofollow"' : '';
+        $tag = $has_link ? 'a' : 'h3';
+        $link_attr = $has_link ? ' href="' . esc_url($link['url']) . '"' . $target . $nofollow : '';
         ?>
 
-        <div class="hero-text-widget" data-hover-effect="true">
-            <div class="hero-dates" style="color: <?php echo esc_attr($dates_color); ?>;" data-split-hover>
-                <?php echo nl2br(esc_html($dates)); ?>
-            </div>
-            <h1 class="hero-title" style="color: <?php echo esc_attr($title_color); ?>;" data-split-hover>
-                <?php echo nl2br(esc_html($title)); ?>
-            </h1>
-            <div class="hero-subtitle" style="color: <?php echo esc_attr($subtitle_color); ?>;" data-split-hover>
-                <?php echo esc_html($subtitle); ?>
-            </div>
+        <div class="hover-text-widget" id="hover-text-<?php echo esc_attr($widget_id); ?>" data-hover-effect="true" data-font-weight="<?php echo esc_attr($font_weight); ?>">
+            <<?php echo $tag; ?> class="hover-text-content"<?php echo $link_attr; ?> style="font-size: <?php echo esc_attr($font_size); ?>px; font-weight: <?php echo esc_attr($font_weight); ?>;" data-split-hover>
+                <?php echo nl2br(esc_html($text)); ?>
+            </<?php echo $tag; ?>>
         </div>
 
         <script>
@@ -136,8 +141,6 @@ class Elementor_Widget_Hero_Text extends \Elementor\Widget_Base {
             "use strict";
 
             var RADIUS = 300;
-            var MIN_WEIGHT = 80;
-            var MAX_WEIGHT = 200;
             var LERP_SPEED = 0.08;
 
             var mouseX = -9999;
@@ -147,7 +150,7 @@ class Elementor_Widget_Hero_Text extends \Elementor\Widget_Base {
                 return start + (end - start) * factor;
             }
 
-            function splitTextIntoChars(element) {
+            function splitTextIntoChars(element, MIN_WEIGHT) {
                 var html = element.innerHTML;
                 var lines = html.split(/<br\s*\/?>/i);
                 element.innerHTML = "";
@@ -191,9 +194,12 @@ class Elementor_Widget_Hero_Text extends \Elementor\Widget_Base {
             }
 
             function initHoverEffect(widget) {
+                var MIN_WEIGHT = parseInt(widget.getAttribute("data-font-weight")) || 80;
+                var MAX_WEIGHT = MIN_WEIGHT + 120;
+
                 var elements = widget.querySelectorAll("[data-split-hover]");
                 elements.forEach(function (el) {
-                    splitTextIntoChars(el);
+                    splitTextIntoChars(el, MIN_WEIGHT);
                 });
 
                 var allChars = widget.querySelectorAll(".char");
@@ -260,10 +266,10 @@ class Elementor_Widget_Hero_Text extends \Elementor\Widget_Base {
             }
 
             function init() {
-                var widgets = document.querySelectorAll('.hero-text-widget[data-hover-effect="true"]');
-                widgets.forEach(function (widget) {
+                var widget = document.getElementById("hover-text-<?php echo esc_attr($widget_id); ?>");
+                if (widget) {
                     initHoverEffect(widget);
-                });
+                }
             }
 
             if (document.readyState === "loading") {
@@ -274,9 +280,9 @@ class Elementor_Widget_Hero_Text extends \Elementor\Widget_Base {
 
             if (window.elementorFrontend) {
                 window.elementorFrontend.hooks.addAction(
-                    "frontend/element_ready/hero_text.default",
+                    "frontend/element_ready/hover_text.default",
                     function ($scope) {
-                        var widget = $scope[0].querySelector('.hero-text-widget[data-hover-effect="true"]');
+                        var widget = $scope[0].querySelector('.hover-text-widget[data-hover-effect="true"]');
                         if (widget) {
                             initHoverEffect(widget);
                         }

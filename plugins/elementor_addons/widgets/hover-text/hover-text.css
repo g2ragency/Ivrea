@@ -1,0 +1,43 @@
+.hover-text-widget {
+  display: inline-flex;
+  flex-direction: column;
+}
+
+.hover-text-content {
+  font-family: "TINY5x3", monospace !important;
+  font-weight: 80;
+  line-height: 0.8;
+  margin: 0 !important;
+  text-transform: uppercase;
+  font-feature-settings: "ss03" 1;
+  text-decoration: none;
+}
+
+.hover-text-widget .word {
+  display: inline-block;
+  white-space: nowrap;
+  color: inherit;
+}
+
+.hover-text-widget .char {
+  display: inline-block;
+  will-change: font-weight;
+  cursor: default;
+  color: inherit;
+}
+
+.hover-text-widget:hover {
+  cursor: none;
+}
+
+a.hover-text-content,
+a.hover-text-content .char {
+  cursor: pointer !important;
+}
+
+/* MOBILE */
+@media only screen and (max-width: 768px) {
+  .hover-text-content {
+    font-size: 40px !important;
+  }
+}
