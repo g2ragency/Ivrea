@@ -26,6 +26,7 @@
   font-family: "TINY5x3", monospace !important;
   font-feature-settings: "ss03" 1;
   font-weight: 140;
+  font-size: 160px;
   line-height: 0.8;
   text-align: center;
 }
@@ -34,6 +35,7 @@
   font-family: "TINY5x3", monospace !important;
   font-feature-settings: "ss03" 1;
   font-weight: 140;
+  font-size: 40px;
   line-height: 1;
   text-transform: uppercase;
   text-align: center;
