@@ -132,6 +132,7 @@ final class Elementor_Addon_Widgets {
 		require_once( __DIR__ . '/widgets/horizontal-cards/horizontal-cards.php' );
 		require_once( __DIR__ . '/widgets/dot-button/dot-button.php' );
 		require_once( __DIR__ . '/widgets/stats/stats.php' );
+		require_once( __DIR__ . '/widgets/swiper-ospiti/swiper-ospiti.php' );
 		
 		//HOMEPAGE
 		$widgets_manager->register( new \Elementor_Widget_Countdown() );
@@ -142,6 +143,7 @@ final class Elementor_Addon_Widgets {
 		$widgets_manager->register( new \Elementor_Widget_Horizontal_Cards() );
 		$widgets_manager->register( new \Elementor_Widget_Dot_Button() );
 		$widgets_manager->register( new \Elementor_Widget_Stats() );
+		$widgets_manager->register( new \Elementor_Widget_Swiper_Ospiti() );
 		
 	
 	}	public function init_controls() {
