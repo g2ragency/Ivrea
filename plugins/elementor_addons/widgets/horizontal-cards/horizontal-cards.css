@@ -1,0 +1,144 @@
+/* === Horizontal Cards Widget === */
+
+/* The section */
+.horizontal-cards-section {
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+}
+
+/* The sliding track — now a positioning context, not translated */
+.horizontal-cards-section .horizontal-cards-track {
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+}
+
+/* Individual card — absolutely positioned, animated via JS */
+.horizontal-cards-section .horizontal-card {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: min(1180px, 92vw);
+  height: 560px;
+  border-radius: 5px;
+  box-sizing: border-box;
+  overflow: hidden;
+  will-change: left;
+}
+
+.horizontal-cards-section .horizontal-card-link {
+  display: block;
+  width: 100%;
+  height: 100%;
+  color: inherit;
+  text-decoration: none;
+}
+
+.horizontal-cards-section .horizontal-card-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(280px, 34%);
+  gap: 40px;
+  height: 100%;
+  padding: 50px;
+  box-sizing: border-box;
+}
+
+.horizontal-cards-section .horizontal-card-content {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.horizontal-cards-section .horizontal-card-title {
+  font-family: "TINY5x3", monospace !important;
+  font-feature-settings: "ss03" 1;
+  text-transform: uppercase;
+  color: var(--black);
+  font-weight: 140;
+  line-height: 0.8;
+  margin: 0 0 34px 0;
+}
+
+.horizontal-cards-section .horizontal-card-description {
+  font-family: "Helvetica Now Display", sans-serif !important;
+  color: var(--black);
+  font-size: 18px;
+  line-height: 1.2;
+  margin: 0;
+  max-width: 760px;
+}
+
+.horizontal-cards-section .horizontal-card-arrow {
+  width: 40px;
+  height: 56px;
+  margin-top: auto;
+  color: var(--black);
+}
+
+.horizontal-cards-section .horizontal-card-arrow svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.horizontal-cards-section .horizontal-card-image {
+  width: 100%;
+  height: 100%;
+  border-radius: 5px;
+  overflow: hidden;
+  background: var(--black);
+}
+
+.horizontal-cards-section .horizontal-card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.horizontal-cards-section .horizontal-card-image.is-empty {
+  background: var(--black);
+}
+
+@media only screen and (max-width: 1024px) {
+  .horizontal-cards-section .horizontal-card {
+    width: 94vw;
+  }
+
+  .horizontal-cards-section .horizontal-card-layout {
+    grid-template-columns: 1fr;
+    padding: 28px;
+    gap: 24px;
+  }
+
+  .horizontal-cards-section .horizontal-card-image {
+    height: 220px;
+  }
+
+  .horizontal-cards-section .horizontal-card-description {
+    font-size: 22px;
+    max-width: none;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .horizontal-cards-section .horizontal-card {
+    height: 560px;
+  }
+
+  .horizontal-cards-section .horizontal-card-title {
+    font-size: 46px;
+    margin-bottom: 20px;
+  }
+
+  .horizontal-cards-section .horizontal-card-description {
+    font-size: 16px;
+    line-height: 1.45;
+  }
+
+  .horizontal-cards-section .horizontal-card-image {
+    height: 200px;
+  }
+}

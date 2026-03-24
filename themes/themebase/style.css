@@ -154,7 +154,7 @@ header.site-header {
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  padding: 16px 40px;
+  padding: 16px 0px;
   max-width: 1360px;
   margin: auto;
   box-sizing: border-box;

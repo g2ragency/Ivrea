@@ -129,6 +129,7 @@ final class Elementor_Addon_Widgets {
 		require_once( __DIR__ . '/widgets/scroll-text/scroll-text.php' );
 		require_once( __DIR__ . '/widgets/swiper-cards/swiper-cards.php' );
 		require_once( __DIR__ . '/widgets/hover-text/hover-text.php' );
+		require_once( __DIR__ . '/widgets/horizontal-cards/horizontal-cards.php' );
 		
 		//HOMEPAGE
 		$widgets_manager->register( new \Elementor_Widget_Countdown() );
@@ -136,6 +137,7 @@ final class Elementor_Addon_Widgets {
 		$widgets_manager->register( new \Elementor_Widget_Scroll_Text() );
 		$widgets_manager->register( new \Elementor_Widget_Swiper_Cards() );
 		$widgets_manager->register( new \Elementor_Widget_Hover_Text() );
+		$widgets_manager->register( new \Elementor_Widget_Horizontal_Cards() );
 		
 	
 	}	public function init_controls() {

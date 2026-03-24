@@ -195,7 +195,7 @@ class Elementor_Widget_Hover_Text extends \Elementor\Widget_Base {
 
             function initHoverEffect(widget) {
                 var MIN_WEIGHT = parseInt(widget.getAttribute("data-font-weight")) || 80;
-                var MAX_WEIGHT = MIN_WEIGHT + 120;
+                var MAX_WEIGHT = MIN_WEIGHT + 160;
 
                 var elements = widget.querySelectorAll("[data-split-hover]");
                 elements.forEach(function (el) {
