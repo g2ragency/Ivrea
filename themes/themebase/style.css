@@ -306,3 +306,67 @@ header.site-header {
 .contact-us-form .wpcf7-acceptance input[type="checkbox"]:checked {
     background-color: var(--white);
 }*/
+
+/* FOOTER */
+.site-footer {
+  background: var(--black);
+  padding-top: 100px;
+  padding-bottom: 50px;
+}
+
+.footer-content {
+  max-width: 1360px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.footer-titles {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.footer-date,
+.footer-subtitle {
+  color: var(--accent);
+  font-size: 30px;
+  font-weight: 140;
+  margin: 0;
+  line-height: 0.8;
+}
+
+.footer-title {
+  color: var(--white);
+  font-weight: 140;
+  margin: 0;
+  line-height: 0.8;
+}
+
+.footer-links {
+  margin-top: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.footer-links a {
+  font-family: "Helvetica Now Display Bold", sans-serif !important;
+  font-size: 16px;
+  color: var(--lightgrey);
+  text-decoration: none;
+  line-height: 1;
+  transition: color 0.2s;
+}
+
+.footer-links a:hover {
+  color: var(--white);
+}
+
+.footer-separator {
+  font-family: "Helvetica Now Display Bold", sans-serif !important;
+  font-size: 16px;
+  color: var(--lightgrey);
+  line-height: 1;
+}
