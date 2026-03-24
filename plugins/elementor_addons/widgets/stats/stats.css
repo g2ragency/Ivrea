@@ -1,0 +1,122 @@
+/* === Stats Widget === */
+
+.stats-widget {
+  width: 100%;
+}
+
+.stats-grid {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 1360px;
+  margin: 0 auto;
+}
+
+/* Single stat item */
+.stats-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+  padding: 40px 20px;
+}
+
+.stats-number {
+  font-family: "TINY5x3", monospace !important;
+  font-feature-settings: "ss03" 1;
+  font-weight: 140;
+  line-height: 0.8;
+  text-align: center;
+}
+
+.stats-label {
+  font-family: "TINY5x3", monospace !important;
+  font-feature-settings: "ss03" 1;
+  font-weight: 140;
+  line-height: 1;
+  text-transform: uppercase;
+  text-align: center;
+  letter-spacing: 0.05em;
+}
+
+/* Separator */
+.stats-separator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.stats-separator.is-vertical {
+  width: 20px;
+  align-self: stretch;
+}
+
+.stats-separator.is-horizontal {
+  height: 20px;
+  width: 100%;
+}
+
+.stats-separator-dots {
+  font-family: "TINY5x3", monospace !important;
+  font-feature-settings: "ss03" 1;
+  font-weight: 80;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.stats-separator.is-vertical .stats-separator-dots {
+  flex-direction: column;
+}
+
+.stats-separator.is-horizontal .stats-separator-dots {
+  flex-direction: row;
+}
+
+.stats-separator-dots .dot {
+  font-size: 18px;
+  display: block;
+  text-align: center;
+  line-height: 0.55;
+  color: inherit;
+}
+
+/* Tablet: 2 columns */
+@media only screen and (max-width: 1024px) and (min-width: 769px) {
+  .stats-grid {
+    flex-wrap: wrap;
+  }
+
+  .stats-item {
+    flex: 0 0 calc(50% - 10px);
+  }
+
+  /* Hide the 2nd separator (between item 2 and 3) in tablet */
+  .stats-separator:nth-of-type(2) {
+    display: none;
+  }
+
+  /* 1st and 3rd separators become vertical within their row */
+  .stats-separator {
+    flex: 0 0 20px;
+  }
+}
+
+/* Mobile: 1 column */
+@media only screen and (max-width: 768px) {
+  .stats-grid {
+    flex-direction: column;
+  }
+
+  .stats-item {
+    width: 100%;
+    padding: 30px 20px;
+  }
+
+  .stats-separator {
+    width: 60%;
+  }
+}
