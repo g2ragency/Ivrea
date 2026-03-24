@@ -65,22 +65,30 @@
   font-family: "Helvetica Now Display", sans-serif !important;
   color: var(--black);
   font-size: 18px;
-  line-height: 1.2;
+  line-height: 1.5;
   margin: 0;
   max-width: 760px;
 }
 
 .horizontal-cards-section .horizontal-card-arrow {
-  width: 40px;
-  height: 56px;
   margin-top: auto;
   color: var(--black);
 }
 
-.horizontal-cards-section .horizontal-card-arrow svg {
-  display: block;
-  width: 100%;
-  height: 100%;
+.horizontal-cards-section .horizontal-card-arrow .arrow-text {
+  font-family: "TINY5x3", monospace !important;
+  font-feature-settings: "ss03" 1;
+  font-size: 80px;
+  font-weight: 80;
+  cursor: pointer;
+  line-height: 1;
+  display: inline-block;
+  color: inherit;
+}
+
+.horizontal-cards-section .horizontal-card-arrow .arrow-text .char {
+  display: inline-block;
+  color: inherit;
 }
 
 .horizontal-cards-section .horizontal-card-image {

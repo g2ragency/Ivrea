@@ -165,9 +165,7 @@ class Elementor_Widget_Horizontal_Cards extends \Elementor\Widget_Base {
                                         <p class="horizontal-card-description"><?php echo esc_html($description); ?></p>
 
                                         <div class="horizontal-card-arrow" aria-hidden="true">
-                                            <svg width="40" height="56" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M33.6 16.8C33.6 17.3134 33.4834 17.78 33.25 18.2C32.97 18.62 32.62 18.97 32.2 19.25C31.78 19.4834 31.3134 19.6 30.8 19.6C30.2867 19.6 29.82 19.4834 29.4 19.25C28.98 18.97 28.6534 18.62 28.42 18.2C28.14 17.78 28 17.3134 28 16.8C28 16.2867 28.14 15.82 28.42 15.4C28.6534 14.98 28.98 14.6534 29.4 14.42C29.82 14.14 30.2867 14 30.8 14C31.3134 14 31.78 14.14 32.2 14.42C32.62 14.6534 32.97 14.98 33.25 15.4C33.4834 15.82 33.6 16.2867 33.6 16.8ZM26.6 23.8C26.6 24.3134 26.4834 24.78 26.25 25.2C25.97 25.62 25.62 25.97 25.2 26.25C24.78 26.4834 24.3134 26.6 23.8 26.6C23.2867 26.6 22.82 26.4834 22.4 26.25C21.98 25.97 21.6534 25.62 21.42 25.2C21.14 24.78 21 24.3134 21 23.8C21 23.2867 21.14 22.82 21.42 22.4C21.6534 21.98 21.98 21.6534 22.4 21.42C22.82 21.14 23.2867 21 23.8 21C24.3134 21 24.78 21.14 25.2 21.42C25.62 21.6534 25.97 21.98 26.25 22.4C26.4834 22.82 26.6 23.2867 26.6 23.8ZM5.60005 16.8C5.60005 17.3134 5.48338 17.78 5.25005 18.2C4.97005 18.62 4.62005 18.97 4.20005 19.25C3.78005 19.4834 3.31338 19.6 2.80005 19.6C2.28671 19.6 1.82005 19.4834 1.40005 19.25C0.980046 18.97 0.653379 18.62 0.420046 18.2C0.140047 17.78 4.69585e-05 17.3134 4.6936e-05 16.8C4.69136e-05 16.2867 0.140046 15.82 0.420046 15.4C0.653379 14.98 0.980045 14.6534 1.40005 14.42C1.82005 14.14 2.28671 14 2.80005 14C3.31338 14 3.78005 14.14 4.20005 14.42C4.62005 14.6534 4.97005 14.98 5.25005 15.4C5.48338 15.82 5.60005 16.2867 5.60005 16.8ZM26.6 9.80005C26.6 10.3134 26.4834 10.78 26.25 11.2C25.97 11.62 25.62 11.97 25.2 12.25C24.78 12.4834 24.3134 12.6 23.8 12.6C23.2867 12.6 22.82 12.4834 22.4 12.25C21.98 11.97 21.6534 11.62 21.42 11.2C21.14 10.78 21 10.3134 21 9.80005C21 9.28671 21.14 8.82004 21.42 8.40004C21.6534 7.98004 21.98 7.65338 22.4 7.42004C22.82 7.14005 23.2867 7.00005 23.8 7.00005C24.3134 7.00005 24.78 7.14005 25.2 7.42004C25.62 7.65338 25.97 7.98004 26.25 8.40004C26.4834 8.82004 26.6 9.28671 26.6 9.80005ZM19.6 2.80005C19.6 3.31338 19.4834 3.78004 19.25 4.20004C18.97 4.62004 18.62 4.97005 18.2 5.25005C17.78 5.48338 17.3134 5.60005 16.8 5.60005C16.2867 5.60005 15.82 5.48338 15.4 5.25005C14.98 4.97005 14.6534 4.62005 14.42 4.20004C14.14 3.78004 14 3.31338 14 2.80005C14 2.28671 14.14 1.82005 14.42 1.40005C14.6534 0.980047 14.98 0.653381 15.4 0.420048C15.82 0.140046 16.2867 4.46087e-05 16.8 4.45862e-05C17.3134 4.45638e-05 17.78 0.140046 18.2 0.420047C18.62 0.653381 18.97 0.980047 19.25 1.40005C19.4834 1.82005 19.6 2.28671 19.6 2.80005ZM26.6 16.8C26.6 17.3134 26.4834 17.78 26.25 18.2C25.97 18.62 25.62 18.97 25.2 19.25C24.78 19.4834 24.3134 19.6 23.8 19.6C23.2867 19.6 22.82 19.4834 22.4 19.25C21.98 18.97 21.6534 18.62 21.42 18.2C21.14 17.78 21 17.3134 21 16.8C21 16.2867 21.14 15.82 21.42 15.4C21.6534 14.98 21.98 14.6534 22.4 14.42C22.82 14.14 23.2867 14 23.8 14C24.3134 14 24.78 14.14 25.2 14.42C25.62 14.6534 25.97 14.98 26.25 15.4C26.4834 15.82 26.6 16.2867 26.6 16.8ZM12.6 16.8C12.6 17.3134 12.4834 17.78 12.25 18.2C11.97 18.62 11.62 18.97 11.2 19.25C10.78 19.4834 10.3134 19.6 9.80005 19.6C9.28671 19.6 8.82005 19.4834 8.40005 19.25C7.98005 18.97 7.65338 18.62 7.42005 18.2C7.14005 17.78 7.00005 17.3134 7.00005 16.8C7.00005 16.2867 7.14005 15.82 7.42005 15.4C7.65338 14.98 7.98005 14.6534 8.40005 14.42C8.82005 14.14 9.28671 14 9.80005 14C10.3134 14 10.78 14.14 11.2 14.42C11.62 14.6534 11.97 14.98 12.25 15.4C12.4834 15.82 12.6 16.2867 12.6 16.8ZM19.6 16.8C19.6 17.3134 19.4834 17.78 19.25 18.2C18.97 18.62 18.62 18.97 18.2 19.25C17.78 19.4834 17.3134 19.6 16.8 19.6C16.2867 19.6 15.82 19.4834 15.4 19.25C14.98 18.97 14.6534 18.62 14.42 18.2C14.14 17.78 14 17.3134 14 16.8C14 16.2867 14.14 15.82 14.42 15.4C14.6534 14.98 14.98 14.6534 15.4 14.42C15.82 14.14 16.2867 14 16.8 14C17.3134 14 17.78 14.14 18.2 14.42C18.62 14.6534 18.97 14.98 19.25 15.4C19.4834 15.82 19.6 16.2867 19.6 16.8ZM19.6 30.8C19.6 31.3134 19.4834 31.78 19.25 32.2C18.97 32.62 18.62 32.97 18.2 33.25C17.78 33.4834 17.3134 33.6 16.8 33.6C16.2867 33.6 15.82 33.4834 15.4 33.25C14.98 32.97 14.6534 32.62 14.42 32.2C14.14 31.78 14 31.3134 14 30.8C14 30.2867 14.14 29.82 14.42 29.4C14.6534 28.98 14.98 28.6534 15.4 28.42C15.82 28.14 16.2867 28 16.8 28C17.3134 28 17.78 28.14 18.2 28.42C18.62 28.6534 18.97 28.98 19.25 29.4C19.4834 29.82 19.6 30.2867 19.6 30.8Z" fill="currentColor"/>
-                                            </svg>
+                                            <span class="arrow-text" data-split-hover>→</span>
                                         </div>
                                     </div>
 
@@ -187,12 +185,91 @@ class Elementor_Widget_Horizontal_Cards extends \Elementor\Widget_Base {
         (function () {
             "use strict";
 
+            /* ---- Arrow hover effect (variable font weight) ---- */
+            var ARROW_RADIUS = 200;
+            var ARROW_LERP = 0.08;
+            var ARROW_MIN_WEIGHT = 80;
+            var ARROW_MAX_WEIGHT = 240;
+
+            function lerp(a, b, t) { return a + (b - a) * t; }
+
+            function splitArrowChars(el) {
+                var text = el.textContent;
+                el.innerHTML = '';
+                for (var i = 0; i < text.length; i++) {
+                    var span = document.createElement('span');
+                    span.classList.add('char');
+                    span.textContent = text[i];
+                    span._currentWeight = ARROW_MIN_WEIGHT;
+                    span._targetWeight = ARROW_MIN_WEIGHT;
+                    el.appendChild(span);
+                }
+            }
+
+            function initArrowHover(section) {
+                var arrows = section.querySelectorAll('.arrow-text[data-split-hover]');
+                arrows.forEach(function (arrow) { splitArrowChars(arrow); });
+
+                var allChars = section.querySelectorAll('.horizontal-card-arrow .char');
+                if (allChars.length === 0) return;
+
+                var isHovering = false;
+                var mouseX = -9999, mouseY = -9999;
+                var animId = null;
+
+                function animate() {
+                    var needsUpdate = false;
+                    allChars.forEach(function (ch) {
+                        if (isHovering) {
+                            var r = ch.getBoundingClientRect();
+                            var cx = r.left + r.width / 2;
+                            var cy = r.top + r.height / 2;
+                            var dx = mouseX - cx, dy = mouseY - cy;
+                            var dist = Math.sqrt(dx * dx + dy * dy);
+                            if (dist < ARROW_RADIUS) {
+                                var ratio = 1 - dist / ARROW_RADIUS;
+                                ratio = ratio * ratio;
+                                ch._targetWeight = ARROW_MIN_WEIGHT + ratio * (ARROW_MAX_WEIGHT - ARROW_MIN_WEIGHT);
+                            } else {
+                                ch._targetWeight = ARROW_MIN_WEIGHT;
+                            }
+                        } else {
+                            ch._targetWeight = ARROW_MIN_WEIGHT;
+                        }
+                        ch._currentWeight = lerp(ch._currentWeight, ch._targetWeight, ARROW_LERP);
+                        if (Math.abs(ch._currentWeight - ch._targetWeight) > 0.5) needsUpdate = true;
+                        ch.style.fontWeight = Math.round(ch._currentWeight);
+                    });
+                    if (needsUpdate || isHovering) {
+                        animId = requestAnimationFrame(animate);
+                    } else {
+                        animId = null;
+                    }
+                }
+
+                function startAnim() { if (!animId) animId = requestAnimationFrame(animate); }
+
+                section.addEventListener('mousemove', function (e) {
+                    mouseX = e.clientX; mouseY = e.clientY;
+                    isHovering = true;
+                    startAnim();
+                });
+                section.addEventListener('mouseleave', function () {
+                    isHovering = false;
+                    startAnim();
+                });
+            }
+
+            /* ---- Horizontal scroll logic ---- */
             function initHorizontalCards(sectionId) {
                 if (!window.gsap || !window.ScrollTrigger) return;
                 gsap.registerPlugin(ScrollTrigger);
 
                 var section = document.getElementById(sectionId);
                 if (!section) return;
+
+                /* Init arrow hover effect */
+                initArrowHover(section);
 
                 var track = section.querySelector('.horizontal-cards-track');
                 if (!track) return;

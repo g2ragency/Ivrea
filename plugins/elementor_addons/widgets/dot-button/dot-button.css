@@ -1,0 +1,73 @@
+/* === Dot Button Widget === */
+
+.dot-button-widget {
+  display: inline-block;
+}
+
+.dot-button-link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px 36px;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+}
+
+/* Dots border container */
+.dot-button-dots {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.dot-button-dots .dot-char {
+  position: absolute;
+  font-family: "TINY5x3", monospace !important;
+  font-feature-settings: "ss03" 1;
+  font-weight: 80;
+  line-height: 1;
+  display: block;
+  text-align: center;
+}
+
+/* Inner content: text + arrow */
+.dot-button-inner {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  position: relative;
+  z-index: 1;
+}
+
+.dot-button-text,
+.dot-button-arrow {
+  font-family: "TINY5x3", monospace !important;
+  font-feature-settings: "ss03" 1;
+  font-weight: 100;
+  line-height: 0.8;
+  text-transform: uppercase;
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.dot-button-text .word {
+  display: inline-block;
+}
+
+.dot-button-text .char,
+.dot-button-arrow .char {
+  display: inline-block;
+  color: inherit;
+}
+
+/* Responsive */
+@media only screen and (max-width: 768px) {
+  .dot-button-link {
+    padding: 24px 36px;
+  }
+}
