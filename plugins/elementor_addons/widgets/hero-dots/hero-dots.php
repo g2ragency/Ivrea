@@ -109,10 +109,10 @@ class Elementor_Widget_Hero_Dots extends \Elementor\Widget_Base {
                 if (!canvas) return;
                 var ctx = canvas.getContext("2d");
 
-                var DOT_BASE   = 5;          // base radius px
+                var DOT_BASE   = 4;          // base radius px
                 var GAP        = 10;          // gap between dots
                 var STEP       = DOT_BASE * 2 + GAP; // center-to-center
-                var INFLUENCE  = 50;         // cursor influence radius
+                var INFLUENCE  = 70;         // cursor influence radius
                 var MAX_SCALE  = 3.5;        // max scale multiplier when hovered
                 var BG_COLOR   = "#FF3333";
                 var DOT_COLOR  = "#E02D2D";  // slightly darker dots
@@ -120,24 +120,33 @@ class Elementor_Widget_Hero_Dots extends \Elementor\Widget_Base {
                 var cols, rows, dots;
                 var mouseX = -9999, mouseY = -9999;
                 var raf;
+                var dpr = window.devicePixelRatio || 1;
 
                 function resize() {
                     var rect = wrapper.getBoundingClientRect();
-                    canvas.width  = rect.width;
-                    canvas.height = rect.height;
+                    dpr = window.devicePixelRatio || 1;
+                    canvas.width  = rect.width * dpr;
+                    canvas.height = rect.height * dpr;
+                    canvas.style.width  = rect.width + "px";
+                    canvas.style.height = rect.height + "px";
+                    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
                     buildGrid();
                 }
 
                 function buildGrid() {
-                    cols = Math.ceil(canvas.width  / STEP) + 1;
-                    rows = Math.ceil(canvas.height / STEP) + 1;
-                    dots = new Float32Array(cols * rows); // current scale
+                    var w = canvas.width / dpr;
+                    var h = canvas.height / dpr;
+                    cols = Math.ceil(w / STEP) + 1;
+                    rows = Math.ceil(h / STEP) + 1;
+                    dots = new Float32Array(cols * rows);
                     for (var i = 0; i < dots.length; i++) dots[i] = 1;
                 }
 
                 function draw() {
+                    var w = canvas.width / dpr;
+                    var h = canvas.height / dpr;
                     ctx.fillStyle = BG_COLOR;
-                    ctx.fillRect(0, 0, canvas.width, canvas.height);
+                    ctx.fillRect(0, 0, w, h);
 
                     ctx.fillStyle = DOT_COLOR;
 
