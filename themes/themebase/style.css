@@ -261,54 +261,54 @@ header.site-header {
 }
 
 /*********CONTACT US************/
-/*.contact-us-form .form-control {
-    padding: 20px;
-    border-radius: 0;
-	color: var(--white);
-	text-transform: uppercase;
- 	resize: none;
-	background-color: #333333;
-	border: 0;
+.contact-us-form .form-control {
+  padding: 20px;
+  border-radius: 0;
+  color: var(--white);
+  text-transform: uppercase;
+  resize: none;
+  background-color: #333333;
+  border: 0;
 }
 
 .contact-us-form .form-control::placeholder {
-	color: var(--grey);
-	text-transform: uppercase;
+  color: var(--grey);
+  text-transform: uppercase;
 }
 
 .contact-us-form .btn-submit .form-control {
-   	background: transparent;
-	border: 1px solid var(--green);
-	color: var(--white);
+  background: transparent;
+  border: 1px solid var(--green);
+  color: var(--white);
 }
 
-.contact-us-form p{
-	margin-bottom: 24px;
+.contact-us-form p {
+  margin-bottom: 24px;
 }
 
 .contact-us-form .wpcf7-acceptance input[type="checkbox"] {
-    appearance: none;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    width: 14px;
-    height: 14px;
-    min-height: 14px;
-    border: 1px solid var(--white);
-    display: inline-block;
-    position: relative;
-    background-color: transparent;
-    cursor: pointer;
-    transition: all 0.3s ease-in-out;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  width: 14px;
+  height: 14px;
+  min-height: 14px;
+  border: 1px solid var(--white);
+  display: inline-block;
+  position: relative;
+  background-color: transparent;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
 }
 
-.contact-us-form .wpcf7-acceptance span{
-    color: var(--grey);
-	font-size: 14px;
+.contact-us-form .wpcf7-acceptance span {
+  color: var(--grey);
+  font-size: 14px;
 }
 
 .contact-us-form .wpcf7-acceptance input[type="checkbox"]:checked {
-    background-color: var(--white);
-}*/
+  background-color: var(--white);
+}
 
 /* FOOTER */
 .site-footer {

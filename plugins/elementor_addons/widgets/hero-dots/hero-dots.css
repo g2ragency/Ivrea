@@ -1,0 +1,122 @@
+/* ── HERO DOTS ── */
+.hero-dots-widget {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  background: #ff3333;
+}
+
+.hero-dots-widget .hero-dots-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* ── CONTENT OVERLAY ── */
+.hero-dots-widget .hero-dots-content {
+  position: relative;
+  z-index: 2;
+  width: fit-content;
+  height: 100%;
+  margin: 0 auto;
+  padding: 0 4vw;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  pointer-events: none;
+}
+
+/* ── TOP THREE TEXTS ── */
+.hero-dots-widget .hero-dots-top {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 0;
+}
+
+.hero-dots-widget .hero-dots-top-text {
+  font-family: "TINY5x3", monospace;
+  font-feature-settings: "ss03" 1;
+  font-weight: 140;
+  font-size: 60px;
+  line-height: 0.8;
+  color: var(--black);
+  text-transform: uppercase;
+}
+
+/* ── TITLE ── */
+.hero-dots-widget .hero-dots-title {
+  font-family: "TINY5x3", monospace !important;
+  font-feature-settings: "ss03" 1;
+  font-weight: 140;
+  font-size: 160px;
+  line-height: 0.85;
+  color: var(--white);
+  text-transform: uppercase;
+  margin: 0;
+}
+
+/* ── SUBTITLE ── */
+.hero-dots-widget .hero-dots-subtitle {
+  font-family: "TINY5x3", monospace !important;
+  font-feature-settings: "ss03" 1;
+  font-weight: 140;
+  font-size: 60px;
+  line-height: 0.9;
+  color: var(--black);
+  text-transform: uppercase;
+  margin: 0;
+}
+
+/* ── Elementor ancestor overrides ── */
+.hero-dots-widget,
+.hero-dots-widget * {
+  pointer-events: auto;
+}
+.hero-dots-widget .hero-dots-content,
+.hero-dots-widget .hero-dots-content * {
+  pointer-events: none;
+}
+
+/* ── TABLET ── */
+@media only screen and (max-width: 1024px) {
+  .hero-dots-widget .hero-dots-title {
+    font-size: 100px;
+  }
+
+  .hero-dots-widget .hero-dots-subtitle {
+    font-size: 36px;
+  }
+
+  .hero-dots-widget .hero-dots-top-text {
+    font-size: 24px;
+  }
+}
+
+/* ── MOBILE ── */
+@media only screen and (max-width: 768px) {
+  .hero-dots-widget .hero-dots-title {
+    font-size: 60px;
+  }
+
+  .hero-dots-widget .hero-dots-subtitle {
+    font-size: 28px;
+  }
+
+  .hero-dots-widget .hero-dots-top {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .hero-dots-widget .hero-dots-top-text {
+    font-size: 20px;
+  }
+}
