@@ -24,6 +24,7 @@
   will-change: font-weight;
   cursor: default;
   color: inherit;
+  font-family: "TINY5x3", monospace !important;
 }
 
 .hover-text-widget:hover {

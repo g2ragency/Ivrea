@@ -45,6 +45,7 @@
   display: inline-block;
   will-change: font-weight;
   cursor: default;
+  font-family: "TINY5x3", monospace;
 }
 
 .hero-text-widget:hover {

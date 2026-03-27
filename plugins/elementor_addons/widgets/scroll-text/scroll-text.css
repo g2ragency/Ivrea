@@ -19,6 +19,7 @@
 .scroll-text-content .scroll-char {
   display: inline;
   transition: color 0.1s ease;
+  font-family: "TINY5x3", monospace;
 }
 
 /* MOBILE */

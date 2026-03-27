@@ -63,6 +63,7 @@
 .dot-button-arrow .char {
   display: inline-block;
   color: inherit;
+  font-family: "TINY5x3", monospace !important;
 }
 
 /* Responsive */

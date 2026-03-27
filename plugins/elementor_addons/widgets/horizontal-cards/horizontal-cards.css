@@ -89,6 +89,7 @@
 .horizontal-cards-section .horizontal-card-arrow .arrow-text .char {
   display: inline-block;
   color: inherit;
+  font-family: "TINY5x3", monospace !important;
 }
 
 .horizontal-cards-section .horizontal-card-image {
