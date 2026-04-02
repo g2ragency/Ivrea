@@ -2,11 +2,13 @@
   position: relative;
   width: 100%;
   margin: 0 auto;
+  border-radius: 5px;
 }
 .ivrea-map-bg {
   width: 100%;
   height: auto;
   display: block;
+  border-radius: 5px!important;
 }
 .ivrea-map-pin {
   position: absolute;
@@ -45,7 +47,7 @@
   transition: all 0.3s ease;
   pointer-events: none;
   padding: 16px 20px;
-  border-radius: 8px;
+  border-radius: 5px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
   z-index: 20;
 }
