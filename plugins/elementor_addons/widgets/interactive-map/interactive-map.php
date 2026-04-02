@@ -68,7 +68,7 @@ class Elementor_Widget_Interactive_Map extends \Elementor\Widget_Base {
             </div>
 
             <!-- Punto 4: Punto rosso -->
-            <div class="ivrea-map-pin ivrea-map-pin--dot" style="top: 15%; left: 59%;">
+            <div class="ivrea-map-pin ivrea-map-pin--dot" style="top: 15%; left: 57%;">
                 <span class="ivrea-dot" style="background:#FF3333;"></span>
             </div>
         </div>
