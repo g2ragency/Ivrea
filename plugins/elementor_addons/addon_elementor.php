@@ -134,6 +134,7 @@ final class Elementor_Addon_Widgets {
 		require_once( __DIR__ . '/widgets/stats/stats.php' );
 		require_once( __DIR__ . '/widgets/swiper-ospiti/swiper-ospiti.php' );
 		require_once( __DIR__ . '/widgets/hero-dots/hero-dots.php' );
+		require_once( __DIR__ . '/widgets/interactive-map/interactive-map.php' );
 		
 		//HOMEPAGE
 		$widgets_manager->register( new \Elementor_Widget_Countdown() );
@@ -146,6 +147,7 @@ final class Elementor_Addon_Widgets {
 		$widgets_manager->register( new \Elementor_Widget_Stats() );
 		$widgets_manager->register( new \Elementor_Widget_Swiper_Ospiti() );
 		$widgets_manager->register( new \Elementor_Widget_Hero_Dots() );
+		$widgets_manager->register( new \Elementor_Widget_Interactive_Map() );
 		
 	
 	}	public function init_controls() {
