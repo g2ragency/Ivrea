@@ -38,7 +38,7 @@ class Elementor_Widget_Interactive_Map extends \Elementor\Widget_Base {
             <img src="/wp-content/uploads/2026/04/Mappa-Ivrea-No-Flag.svg" alt="Mappa Ivrea" class="ivrea-map-bg">
 
             <!-- Punto 1: OFFICINE H -->
-            <div class="ivrea-map-pin" style="top: 45%; left: 45%;">
+            <div class="ivrea-map-pin" style="top: 45%; left: 42%;">
                 <img src="/wp-content/uploads/2026/04/Flag.svg" alt="Bandiera" class="flag-svg">
                 <div class="ivrea-map-info">
                     <div class="ivrea-map-date">20 Giugno</div>
