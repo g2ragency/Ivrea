@@ -45,45 +45,63 @@
 .hero-dots-widget .hero-dots-top-text {
   font-family: "TINY5x3", monospace;
   font-feature-settings: "ss03" 1;
-  font-weight: 140;
-  font-size: 60px;
+  font-weight: 80;
+  font-size: 46px;
   line-height: 0.8;
   color: var(--black);
   text-transform: uppercase;
+  white-space: nowrap;
 }
 
 /* ── TITLE ── */
 .hero-dots-widget .hero-dots-title {
   font-family: "TINY5x3", monospace !important;
   font-feature-settings: "ss03" 1;
-  font-weight: 140;
-  font-size: 160px;
-  line-height: 0.85;
+  font-weight: 80;
+  font-size: 180px;
+  line-height: 0.7;
   color: var(--white);
   text-transform: uppercase;
-  margin: 0;
+  margin: 0 !important;
+  white-space: nowrap;
 }
 
 /* ── SUBTITLE ── */
-.hero-dots-widget .hero-dots-subtitle {
+.hero-dots-widget .hero-dots-subtitle,
+.hero-dots-widget .hero-dots-subtitle .char {
   font-family: "TINY5x3", monospace !important;
   font-feature-settings: "ss03" 1;
-  font-weight: 140;
-  font-size: 60px;
-  line-height: 0.9;
+  font-weight: 80;
+  font-size: 56px;
+  line-height: 0.8;
   color: var(--black);
   text-transform: uppercase;
   margin: 0;
 }
 
-/* ── Elementor ancestor overrides ── */
+/* ── Chars (variable font hover) ── */
+.hero-dots-widget .word {
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.hero-dots-widget .char {
+  display: inline-block;
+  color: inherit;
+  font-family: "TINY5x3", monospace !important;
+  font-feature-settings: "ss03" 1;
+  will-change: font-weight;
+  cursor: default;
+}
+
+.hero-dots-widget:hover {
+  cursor: none;
+}
+
+/* ── Pointer events ── */
 .hero-dots-widget,
 .hero-dots-widget * {
   pointer-events: auto;
-}
-.hero-dots-widget .hero-dots-content,
-.hero-dots-widget .hero-dots-content * {
-  pointer-events: none;
 }
 
 /* ── TABLET ── */

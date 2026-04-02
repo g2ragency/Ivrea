@@ -87,14 +87,14 @@ class Elementor_Widget_Hero_Dots extends \Elementor\Widget_Base {
             <div class="hero-dots-content">
 
                 <div class="hero-dots-top">
-                    <span class="hero-dots-top-text"><?php echo esc_html($s['top_left']); ?></span>
-                    <span class="hero-dots-top-text"><?php echo esc_html($s['top_center']); ?></span>
-                    <span class="hero-dots-top-text"><?php echo esc_html($s['top_right']); ?></span>
+                    <span class="hero-dots-top-text" data-split-hover><?php echo esc_html($s['top_left']); ?></span>
+                    <span class="hero-dots-top-text" data-split-hover><?php echo esc_html($s['top_center']); ?></span>
+                    <span class="hero-dots-top-text" data-split-hover><?php echo esc_html($s['top_right']); ?></span>
                 </div>
 
-                <h1 class="hero-dots-title"><?php echo esc_html($s['title_text']); ?></h1>
+                <h1 class="hero-dots-title" data-split-hover><?php echo esc_html($s['title_text']); ?></h1>
 
-                <p class="hero-dots-subtitle"><?php echo nl2br(esc_html($s['subtitle_text'])); ?></p>
+                <p class="hero-dots-subtitle" data-split-hover><?php echo nl2br(esc_html($s['subtitle_text'])); ?></p>
 
             </div>
         </div>
@@ -109,11 +109,11 @@ class Elementor_Widget_Hero_Dots extends \Elementor\Widget_Base {
                 if (!canvas) return;
                 var ctx = canvas.getContext("2d");
 
-                var DOT_BASE   = 4;          // base radius px
+                var DOT_BASE   = 3;          // base radius px
                 var GAP        = 10;          // gap between dots
                 var STEP       = DOT_BASE * 2 + GAP; // center-to-center
                 var INFLUENCE  = 70;         // cursor influence radius
-                var MAX_SCALE  = 3.5;        // max scale multiplier when hovered
+                var MAX_SCALE  = 2.8;        // max scale multiplier when hovered
                 var BG_COLOR   = "#FF3333";
                 var DOT_COLOR  = "#E02D2D";  // slightly darker dots
 
@@ -206,11 +206,114 @@ class Elementor_Widget_Hero_Dots extends \Elementor\Widget_Base {
                 };
             }
 
+            /* ── Variable font hover effect (same as hero-text) ── */
+            var TEXT_RADIUS = 300;
+            var TEXT_MIN_WEIGHT = 80;
+            var TEXT_MAX_WEIGHT = 200;
+            var TEXT_LERP = 0.08;
+            var textMouseX = -9999, textMouseY = -9999;
+
+            function lerpVal(a, b, t) { return a + (b - a) * t; }
+
+            function splitTextIntoChars(element) {
+                var html = element.innerHTML;
+                var lines = html.split(/<br\s*\/?>/i);
+                element.innerHTML = "";
+                element.setAttribute("aria-label", element.textContent);
+
+                for (var l = 0; l < lines.length; l++) {
+                    var lineText = lines[l].replace(/<[^>]*>/g, "").trim();
+                    var words = lineText.split(" ");
+
+                    for (var w = 0; w < words.length; w++) {
+                        if (words[w] === "") continue;
+                        var wordSpan = document.createElement("span");
+                        wordSpan.classList.add("word");
+
+                        for (var i = 0; i < words[w].length; i++) {
+                            var span = document.createElement("span");
+                            span.classList.add("char");
+                            span.setAttribute("aria-hidden", "true");
+                            span.textContent = words[w][i];
+                            span._currentWeight = TEXT_MIN_WEIGHT;
+                            span._targetWeight = TEXT_MIN_WEIGHT;
+                            wordSpan.appendChild(span);
+                        }
+
+                        element.appendChild(wordSpan);
+
+                        if (w < words.length - 1) {
+                            var space = document.createElement("span");
+                            space.classList.add("char", "space");
+                            space.innerHTML = "&nbsp;";
+                            space._currentWeight = TEXT_MIN_WEIGHT;
+                            space._targetWeight = TEXT_MIN_WEIGHT;
+                            element.appendChild(space);
+                        }
+                    }
+
+                    if (l < lines.length - 1) {
+                        element.appendChild(document.createElement("br"));
+                    }
+                }
+            }
+
+            function initTextHover(wrapper) {
+                var elements = wrapper.querySelectorAll("[data-split-hover]");
+                elements.forEach(function(el) { splitTextIntoChars(el); });
+
+                var allChars = wrapper.querySelectorAll(".char");
+                var isHovering = false;
+                var animId = null;
+
+                function animate() {
+                    var needsUpdate = false;
+                    allChars.forEach(function(ch) {
+                        if (isHovering) {
+                            var r = ch.getBoundingClientRect();
+                            var cx = r.left + r.width / 2;
+                            var cy = r.top + r.height / 2;
+                            var dx = textMouseX - cx;
+                            var dy = textMouseY - cy;
+                            var dist = Math.sqrt(dx * dx + dy * dy);
+                            if (dist < TEXT_RADIUS) {
+                                var ratio = 1 - dist / TEXT_RADIUS;
+                                ratio = ratio * ratio;
+                                ch._targetWeight = TEXT_MIN_WEIGHT + ratio * (TEXT_MAX_WEIGHT - TEXT_MIN_WEIGHT);
+                            } else {
+                                ch._targetWeight = TEXT_MIN_WEIGHT;
+                            }
+                        } else {
+                            ch._targetWeight = TEXT_MIN_WEIGHT;
+                        }
+                        ch._currentWeight = lerpVal(ch._currentWeight, ch._targetWeight, TEXT_LERP);
+                        if (Math.abs(ch._currentWeight - ch._targetWeight) > 0.5) needsUpdate = true;
+                        ch.style.fontWeight = Math.round(ch._currentWeight);
+                    });
+                    if (needsUpdate || isHovering) animId = requestAnimationFrame(animate);
+                    else animId = null;
+                }
+
+                function startAnim() { if (!animId) animId = requestAnimationFrame(animate); }
+
+                wrapper.addEventListener("mousemove", function(e) {
+                    textMouseX = e.clientX;
+                    textMouseY = e.clientY;
+                    isHovering = true;
+                    startAnim();
+                });
+                wrapper.addEventListener("mouseleave", function() {
+                    isHovering = false;
+                    startAnim();
+                });
+            }
+
             function init() {
                 var el = document.getElementById("hero-dots-<?php echo esc_attr($id); ?>");
                 if (el) {
                     if (el._heroDotsCleanup) el._heroDotsCleanup();
                     initHeroDots(el);
+                    initTextHover(el);
                 }
             }
 
@@ -228,6 +331,7 @@ class Elementor_Widget_Hero_Dots extends \Elementor\Widget_Base {
                         if (el) {
                             if (el._heroDotsCleanup) el._heroDotsCleanup();
                             initHeroDots(el);
+                            initTextHover(el);
                         }
                     }
                 );
