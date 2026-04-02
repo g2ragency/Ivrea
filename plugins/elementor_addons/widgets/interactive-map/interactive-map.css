@@ -1,75 +1,137 @@
 .ivrea-map-wrap {
-    position: relative;
-    width: 100%;
-    margin: 0 auto;
+  position: relative;
+  width: 100%;
+  margin: 0 auto;
 }
 .ivrea-map-bg {
-    width: 100%;
-    height: auto;
-    display: block;
+  width: 100%;
+  height: auto;
+  display: block;
 }
 .ivrea-map-pin {
-    position: absolute;
-    transform: translate(-50%, -100%);
-    cursor: pointer;
-    z-index: 10;
+  position: absolute;
+  transform: translate(-50%, -100%);
+  cursor: pointer;
+  z-index: 10;
 }
 .ivrea-map-pin img.flag-svg {
-    display: block;
-    width: 50px; /* Adjust based on exact size needed */
-    height: auto;
-    transition: transform 0.2s;
+  display: block;
+  width: auto;
+  height: 60px;
+  transition: transform 0.2s;
 }
 
-/* Info Box positioning next to the flag */
+/* Red dot marker */
+.ivrea-dot {
+  display: block;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+}
+.ivrea-map-pin--dot {
+  transform: translate(-50%, -50%);
+}
+
+/* Info Box - positioned next to the flag */
 .ivrea-map-info {
-    position: absolute;
-    top: 50%;
-    left: 100%;
-    transform: translate(20px, -50%);
-    background: transparent;
-    white-space: nowrap; /* We use <br> for breaklines, but keep wrapper intact */
-    opacity: 0;
-    visibility: hidden;
-    transition: all 0.3s ease;
-    pointer-events: none;
+  position: absolute;
+  top: 50%;
+  left: 100%;
+  transform: translate(15px, -50%);
+  background: rgba(255, 255, 255, 0.95);
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  pointer-events: none;
+  padding: 16px 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  z-index: 20;
 }
 .ivrea-map-pin:hover .ivrea-map-info {
-    opacity: 1;
-    visibility: visible;
-    transform: translate(10px, -50%); /* small slide animation */
+  opacity: 1;
+  visibility: visible;
+  transform: translate(8px, -50%);
+}
+.ivrea-map-pin:hover {
+  z-index: 30;
 }
 
-/* Typography styles based on requirements */
+/* Typography styles */
 .ivrea-map-date {
-    font-family: 'Helvetica Now Display', sans-serif;
-    font-weight: 700;
-    font-style: normal;
-    font-size: 16px;
-    line-height: 22px;
-    letter-spacing: 0;
-    font-variant-numeric: lining-nums tabular-nums;
-    margin-bottom: 10px;
-    color: #000;
+  font-family: "Helvetica Now Display", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+  font-size: 16px;
+  line-height: 22px;
+  letter-spacing: 0;
+  font-variant-numeric: lining-nums tabular-nums;
+  margin-bottom: 10px;
+  color: #000;
 }
 .ivrea-map-title {
-    font-family: 'TINY 5x3', monospace;
-    font-weight: 400; /* Normal weight for custom fonts unless 140 is specifically loaded */
-    font-size: 40px;
-    line-height: 34px;
-    letter-spacing: 0;
-    font-variant-numeric: lining-nums tabular-nums;
-    text-transform: uppercase;
-    margin-bottom: 10px;
-    color: #000;
+  font-family: "TINY5x3", monospace;
+  font-weight: 400;
+  font-size: 40px;
+  line-height: 34px;
+  letter-spacing: 0;
+  font-variant-numeric: lining-nums tabular-nums;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  color: #000;
 }
 .ivrea-map-street {
-    font-family: 'Helvetica Now Display', sans-serif;
-    font-weight: 700;
-    font-style: normal;
-    font-size: 16px;
-    line-height: 22px;
-    letter-spacing: 0;
-    font-variant-numeric: lining-nums tabular-nums;
-    color: #737373;
+  font-family: "Helvetica Now Display", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+  font-size: 16px;
+  line-height: 22px;
+  letter-spacing: 0;
+  font-variant-numeric: lining-nums tabular-nums;
+  color: #737373;
+}
+
+/* Mobile responsive */
+@media (max-width: 767px) {
+  .ivrea-map-pin img.flag-svg {
+    height: 30px;
+  }
+  .ivrea-dot {
+    width: 10px;
+    height: 10px;
+  }
+  .ivrea-map-date {
+    font-size: 10px;
+    line-height: 14px;
+    margin-bottom: 4px;
+  }
+  .ivrea-map-title {
+    font-size: 20px;
+    line-height: 18px;
+    margin-bottom: 4px;
+  }
+  .ivrea-map-street {
+    font-size: 10px;
+    line-height: 14px;
+  }
+}
+@media (min-width: 768px) and (max-width: 1024px) {
+  .ivrea-map-pin img.flag-svg {
+    height: 45px;
+  }
+  .ivrea-map-date {
+    font-size: 13px;
+    line-height: 18px;
+    margin-bottom: 6px;
+  }
+  .ivrea-map-title {
+    font-size: 30px;
+    line-height: 26px;
+    margin-bottom: 6px;
+  }
+  .ivrea-map-street {
+    font-size: 13px;
+    line-height: 18px;
+  }
 }

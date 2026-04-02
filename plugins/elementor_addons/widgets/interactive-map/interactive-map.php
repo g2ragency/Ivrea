@@ -38,7 +38,7 @@ class Elementor_Widget_Interactive_Map extends \Elementor\Widget_Base {
             <img src="/wp-content/uploads/2026/04/Mappa-Ivrea-No-Flag.svg" alt="Mappa Ivrea" class="ivrea-map-bg">
 
             <!-- Punto 1: OFFICINE H -->
-            <div class="ivrea-map-pin" style="top: 25%; left: 25%;">
+            <div class="ivrea-map-pin" style="top: 45%; left: 45%;">
                 <img src="/wp-content/uploads/2026/04/Flag.svg" alt="Bandiera" class="flag-svg">
                 <div class="ivrea-map-info">
                     <div class="ivrea-map-date">20 Giugno</div>
@@ -48,7 +48,7 @@ class Elementor_Widget_Interactive_Map extends \Elementor\Widget_Base {
             </div>
 
             <!-- Punto 2: MUSEO TECNOLOGIC@METE -->
-            <div class="ivrea-map-pin" style="top: 45%; left: 70%;">
+            <div class="ivrea-map-pin" style="top: 87%; left: 45%;">
                 <img src="/wp-content/uploads/2026/04/Flag.svg" alt="Bandiera" class="flag-svg">
                 <div class="ivrea-map-info">
                     <div class="ivrea-map-date">19 Giugno</div>
@@ -58,13 +58,18 @@ class Elementor_Widget_Interactive_Map extends \Elementor\Widget_Base {
             </div>
 
             <!-- Punto 3: FABBRICA DEI MATTONI ROSSI -->
-            <div class="ivrea-map-pin" style="top: 75%; left: 40%;">
+            <div class="ivrea-map-pin" style="top: 50%; left: 57%;">
                 <img src="/wp-content/uploads/2026/04/Flag.svg" alt="Bandiera" class="flag-svg">
                 <div class="ivrea-map-info">
                     <div class="ivrea-map-date">21 Giugno</div>
                     <div class="ivrea-map-title">FABBRICA DEI<br>MATTONI ROSSI</div>
                     <div class="ivrea-map-street">Via Guglielmo Jervis, 16<br>10015 Ivrea TO</div>
                 </div>
+            </div>
+
+            <!-- Punto 4: Punto rosso -->
+            <div class="ivrea-map-pin ivrea-map-pin--dot" style="top: 15%; left: 59%;">
+                <span class="ivrea-dot" style="background:#FF3333;"></span>
             </div>
         </div>
         <?php
