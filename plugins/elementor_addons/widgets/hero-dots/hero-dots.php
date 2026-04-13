@@ -103,7 +103,7 @@ class Elementor_Widget_Hero_Dots extends \Elementor\Widget_Base {
         (function(){
             "use strict";
 
-            /* ── Dot-grid background with cursor repulsion ── */
+            /* ── Dot-grid background with cursor repulsion + gyroscope tilt ── */
             function initHeroDots(wrapper) {
                 var canvas = wrapper.querySelector(".hero-dots-canvas");
                 if (!canvas) return;
@@ -121,6 +121,14 @@ class Elementor_Widget_Hero_Dots extends \Elementor\Widget_Base {
                 var mouseX = -9999, mouseY = -9999;
                 var raf;
                 var dpr = window.devicePixelRatio || 1;
+
+                /* ── Gyroscope / tilt state ── */
+                var isTouchDevice = "ontouchstart" in window || navigator.maxTouchPoints > 0;
+                var tiltGamma = 0;   // left-right tilt, normalised to [-1, 1]
+                var tiltBeta  = 0;   // front-back tilt, normalised to [-1, 1]
+                var tiltActive = false;
+                var TILT_MAX_SCALE = 2.8;    // max scale from tilt
+                var TILT_DEADZONE  = 3;      // degrees ignored near zero
 
                 function resize() {
                     var rect = wrapper.getBoundingClientRect();
@@ -156,13 +164,27 @@ class Elementor_Widget_Hero_Dots extends \Elementor\Widget_Base {
                             var cx  = c * STEP + DOT_BASE;
                             var cy  = r * STEP + DOT_BASE;
 
-                            var dx = cx - mouseX;
-                            var dy = cy - mouseY;
-                            var dist = Math.sqrt(dx * dx + dy * dy);
-
                             var targetScale = 1;
-                            if (dist < INFLUENCE) {
-                                targetScale = 1 + (MAX_SCALE - 1) * (1 - dist / INFLUENCE);
+
+                            if (tiltActive) {
+                                /* ── Gyroscope tilt mode (mobile/tablet) ── */
+                                var normX = w > 0 ? (cx / w - 0.5) * 2 : 0;  // -1 (left) to 1 (right)
+                                var normY = h > 0 ? (cy / h - 0.5) * 2 : 0;  // -1 (top) to 1 (bottom)
+
+                                // Dot product: dots aligned with tilt direction grow
+                                var influence = tiltGamma * normX + tiltBeta * normY;
+                                // Clamp to [0, 1] — only grow, never shrink below base
+                                influence = Math.max(0, Math.min(1, influence));
+                                targetScale = 1 + influence * (TILT_MAX_SCALE - 1);
+                            } else {
+                                /* ── Desktop cursor repulsion ── */
+                                var dx = cx - mouseX;
+                                var dy = cy - mouseY;
+                                var dist = Math.sqrt(dx * dx + dy * dy);
+
+                                if (dist < INFLUENCE) {
+                                    targetScale = 1 + (MAX_SCALE - 1) * (1 - dist / INFLUENCE);
+                                }
                             }
 
                             // lerp for smooth transition
@@ -179,6 +201,7 @@ class Elementor_Widget_Hero_Dots extends \Elementor\Widget_Base {
                     raf = requestAnimationFrame(draw);
                 }
 
+                /* ── Desktop mouse handlers ── */
                 function onMouseMove(e) {
                     var rect = canvas.getBoundingClientRect();
                     mouseX = e.clientX - rect.left;
@@ -190,6 +213,60 @@ class Elementor_Widget_Hero_Dots extends \Elementor\Widget_Base {
                     mouseY = -9999;
                 }
 
+                /* ── Gyroscope handler ── */
+                function onDeviceOrientation(e) {
+                    if (e.gamma === null && e.beta === null) return;
+                    tiltActive = true;
+
+                    // gamma: left-right tilt (-90 to 90). Positive = tilted right.
+                    var g = e.gamma || 0;
+                    // beta: front-back tilt (-180 to 180). ~45° is neutral hold.
+                    var b = (e.beta || 0) - 45;
+
+                    // Apply deadzone
+                    if (Math.abs(g) < TILT_DEADZONE) g = 0;
+                    if (Math.abs(b) < TILT_DEADZONE) b = 0;
+
+                    // Normalise to [-1, 1] with 35° as full tilt
+                    tiltGamma = Math.max(-1, Math.min(1, g / 35));
+                    tiltBeta  = Math.max(-1, Math.min(1, b / 35));
+                }
+
+                /* ── iOS permission flow ── */
+                function requestGyroPermission() {
+                    if (typeof DeviceOrientationEvent !== "undefined" &&
+                        typeof DeviceOrientationEvent.requestPermission === "function") {
+                        // iOS 13+ requires user gesture
+                        DeviceOrientationEvent.requestPermission().then(function(state) {
+                            if (state === "granted") {
+                                window.addEventListener("deviceorientation", onDeviceOrientation);
+                            }
+                        }).catch(function() {});
+                    } else {
+                        // Android / other — no permission needed
+                        window.addEventListener("deviceorientation", onDeviceOrientation);
+                    }
+                }
+
+                /* ── Bind events ── */
+                if (isTouchDevice) {
+                    // On touch devices, try gyroscope
+                    if (typeof DeviceOrientationEvent !== "undefined" &&
+                        typeof DeviceOrientationEvent.requestPermission === "function") {
+                        // iOS: attach permission request to first tap on wrapper
+                        var permissionRequested = false;
+                        wrapper.addEventListener("touchstart", function iosPermHandler() {
+                            if (permissionRequested) return;
+                            permissionRequested = true;
+                            requestGyroPermission();
+                        }, { once: true });
+                    } else {
+                        // Android: start immediately
+                        requestGyroPermission();
+                    }
+                }
+
+                // Always bind mouse events (fallback & desktop)
                 wrapper.addEventListener("mousemove", onMouseMove);
                 wrapper.addEventListener("mouseleave", onMouseLeave);
 
@@ -201,6 +278,7 @@ class Elementor_Widget_Hero_Dots extends \Elementor\Widget_Base {
                 wrapper._heroDotsCleanup = function() {
                     cancelAnimationFrame(raf);
                     window.removeEventListener("resize", resize);
+                    window.removeEventListener("deviceorientation", onDeviceOrientation);
                     wrapper.removeEventListener("mousemove", onMouseMove);
                     wrapper.removeEventListener("mouseleave", onMouseLeave);
                 };
