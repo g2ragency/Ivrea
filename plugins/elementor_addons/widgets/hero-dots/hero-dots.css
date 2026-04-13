@@ -47,13 +47,25 @@
   animation: hero-dots-cta-tilt 1.5s ease-in-out infinite;
 }
 @keyframes hero-dots-cta-tilt {
-  0%, 100% { transform: rotate(0deg); }
-  25%  { transform: rotate(15deg); }
-  75%  { transform: rotate(-15deg); }
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(15deg);
+  }
+  75% {
+    transform: rotate(-15deg);
+  }
 }
 @keyframes hero-dots-cta-pulse {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.3); }
-  50%  { box-shadow: 0 0 0 8px rgba(255, 255, 255, 0); }
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 0 8px rgba(255, 255, 255, 0);
+  }
 }
 
 .hero-dots-widget .hero-dots-content {

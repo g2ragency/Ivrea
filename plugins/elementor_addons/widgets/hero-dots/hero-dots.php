@@ -109,6 +109,24 @@ class Elementor_Widget_Hero_Dots extends \Elementor\Widget_Base {
         (function(){
             "use strict";
 
+            /* ── Shared gyroscope state (used by dots + text) ── */
+            var isTouchDevice = "ontouchstart" in window || navigator.maxTouchPoints > 0;
+            var tiltGamma = 0;
+            var tiltBeta  = 0;
+            var tiltActive = false;
+            var TILT_DEADZONE = 3;
+
+            function onDeviceOrientation(e) {
+                if (e.gamma === null && e.beta === null) return;
+                tiltActive = true;
+                var g = e.gamma || 0;
+                var b = (e.beta || 0) - 45;
+                if (Math.abs(g) < TILT_DEADZONE) g = 0;
+                if (Math.abs(b) < TILT_DEADZONE) b = 0;
+                tiltGamma = Math.max(-1, Math.min(1, g / 35));
+                tiltBeta  = Math.max(-1, Math.min(1, b / 35));
+            }
+
             /* ── Dot-grid background with cursor repulsion + gyroscope tilt ── */
             function initHeroDots(wrapper) {
                 var canvas = wrapper.querySelector(".hero-dots-canvas");
@@ -127,14 +145,7 @@ class Elementor_Widget_Hero_Dots extends \Elementor\Widget_Base {
                 var mouseX = -9999, mouseY = -9999;
                 var raf;
                 var dpr = window.devicePixelRatio || 1;
-
-                /* ── Gyroscope / tilt state ── */
-                var isTouchDevice = "ontouchstart" in window || navigator.maxTouchPoints > 0;
-                var tiltGamma = 0;   // left-right tilt, normalised to [-1, 1]
-                var tiltBeta  = 0;   // front-back tilt, normalised to [-1, 1]
-                var tiltActive = false;
-                var TILT_MAX_SCALE = 2.8;    // max scale from tilt
-                var TILT_DEADZONE  = 3;      // degrees ignored near zero
+                var TILT_MAX_SCALE = 2.8;
 
                 function resize() {
                     var rect = wrapper.getBoundingClientRect();
@@ -219,24 +230,7 @@ class Elementor_Widget_Hero_Dots extends \Elementor\Widget_Base {
                     mouseY = -9999;
                 }
 
-                /* ── Gyroscope handler ── */
-                function onDeviceOrientation(e) {
-                    if (e.gamma === null && e.beta === null) return;
-                    tiltActive = true;
-
-                    // gamma: left-right tilt (-90 to 90). Positive = tilted right.
-                    var g = e.gamma || 0;
-                    // beta: front-back tilt (-180 to 180). ~45° is neutral hold.
-                    var b = (e.beta || 0) - 45;
-
-                    // Apply deadzone
-                    if (Math.abs(g) < TILT_DEADZONE) g = 0;
-                    if (Math.abs(b) < TILT_DEADZONE) b = 0;
-
-                    // Normalise to [-1, 1] with 35° as full tilt
-                    tiltGamma = Math.max(-1, Math.min(1, g / 35));
-                    tiltBeta  = Math.max(-1, Math.min(1, b / 35));
-                }
+                /* ── Gyroscope handler is shared (outer scope) ── */
 
                 /* ── iOS CTA helpers ── */
                 var ctaBtn = wrapper.querySelector(".hero-dots-gyro-cta");
@@ -372,7 +366,16 @@ class Elementor_Widget_Hero_Dots extends \Elementor\Widget_Base {
                 function animate() {
                     var needsUpdate = false;
                     allChars.forEach(function(ch) {
-                        if (isHovering) {
+                        if (tiltActive && isTouchDevice) {
+                            /* ── Gyroscope mode: weight based on char position ── */
+                            var r = ch.getBoundingClientRect();
+                            var normX = (r.left + r.width / 2) / window.innerWidth * 2 - 1;
+                            var normY = (r.top + r.height / 2) / window.innerHeight * 2 - 1;
+                            var influence = tiltGamma * normX + tiltBeta * normY;
+                            influence = Math.max(0, Math.min(1, influence));
+                            ch._targetWeight = TEXT_MIN_WEIGHT + influence * (TEXT_MAX_WEIGHT - TEXT_MIN_WEIGHT);
+                            needsUpdate = true;
+                        } else if (isHovering) {
                             var r = ch.getBoundingClientRect();
                             var cx = r.left + r.width / 2;
                             var cy = r.top + r.height / 2;
@@ -393,22 +396,27 @@ class Elementor_Widget_Hero_Dots extends \Elementor\Widget_Base {
                         if (Math.abs(ch._currentWeight - ch._targetWeight) > 0.5) needsUpdate = true;
                         ch.style.fontWeight = Math.round(ch._currentWeight);
                     });
-                    if (needsUpdate || isHovering) animId = requestAnimationFrame(animate);
+                    if (needsUpdate || isHovering || tiltActive) animId = requestAnimationFrame(animate);
                     else animId = null;
                 }
 
                 function startAnim() { if (!animId) animId = requestAnimationFrame(animate); }
 
-                wrapper.addEventListener("mousemove", function(e) {
-                    textMouseX = e.clientX;
-                    textMouseY = e.clientY;
-                    isHovering = true;
-                    startAnim();
-                });
-                wrapper.addEventListener("mouseleave", function() {
-                    isHovering = false;
-                    startAnim();
-                });
+                if (!isTouchDevice) {
+                    wrapper.addEventListener("mousemove", function(e) {
+                        textMouseX = e.clientX;
+                        textMouseY = e.clientY;
+                        isHovering = true;
+                        startAnim();
+                    });
+                    wrapper.addEventListener("mouseleave", function() {
+                        isHovering = false;
+                        startAnim();
+                    });
+                }
+
+                // On touch devices, start animation loop to react to tilt
+                if (isTouchDevice) { startAnim(); }
             }
 
             function init() {

@@ -191,6 +191,26 @@ class Elementor_Widget_Horizontal_Cards extends \Elementor\Widget_Base {
             var ARROW_MIN_WEIGHT = 80;
             var ARROW_MAX_WEIGHT = 240;
 
+            /* ── Gyroscope state ── */
+            var isTouchDevice = "ontouchstart" in window || navigator.maxTouchPoints > 0;
+            var tiltGamma = 0, tiltBeta = 0, tiltActive = false;
+            var TILT_DEADZONE = 3;
+
+            function onDeviceOrientation(e) {
+                if (e.gamma === null && e.beta === null) return;
+                tiltActive = true;
+                var g = e.gamma || 0;
+                var b = (e.beta || 0) - 45;
+                if (Math.abs(g) < TILT_DEADZONE) g = 0;
+                if (Math.abs(b) < TILT_DEADZONE) b = 0;
+                tiltGamma = Math.max(-1, Math.min(1, g / 35));
+                tiltBeta  = Math.max(-1, Math.min(1, b / 35));
+            }
+
+            if (isTouchDevice) {
+                window.addEventListener("deviceorientation", onDeviceOrientation);
+            }
+
             function lerp(a, b, t) { return a + (b - a) * t; }
 
             function splitArrowChars(el) {
@@ -220,7 +240,15 @@ class Elementor_Widget_Horizontal_Cards extends \Elementor\Widget_Base {
                 function animate() {
                     var needsUpdate = false;
                     allChars.forEach(function (ch) {
-                        if (isHovering) {
+                        if (tiltActive && isTouchDevice) {
+                            var r = ch.getBoundingClientRect();
+                            var normX = (r.left + r.width / 2) / window.innerWidth * 2 - 1;
+                            var normY = (r.top + r.height / 2) / window.innerHeight * 2 - 1;
+                            var influence = tiltGamma * normX + tiltBeta * normY;
+                            influence = Math.max(0, Math.min(1, influence));
+                            ch._targetWeight = ARROW_MIN_WEIGHT + influence * (ARROW_MAX_WEIGHT - ARROW_MIN_WEIGHT);
+                            needsUpdate = true;
+                        } else if (isHovering) {
                             var r = ch.getBoundingClientRect();
                             var cx = r.left + r.width / 2;
                             var cy = r.top + r.height / 2;
@@ -240,7 +268,7 @@ class Elementor_Widget_Horizontal_Cards extends \Elementor\Widget_Base {
                         if (Math.abs(ch._currentWeight - ch._targetWeight) > 0.5) needsUpdate = true;
                         ch.style.fontWeight = Math.round(ch._currentWeight);
                     });
-                    if (needsUpdate || isHovering) {
+                    if (needsUpdate || isHovering || tiltActive) {
                         animId = requestAnimationFrame(animate);
                     } else {
                         animId = null;
@@ -249,15 +277,19 @@ class Elementor_Widget_Horizontal_Cards extends \Elementor\Widget_Base {
 
                 function startAnim() { if (!animId) animId = requestAnimationFrame(animate); }
 
-                section.addEventListener('mousemove', function (e) {
-                    mouseX = e.clientX; mouseY = e.clientY;
-                    isHovering = true;
-                    startAnim();
-                });
-                section.addEventListener('mouseleave', function () {
-                    isHovering = false;
-                    startAnim();
-                });
+                if (!isTouchDevice) {
+                    section.addEventListener('mousemove', function (e) {
+                        mouseX = e.clientX; mouseY = e.clientY;
+                        isHovering = true;
+                        startAnim();
+                    });
+                    section.addEventListener('mouseleave', function () {
+                        isHovering = false;
+                        startAnim();
+                    });
+                }
+
+                if (isTouchDevice) { startAnim(); }
             }
 
             /* ---- Horizontal scroll logic ---- */

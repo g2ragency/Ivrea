@@ -33,6 +33,26 @@
     var DOT_OFFSET_Y_RATIO = 0.65;
     var DOT_COLOR = "#f0f0f0";
 
+    /* ── Gyroscope state ── */
+    var isTouchDevice = "ontouchstart" in window || navigator.maxTouchPoints > 0;
+    var tiltGamma = 0, tiltBeta = 0, tiltActive = false;
+    var TILT_DEADZONE = 3;
+
+    function onDeviceOrientation(e) {
+        if (e.gamma === null && e.beta === null) return;
+        tiltActive = true;
+        var g = e.gamma || 0;
+        var b = (e.beta || 0) - 45;
+        if (Math.abs(g) < TILT_DEADZONE) g = 0;
+        if (Math.abs(b) < TILT_DEADZONE) b = 0;
+        tiltGamma = Math.max(-1, Math.min(1, g / 35));
+        tiltBeta  = Math.max(-1, Math.min(1, b / 35));
+    }
+
+    if (isTouchDevice) {
+        window.addEventListener("deviceorientation", onDeviceOrientation);
+    }
+
     function lerp(a, b, t){ return a + (b - a) * t; }
 
     function splitIntoChars(el){
@@ -124,7 +144,15 @@
         function animate(){
             var needsUpdate = false;
             allChars.forEach(function(ch){
-                if(isHovering){
+                if(tiltActive && isTouchDevice){
+                    var r = ch.getBoundingClientRect();
+                    var normX = (r.left + r.width/2) / window.innerWidth * 2 - 1;
+                    var normY = (r.top + r.height/2) / window.innerHeight * 2 - 1;
+                    var influence = tiltGamma * normX + tiltBeta * normY;
+                    influence = Math.max(0, Math.min(1, influence));
+                    ch._targetWeight = MIN_WEIGHT + influence*(MAX_WEIGHT - MIN_WEIGHT);
+                    needsUpdate = true;
+                } else if(isHovering){
                     var r = ch.getBoundingClientRect();
                     var cx = r.left + r.width/2, cy = r.top + r.height/2;
                     var dx = mouseX - cx, dy = mouseY - cy;
@@ -137,19 +165,23 @@
                 if(Math.abs(ch._currentWeight - ch._targetWeight) > 0.5) needsUpdate = true;
                 ch.style.fontWeight = Math.round(ch._currentWeight);
             });
-            if(needsUpdate || isHovering) animId = requestAnimationFrame(animate);
+            if(needsUpdate || isHovering || tiltActive) animId = requestAnimationFrame(animate);
             else animId = null;
         }
 
         function startAnim(){ if(!animId) animId = requestAnimationFrame(animate); }
 
-        btn.addEventListener("mousemove", function(e){
-            mouseX = e.clientX; mouseY = e.clientY;
-            isHovering = true; startAnim();
-        });
-        btn.addEventListener("mouseleave", function(){
-            isHovering = false; startAnim();
-        });
+        if(!isTouchDevice){
+            btn.addEventListener("mousemove", function(e){
+                mouseX = e.clientX; mouseY = e.clientY;
+                isHovering = true; startAnim();
+            });
+            btn.addEventListener("mouseleave", function(){
+                isHovering = false; startAnim();
+            });
+        }
+
+        if(isTouchDevice){ startAnim(); }
 
         window.addEventListener("resize", function(){
             placeDots(btn, dotBorder);

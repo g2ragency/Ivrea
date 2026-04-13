@@ -143,6 +143,26 @@ class Elementor_Widget_Hero_Text extends \Elementor\Widget_Base {
             var mouseX = -9999;
             var mouseY = -9999;
 
+            /* ── Gyroscope state ── */
+            var isTouchDevice = "ontouchstart" in window || navigator.maxTouchPoints > 0;
+            var tiltGamma = 0, tiltBeta = 0, tiltActive = false;
+            var TILT_DEADZONE = 3;
+
+            function onDeviceOrientation(e) {
+                if (e.gamma === null && e.beta === null) return;
+                tiltActive = true;
+                var g = e.gamma || 0;
+                var b = (e.beta || 0) - 45;
+                if (Math.abs(g) < TILT_DEADZONE) g = 0;
+                if (Math.abs(b) < TILT_DEADZONE) b = 0;
+                tiltGamma = Math.max(-1, Math.min(1, g / 35));
+                tiltBeta  = Math.max(-1, Math.min(1, b / 35));
+            }
+
+            if (isTouchDevice) {
+                window.addEventListener("deviceorientation", onDeviceOrientation);
+            }
+
             function lerp(start, end, factor) {
                 return start + (end - start) * factor;
             }
@@ -204,7 +224,15 @@ class Elementor_Widget_Hero_Text extends \Elementor\Widget_Base {
                     var needsUpdate = false;
 
                     allChars.forEach(function (charEl) {
-                        if (isHovering) {
+                        if (tiltActive && isTouchDevice) {
+                            var charRect = charEl.getBoundingClientRect();
+                            var normX = (charRect.left + charRect.width / 2) / window.innerWidth * 2 - 1;
+                            var normY = (charRect.top + charRect.height / 2) / window.innerHeight * 2 - 1;
+                            var influence = tiltGamma * normX + tiltBeta * normY;
+                            influence = Math.max(0, Math.min(1, influence));
+                            charEl._targetWeight = MIN_WEIGHT + influence * (MAX_WEIGHT - MIN_WEIGHT);
+                            needsUpdate = true;
+                        } else if (isHovering) {
                             var charRect = charEl.getBoundingClientRect();
                             var charCenterX = charRect.left + charRect.width / 2;
                             var charCenterY = charRect.top + charRect.height / 2;
@@ -233,7 +261,7 @@ class Elementor_Widget_Hero_Text extends \Elementor\Widget_Base {
                         charEl.style.fontWeight = Math.round(charEl._currentWeight);
                     });
 
-                    if (needsUpdate || isHovering) {
+                    if (needsUpdate || isHovering || tiltActive) {
                         animationId = requestAnimationFrame(animate);
                     } else {
                         animationId = null;
@@ -246,17 +274,21 @@ class Elementor_Widget_Hero_Text extends \Elementor\Widget_Base {
                     }
                 }
 
-                widget.addEventListener("mousemove", function (e) {
-                    mouseX = e.clientX;
-                    mouseY = e.clientY;
-                    isHovering = true;
-                    startAnimation();
-                });
+                if (!isTouchDevice) {
+                    widget.addEventListener("mousemove", function (e) {
+                        mouseX = e.clientX;
+                        mouseY = e.clientY;
+                        isHovering = true;
+                        startAnimation();
+                    });
 
-                widget.addEventListener("mouseleave", function () {
-                    isHovering = false;
-                    startAnimation();
-                });
+                    widget.addEventListener("mouseleave", function () {
+                        isHovering = false;
+                        startAnimation();
+                    });
+                }
+
+                if (isTouchDevice) { startAnimation(); }
             }
 
             function init() {
