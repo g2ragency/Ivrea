@@ -83,6 +83,12 @@ class Elementor_Widget_Hero_Dots extends \Elementor\Widget_Base {
             <!-- Canvas background -->
             <canvas class="hero-dots-canvas"></canvas>
 
+            <!-- iOS gyro permission CTA (hidden by default) -->
+            <button class="hero-dots-gyro-cta" style="display:none;" aria-label="Attiva effetto inclinazione">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12" y2="18"/></svg>
+                <span>Tocca per attivare l'effetto</span>
+            </button>
+
             <!-- Content overlay -->
             <div class="hero-dots-content">
 
@@ -232,43 +238,60 @@ class Elementor_Widget_Hero_Dots extends \Elementor\Widget_Base {
                     tiltBeta  = Math.max(-1, Math.min(1, b / 35));
                 }
 
+                /* ── iOS CTA helpers ── */
+                var ctaBtn = wrapper.querySelector(".hero-dots-gyro-cta");
+
+                function showCta() {
+                    if (ctaBtn) { ctaBtn.style.display = "flex"; }
+                }
+
+                function hideCta() {
+                    if (ctaBtn) {
+                        ctaBtn.style.opacity = "0";
+                        setTimeout(function() { ctaBtn.style.display = "none"; }, 400);
+                    }
+                }
+
                 /* ── iOS permission flow ── */
                 function requestGyroPermission() {
                     if (typeof DeviceOrientationEvent !== "undefined" &&
                         typeof DeviceOrientationEvent.requestPermission === "function") {
                         // iOS 13+ requires user gesture
                         DeviceOrientationEvent.requestPermission().then(function(state) {
+                            hideCta();
                             if (state === "granted") {
                                 window.addEventListener("deviceorientation", onDeviceOrientation);
                             }
-                        }).catch(function() {});
+                        }).catch(function() {
+                            hideCta();
+                        });
                     } else {
                         // Android / other — no permission needed
                         window.addEventListener("deviceorientation", onDeviceOrientation);
                     }
                 }
 
-                /* ── Bind events ── */
+                /* ── Bind events based on device type ── */
                 if (isTouchDevice) {
-                    // On touch devices, try gyroscope
-                    if (typeof DeviceOrientationEvent !== "undefined" &&
-                        typeof DeviceOrientationEvent.requestPermission === "function") {
-                        // iOS: attach permission request to first tap on wrapper
-                        var permissionRequested = false;
-                        wrapper.addEventListener("touchstart", function iosPermHandler() {
-                            if (permissionRequested) return;
-                            permissionRequested = true;
+                    var needsPermission = typeof DeviceOrientationEvent !== "undefined" &&
+                        typeof DeviceOrientationEvent.requestPermission === "function";
+
+                    if (needsPermission) {
+                        // iOS: show CTA button, bind click to it
+                        showCta();
+                        ctaBtn.addEventListener("click", function() {
                             requestGyroPermission();
                         }, { once: true });
                     } else {
-                        // Android: start immediately
+                        // Android: start gyro immediately, no permission needed
                         requestGyroPermission();
                     }
+                    // Do NOT bind mouse events on touch — iOS emulates fake mousemove
+                } else {
+                    // Desktop only: bind mouse events
+                    wrapper.addEventListener("mousemove", onMouseMove);
+                    wrapper.addEventListener("mouseleave", onMouseLeave);
                 }
-
-                // Always bind mouse events (fallback & desktop)
-                wrapper.addEventListener("mousemove", onMouseMove);
-                wrapper.addEventListener("mouseleave", onMouseLeave);
 
                 window.addEventListener("resize", resize);
                 resize();
@@ -279,8 +302,10 @@ class Elementor_Widget_Hero_Dots extends \Elementor\Widget_Base {
                     cancelAnimationFrame(raf);
                     window.removeEventListener("resize", resize);
                     window.removeEventListener("deviceorientation", onDeviceOrientation);
-                    wrapper.removeEventListener("mousemove", onMouseMove);
-                    wrapper.removeEventListener("mouseleave", onMouseLeave);
+                    if (!isTouchDevice) {
+                        wrapper.removeEventListener("mousemove", onMouseMove);
+                        wrapper.removeEventListener("mouseleave", onMouseLeave);
+                    }
                 };
             }
 
