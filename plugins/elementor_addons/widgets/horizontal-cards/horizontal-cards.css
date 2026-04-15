@@ -114,9 +114,7 @@
 @media only screen and (max-width: 1024px) {
   .horizontal-cards-section .horizontal-card {
     width: 94vw;
-    height: auto;
-    min-height: 460px;
-    max-height: 90vh;
+    height: 560px;
   }
 
   .horizontal-cards-section .horizontal-card-layout {
@@ -138,7 +136,8 @@
 
 @media only screen and (max-width: 768px) {
   .horizontal-cards-section .horizontal-card {
-    width: 90vw;
+    width: calc(100vw - 30px);
+    height: 560px;
   }
 
   .horizontal-cards-section .horizontal-card-layout {

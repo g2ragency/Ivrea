@@ -447,7 +447,12 @@ header.site-header {
   .newsletter-row p {
     width: 100%;
     flex-direction: column;
-    gap: 16px;
+    gap: 12px;
+    margin: 0;
+  }
+
+  .newsletter-row p br {
+    display: none;
   }
 
   .newsletter-row .form-control {

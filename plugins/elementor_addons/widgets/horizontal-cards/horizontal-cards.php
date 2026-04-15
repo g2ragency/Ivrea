@@ -322,10 +322,10 @@ class Elementor_Widget_Horizontal_Cards extends \Elementor\Widget_Base {
                 var CARD_GAP = 12;
                 var STACKED_WIDTH = isMobile ? 0 : 50;
                 var CARD_WIDTH = isMobile
-                    ? window.innerWidth * 0.9
+                    ? window.innerWidth - 30
                     : Math.min(1180, window.innerWidth * 0.92);
                 var LEFT_PAD = isMobile
-                    ? (window.innerWidth - CARD_WIDTH) / 2
+                    ? 15
                     : (window.innerWidth >= 1360
                         ? (window.innerWidth - 1360) / 2
                         : window.innerWidth * 0.04);
@@ -438,10 +438,10 @@ class Elementor_Widget_Horizontal_Cards extends \Elementor\Widget_Base {
                     isMobile = window.innerWidth <= 768;
                     STACKED_WIDTH = isMobile ? 0 : 50;
                     CARD_WIDTH = isMobile
-                        ? window.innerWidth * 0.9
+                        ? window.innerWidth - 30
                         : Math.min(1180, window.innerWidth * 0.92);
                     LEFT_PAD = isMobile
-                        ? (window.innerWidth - CARD_WIDTH) / 2
+                        ? 15
                         : (window.innerWidth >= 1360
                             ? (window.innerWidth - 1360) / 2
                             : window.innerWidth * 0.04);
