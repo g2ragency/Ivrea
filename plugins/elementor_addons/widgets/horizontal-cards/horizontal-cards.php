@@ -300,9 +300,6 @@ class Elementor_Widget_Horizontal_Cards extends \Elementor\Widget_Base {
                 /* Init arrow hover effect (always) */
                 initArrowHover(section);
 
-                /* On mobile: skip horizontal scroll, cards stack vertically via CSS */
-                if (window.innerWidth <= 768) return;
-
                 if (!window.gsap || !window.ScrollTrigger) return;
                 gsap.registerPlugin(ScrollTrigger);
 
@@ -319,13 +316,19 @@ class Elementor_Widget_Horizontal_Cards extends \Elementor\Widget_Base {
                     el = el.parentElement;
                 }
 
+                var isMobile = window.innerWidth <= 768;
+
                 /* Config */
                 var CARD_GAP = 12;
-                var STACKED_WIDTH = 50; /* Width of a compressed card strip */
-                var CARD_WIDTH = Math.min(1180, window.innerWidth * 0.92);
-                var LEFT_PAD = window.innerWidth >= 1360
-                    ? (window.innerWidth - 1360) / 2
-                    : window.innerWidth * 0.04;
+                var STACKED_WIDTH = isMobile ? 0 : 50;
+                var CARD_WIDTH = isMobile
+                    ? window.innerWidth * 0.9
+                    : Math.min(1180, window.innerWidth * 0.92);
+                var LEFT_PAD = isMobile
+                    ? (window.innerWidth - CARD_WIDTH) / 2
+                    : (window.innerWidth >= 1360
+                        ? (window.innerWidth - 1360) / 2
+                        : window.innerWidth * 0.04);
 
                 /* Total scroll needed:
                    At progress=1, the last card should sit at LEFT_PAD + (n-1)*STACKED_WIDTH
@@ -432,10 +435,16 @@ class Elementor_Widget_Horizontal_Cards extends \Elementor\Widget_Base {
 
                 /* Handle resize */
                 window.addEventListener('resize', function () {
-                    CARD_WIDTH = Math.min(1180, window.innerWidth * 0.92);
-                    LEFT_PAD = window.innerWidth >= 1360
-                        ? (window.innerWidth - 1360) / 2
-                        : window.innerWidth * 0.04;
+                    isMobile = window.innerWidth <= 768;
+                    STACKED_WIDTH = isMobile ? 0 : 50;
+                    CARD_WIDTH = isMobile
+                        ? window.innerWidth * 0.9
+                        : Math.min(1180, window.innerWidth * 0.92);
+                    LEFT_PAD = isMobile
+                        ? (window.innerWidth - CARD_WIDTH) / 2
+                        : (window.innerWidth >= 1360
+                            ? (window.innerWidth - 1360) / 2
+                            : window.innerWidth * 0.04);
                     lastNatural = LEFT_PAD + (cards.length - 1) * (CARD_WIDTH + CARD_GAP);
                     lastMinLeft = LEFT_PAD + (cards.length - 1) * STACKED_WIDTH;
                     scrollLength = lastNatural - lastMinLeft;

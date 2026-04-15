@@ -137,34 +137,11 @@
 }
 
 @media only screen and (max-width: 768px) {
-  .horizontal-cards-section {
-    height: auto;
-    overflow: visible;
-  }
-
-  .horizontal-cards-section .horizontal-cards-track {
-    position: relative;
-    height: auto;
-    overflow: visible;
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    padding: 0 16px;
-  }
-
   .horizontal-cards-section .horizontal-card {
-    position: relative;
-    top: auto;
-    left: auto !important;
-    transform: none;
-    width: 100% !important;
-    height: auto;
-    min-height: 0;
-    max-height: none;
+    width: 90vw;
   }
 
   .horizontal-cards-section .horizontal-card-layout {
-    grid-template-columns: 1fr;
     padding: 24px;
     gap: 16px;
   }
