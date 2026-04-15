@@ -294,14 +294,17 @@ class Elementor_Widget_Horizontal_Cards extends \Elementor\Widget_Base {
 
             /* ---- Horizontal scroll logic ---- */
             function initHorizontalCards(sectionId) {
-                if (!window.gsap || !window.ScrollTrigger) return;
-                gsap.registerPlugin(ScrollTrigger);
-
                 var section = document.getElementById(sectionId);
                 if (!section) return;
 
-                /* Init arrow hover effect */
+                /* Init arrow hover effect (always) */
                 initArrowHover(section);
+
+                /* On mobile: skip horizontal scroll, cards stack vertically via CSS */
+                if (window.innerWidth <= 768) return;
+
+                if (!window.gsap || !window.ScrollTrigger) return;
+                gsap.registerPlugin(ScrollTrigger);
 
                 var track = section.querySelector('.horizontal-cards-track');
                 if (!track) return;
