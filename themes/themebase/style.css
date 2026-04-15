@@ -549,3 +549,11 @@ header.site-header {
   color: var(--lightgrey);
   line-height: 1;
 }
+
+/* ── FOOTER MOBILE ── */
+@media only screen and (max-width: 1024px) {
+  .site-footer {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+}
