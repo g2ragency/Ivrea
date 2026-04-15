@@ -480,6 +480,10 @@ header.site-header {
   .contact-us-form .form-control::placeholder {
     font-size: 28px;
   }
+
+  .contact-us-form .acceptance {
+    margin-top: 12px !important;
+  }
 }
 
 /* FOOTER */
