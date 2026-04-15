@@ -82,8 +82,11 @@
     white-space: normal;
   }
 
+  .dot-button-text .word {
+    white-space: nowrap;
+  }
+
   .dot-button-inner {
-    flex-wrap: wrap;
-    justify-content: center;
+    align-items: center;
   }
 }

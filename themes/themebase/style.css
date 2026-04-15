@@ -436,6 +436,47 @@ header.site-header {
   line-height: 1;
 }
 
+/* ── NEWSLETTER MOBILE ── */
+@media only screen and (max-width: 768px) {
+  .newsletter-row {
+    padding-right: 0;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .newsletter-row p {
+    width: 100%;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .newsletter-row .form-control {
+    width: 100%;
+  }
+
+  .newsletter-row .btn-invia {
+    position: relative;
+    right: auto;
+    top: auto;
+    align-self: flex-start;
+    font-size: 28px;
+    padding: 12px 28px;
+  }
+
+  .newsletter-row .btn-invia .btn-text .char {
+    font-size: 28px;
+  }
+
+  .contact-us-form .form-control {
+    font-size: 18px;
+    padding: 16px 24px;
+  }
+
+  .contact-us-form .form-control::placeholder {
+    font-size: 28px;
+  }
+}
+
 /* FOOTER */
 .site-footer {
   background: var(--black);
