@@ -99,25 +99,37 @@ class Elementor_Widget_Dot_Button extends \Elementor\Widget_Base {
             ]
         );
 
-        $this->add_control(
+        $this->add_responsive_control(
             'font_size',
             [
-                'label' => __('Font Size testo (px)', 'elementor_addon'),
-                'type' => \Elementor\Controls_Manager::NUMBER,
-                'default' => 40,
-                'min' => 20,
-                'max' => 300,
+                'label' => __('Font Size testo', 'elementor_addon'),
+                'type' => \Elementor\Controls_Manager::SLIDER,
+                'size_units' => ['px', 'vw'],
+                'range' => [
+                    'px' => ['min' => 12, 'max' => 300, 'step' => 1],
+                    'vw' => ['min' => 1, 'max' => 20, 'step' => 0.1],
+                ],
+                'default' => ['unit' => 'px', 'size' => 40],
+                'selectors' => [
+                    '{{WRAPPER}} .dot-button-text' => 'font-size: {{SIZE}}{{UNIT}} !important;',
+                ],
             ]
         );
 
-        $this->add_control(
+        $this->add_responsive_control(
             'arrow_size',
             [
-                'label' => __('Font Size freccia (px)', 'elementor_addon'),
-                'type' => \Elementor\Controls_Manager::NUMBER,
-                'default' => 60,
-                'min' => 20,
-                'max' => 300,
+                'label' => __('Font Size freccia', 'elementor_addon'),
+                'type' => \Elementor\Controls_Manager::SLIDER,
+                'size_units' => ['px', 'vw'],
+                'range' => [
+                    'px' => ['min' => 12, 'max' => 300, 'step' => 1],
+                    'vw' => ['min' => 1, 'max' => 20, 'step' => 0.1],
+                ],
+                'default' => ['unit' => 'px', 'size' => 60],
+                'selectors' => [
+                    '{{WRAPPER}} .dot-button-arrow' => 'font-size: {{SIZE}}{{UNIT}} !important;',
+                ],
             ]
         );
 
@@ -144,8 +156,6 @@ class Elementor_Widget_Dot_Button extends \Elementor\Widget_Base {
         $text_color = $settings['text_color'];
         $arrow_color = $settings['arrow_color'];
         $border_color = $settings['border_color'];
-        $font_size = $settings['font_size'];
-        $arrow_size = $settings['arrow_size'];
         $dot_size = $settings['dot_size'];
 
         $has_link = !empty($link['url']);
@@ -164,8 +174,8 @@ class Elementor_Widget_Dot_Button extends \Elementor\Widget_Base {
                 <span class="dot-button-dots" aria-hidden="true"></span>
 
                 <span class="dot-button-inner">
-                    <span class="dot-button-text" style="color: <?php echo esc_attr($text_color); ?>; font-size: <?php echo esc_attr($font_size); ?>px;" data-split-hover><?php echo esc_html($text); ?></span>
-                    <span class="dot-button-arrow" style="color: <?php echo esc_attr($arrow_color); ?>; font-size: <?php echo esc_attr($arrow_size); ?>px;" data-split-hover>→</span>
+                    <span class="dot-button-text" style="color: <?php echo esc_attr($text_color); ?>;" data-split-hover><?php echo esc_html($text); ?></span>
+                    <span class="dot-button-arrow" style="color: <?php echo esc_attr($arrow_color); ?>;" data-split-hover>→</span>
                 </span>
             </<?php echo $tag; ?>>
         </div>
@@ -219,12 +229,7 @@ class Elementor_Widget_Dot_Button extends \Elementor\Widget_Base {
                     }
                     el.appendChild(wordSpan);
                     if (w < words.length - 1) {
-                        var space = document.createElement('span');
-                        space.classList.add('char', 'space');
-                        space.innerHTML = '&nbsp;';
-                        space._currentWeight = MIN_WEIGHT;
-                        space._targetWeight = MIN_WEIGHT;
-                        el.appendChild(space);
+                        el.appendChild(document.createTextNode(" "));
                     }
                 }
             }

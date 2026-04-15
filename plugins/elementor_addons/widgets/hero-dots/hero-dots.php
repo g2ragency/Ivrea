@@ -340,12 +340,7 @@ class Elementor_Widget_Hero_Dots extends \Elementor\Widget_Base {
                         element.appendChild(wordSpan);
 
                         if (w < words.length - 1) {
-                            var space = document.createElement("span");
-                            space.classList.add("char", "space");
-                            space.innerHTML = "&nbsp;";
-                            space._currentWeight = TEXT_MIN_WEIGHT;
-                            space._targetWeight = TEXT_MIN_WEIGHT;
-                            element.appendChild(space);
+                            element.appendChild(document.createTextNode(" "));
                         }
                     }
 

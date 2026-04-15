@@ -157,27 +157,41 @@
 
 /* ── TABLET ── */
 @media only screen and (max-width: 1024px) {
-  .hero-dots-widget .hero-dots-title {
-    font-size: 100px;
+  .hero-dots-widget .hero-dots-content {
+    width: 100%;
+    padding: 0 24px;
   }
 
-  .hero-dots-widget .hero-dots-subtitle {
-    font-size: 36px;
+  .hero-dots-widget .hero-dots-title {
+    font-size: 10vw;
+    white-space: normal;
+  }
+
+  .hero-dots-widget .hero-dots-subtitle,
+  .hero-dots-widget .hero-dots-subtitle .char {
+    font-size: 4vw;
   }
 
   .hero-dots-widget .hero-dots-top-text {
-    font-size: 24px;
+    font-size: 2.5vw;
   }
 }
 
 /* ── MOBILE ── */
 @media only screen and (max-width: 768px) {
-  .hero-dots-widget .hero-dots-title {
-    font-size: 60px;
+  .hero-dots-widget .hero-dots-content {
+    width: 100%;
+    padding: 0 16px;
   }
 
-  .hero-dots-widget .hero-dots-subtitle {
-    font-size: 28px;
+  .hero-dots-widget .hero-dots-title {
+    font-size: 14vw;
+    white-space: normal;
+  }
+
+  .hero-dots-widget .hero-dots-subtitle,
+  .hero-dots-widget .hero-dots-subtitle .char {
+    font-size: 7vw;
   }
 
   .hero-dots-widget .hero-dots-top {
@@ -186,6 +200,7 @@
   }
 
   .hero-dots-widget .hero-dots-top-text {
-    font-size: 20px;
+    font-size: 5vw;
+    white-space: normal;
   }
 }

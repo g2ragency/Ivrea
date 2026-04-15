@@ -88,14 +88,55 @@ class Elementor_Widget_Hover_Text extends \Elementor\Widget_Base {
             ]
         );
 
-        $this->add_control(
+        $this->add_responsive_control(
             'font_size',
             [
-                'label' => __('Font Size (px)', 'elementor_addon'),
-                'type' => \Elementor\Controls_Manager::NUMBER,
-                'default' => 80,
-                'min' => 12,
-                'max' => 400,
+                'label' => __('Font Size', 'elementor_addon'),
+                'type' => \Elementor\Controls_Manager::SLIDER,
+                'size_units' => ['px', 'em', 'vw'],
+                'range' => [
+                    'px' => [
+                        'min' => 12,
+                        'max' => 400,
+                        'step' => 1,
+                    ],
+                    'em' => [
+                        'min' => 0.5,
+                        'max' => 20,
+                        'step' => 0.1,
+                    ],
+                    'vw' => [
+                        'min' => 1,
+                        'max' => 30,
+                        'step' => 0.1,
+                    ],
+                ],
+                'default' => [
+                    'unit' => 'px',
+                    'size' => 80,
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .hover-text-content' => 'font-size: {{SIZE}}{{UNIT}} !important;',
+                ],
+            ]
+        );
+
+        $this->add_responsive_control(
+            'text_wrap',
+            [
+                'label' => __('Testo a capo', 'elementor_addon'),
+                'type' => \Elementor\Controls_Manager::SWITCHER,
+                'label_on' => __('Sì', 'elementor_addon'),
+                'label_off' => __('No', 'elementor_addon'),
+                'return_value' => 'yes',
+                'default' => '',
+                'selectors_dictionary' => [
+                    'yes' => 'white-space: normal;',
+                    '' => 'white-space: nowrap;',
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .hover-text-widget .word' => '{{VALUE}}',
+                ],
             ]
         );
 
@@ -118,7 +159,6 @@ class Elementor_Widget_Hover_Text extends \Elementor\Widget_Base {
     protected function render() {
         $settings = $this->get_settings_for_display();
         $text = $settings['hover_text'];
-        $font_size = $settings['font_size'];
         $font_weight = $settings['font_weight'];
         $link = $settings['hover_link'];
         $widget_id = $this->get_id();
@@ -131,7 +171,7 @@ class Elementor_Widget_Hover_Text extends \Elementor\Widget_Base {
         ?>
 
         <div class="hover-text-widget" id="hover-text-<?php echo esc_attr($widget_id); ?>" data-hover-effect="true" data-font-weight="<?php echo esc_attr($font_weight); ?>">
-            <<?php echo $tag; ?> class="hover-text-content"<?php echo $link_attr; ?> style="font-size: <?php echo esc_attr($font_size); ?>px; font-weight: <?php echo esc_attr($font_weight); ?>;" data-split-hover>
+            <<?php echo $tag; ?> class="hover-text-content"<?php echo $link_attr; ?> style="font-weight: <?php echo esc_attr($font_weight); ?>;" data-split-hover>
                 <?php echo nl2br(esc_html($text)); ?>
             </<?php echo $tag; ?>>
         </div>

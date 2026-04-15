@@ -17,6 +17,7 @@
   display: inline-block;
   white-space: nowrap;
   color: inherit;
+  word-break: break-word;
 }
 
 .hover-text-widget .char {
@@ -34,11 +35,4 @@
 a.hover-text-content,
 a.hover-text-content .char {
   cursor: pointer !important;
-}
-
-/* MOBILE */
-@media only screen and (max-width: 768px) {
-  .hover-text-content {
-    font-size: 40px !important;
-  }
 }
