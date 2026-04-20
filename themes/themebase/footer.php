@@ -225,9 +225,9 @@
         prev: vec2(-100, -100),
         cur: vec2(-100, -100),
         target: vec2(-100, -100),
-        lerp: 0.1
+        lerp: 0.25
     };
-    var sc = { cur: BASE_SCALE, target: BASE_SCALE, lerp: 0.1 };
+    var sc = { cur: BASE_SCALE, target: BASE_SCALE, lerp: 0.2 };
     var isHovered = false;
     var hoverEl = null;
     var registeredEls = new WeakSet();
