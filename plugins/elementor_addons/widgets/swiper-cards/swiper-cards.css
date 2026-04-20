@@ -110,4 +110,8 @@
   .swiper-cards-widget .swiper-card-description {
     font-size: 16px;
   }
+
+  .swiper-cards-widget .swiper-nav {
+    display: none;
+  }
 }

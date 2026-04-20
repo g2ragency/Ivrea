@@ -151,7 +151,7 @@ class Elementor_Widget_Swiper_Ospiti extends \Elementor\Widget_Base {
 
                 new Swiper(swiperEl, {
                     slidesPerView: "auto",
-                    spaceBetween: 24,
+                    spaceBetween: 16,
                     freeMode: true,
                     grabCursor: true,
                     scrollbar: {
@@ -161,6 +161,11 @@ class Elementor_Widget_Swiper_Ospiti extends \Elementor\Widget_Base {
                     navigation: {
                         nextEl: container.querySelector(".swiper-button-next"),
                         prevEl: container.querySelector(".swiper-button-prev"),
+                    },
+                    breakpoints: {
+                        769: {
+                            spaceBetween: 24,
+                        }
                     },
                 });
             }

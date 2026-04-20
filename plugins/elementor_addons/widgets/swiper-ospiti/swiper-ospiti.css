@@ -127,4 +127,8 @@
   .swiper-ospiti-widget .ospite-job {
     font-size: 16px;
   }
+
+  .swiper-ospiti-widget .swiper-nav {
+    display: none;
+  }
 }

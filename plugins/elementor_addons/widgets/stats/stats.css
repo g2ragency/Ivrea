@@ -107,18 +107,19 @@
   }
 }
 
-/* Mobile: 1 column */
+/* Mobile: 2x2 grid */
 @media only screen and (max-width: 768px) {
   .stats-grid {
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
   }
 
   .stats-item {
-    width: 100%;
     padding: 30px 20px;
   }
 
   .stats-separator {
-    width: 60%;
+    display: none;
   }
 }
