@@ -150,6 +150,13 @@ button {
     height: auto;
     overflow: auto;
   }
+
+  p,
+  p *,
+  .elementor-widget-text-editor,
+  .elementor-widget-text-editor * {
+    font-size: 16px !important;
+  }
 }
 
 /* NAVBAR */

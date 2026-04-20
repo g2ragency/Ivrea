@@ -74,12 +74,17 @@
   }
 
   .dot-button-link {
-    padding: 20px 24px;
+    padding: 12px 18px;
     max-width: 100%;
   }
 
   .dot-button-text {
     white-space: normal;
+    font-size: 24px !important;
+  }
+
+  .dot-button-arrow {
+    font-size: 24px !important;
   }
 
   .dot-button-text .word {
@@ -88,5 +93,6 @@
 
   .dot-button-inner {
     align-items: center;
+    gap: 10px;
   }
 }

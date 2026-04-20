@@ -1,16 +1,19 @@
 .hover-text-widget {
   display: inline-flex;
   flex-direction: column;
+  align-items: center;
+  width: 100%;
 }
 
 .hover-text-content {
   font-family: "TINY5x3", monospace !important;
-  font-weight: 80;
+  font-weight: 140;
   line-height: 0.8;
   margin: 0 !important;
   text-transform: uppercase;
   font-feature-settings: "ss03" 1;
   text-decoration: none;
+  text-align: center;
 }
 
 .hover-text-widget .word {
