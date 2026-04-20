@@ -97,7 +97,7 @@
   font-family: "TINY5x3", monospace;
   font-feature-settings: "ss03" 1;
   font-weight: 80;
-  font-size: 46px;
+  font-size: 60px;
   line-height: 0.8;
   color: var(--black);
   text-transform: uppercase;
@@ -163,7 +163,7 @@
   }
 
   .hero-dots-widget .hero-dots-title {
-    font-size: 10vw;
+    font-size: 180px;
     white-space: normal;
   }
 
