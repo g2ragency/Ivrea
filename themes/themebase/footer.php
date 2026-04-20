@@ -216,13 +216,18 @@
         };
     }
 
+    /* Base scale: 0.5 = 20px visible. Hover scale: 1.0 = 40px visible. Never upscales. */
+    var BASE_SCALE = 0.5;
+    var HOVER_SCALE = 1.0;
+    var LARGE_EL_THRESHOLD = 200; /* px — skip sticky-center for elements wider than this */
+
     var pos = {
         prev: vec2(-100, -100),
         cur: vec2(-100, -100),
         target: vec2(-100, -100),
         lerp: 0.1
     };
-    var sc = { cur: 1, target: 1, lerp: 0.1 };
+    var sc = { cur: BASE_SCALE, target: BASE_SCALE, lerp: 0.1 };
     var isHovered = false;
     var hoverEl = null;
     var registeredEls = new WeakSet();
@@ -245,8 +250,8 @@
 
             gsap.set(cursorEl, {
                 rotate: angle,
-                scaleX: sc.cur + Math.min(dist, 1),
-                scaleY: sc.cur - Math.min(dist, 0.3)
+                scaleX: sc.cur + Math.min(dist, 0.5),
+                scaleY: sc.cur - Math.min(dist, 0.15)
             });
         }
     }
@@ -254,30 +259,49 @@
     function onMove(x, y) {
         if (isHovered && hoverEl) {
             var b = hoverEl.getBoundingClientRect();
-            var cx = b.x + b.width / 2;
-            var cy = b.y + b.height / 2;
-            var dx = x - cx;
-            var dy = y - cy;
+            var isLarge = b.width > LARGE_EL_THRESHOLD || b.height > LARGE_EL_THRESHOLD;
 
-            pos.target.x = cx + dx * 0.15;
-            pos.target.y = cy + dy * 0.15;
-            sc.target = 2;
+            if (isLarge) {
+                /* Large elements: just scale up, follow mouse normally */
+                pos.target.x = x;
+                pos.target.y = y;
+                sc.target = HOVER_SCALE;
 
-            var angle = Math.atan2(dy, dx) * (180 / Math.PI);
-            var dist = Math.sqrt(dx * dx + dy * dy) * 0.01;
+                gsap.to(cursorEl, {
+                    scaleX: HOVER_SCALE,
+                    scaleY: HOVER_SCALE,
+                    rotate: 0,
+                    duration: 0.3,
+                    ease: "power2.out",
+                    overwrite: true
+                });
+            } else {
+                /* Small elements: sticky-center + elastic deformation */
+                var cx = b.x + b.width / 2;
+                var cy = b.y + b.height / 2;
+                var dx = x - cx;
+                var dy = y - cy;
 
-            gsap.set(cursorEl, { rotate: angle });
-            gsap.to(cursorEl, {
-                scaleX: sc.target + Math.pow(Math.min(dist, 0.6), 3) * 3,
-                scaleY: sc.target - Math.pow(Math.min(dist, 0.3), 3) * 3,
-                duration: 0.5,
-                ease: "power4.out",
-                overwrite: true
-            });
+                pos.target.x = cx + dx * 0.15;
+                pos.target.y = cy + dy * 0.15;
+                sc.target = HOVER_SCALE;
+
+                var angle = Math.atan2(dy, dx) * (180 / Math.PI);
+                var dist = Math.sqrt(dx * dx + dy * dy) * 0.01;
+
+                gsap.set(cursorEl, { rotate: angle });
+                gsap.to(cursorEl, {
+                    scaleX: HOVER_SCALE + Math.pow(Math.min(dist, 0.6), 3) * 3,
+                    scaleY: HOVER_SCALE - Math.pow(Math.min(dist, 0.3), 3) * 3,
+                    duration: 0.5,
+                    ease: "power4.out",
+                    overwrite: true
+                });
+            }
         } else {
             pos.target.x = x;
             pos.target.y = y;
-            sc.target = 1;
+            sc.target = BASE_SCALE;
         }
     }
 
