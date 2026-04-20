@@ -470,9 +470,13 @@ header.site-header {
     position: relative;
     right: auto;
     top: auto;
-    align-self: flex-start;
+    align-self: stretch;
     font-size: 28px;
     padding: 12px 28px;
+    width: 100%;
+    box-sizing: border-box;
+    text-align: center;
+    justify-content: center;
   }
 
   .newsletter-row .btn-invia .btn-text .char {
