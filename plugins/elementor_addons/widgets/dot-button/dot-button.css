@@ -74,17 +74,17 @@
   }
 
   .dot-button-link {
-    padding: 12px 18px;
+    padding: 10px 14px;
     max-width: 100%;
   }
 
-  .dot-button-text {
+  .dot-button-widget .dot-button-text {
     white-space: normal;
-    font-size: 24px !important;
+    font-size: 20px !important;
   }
 
-  .dot-button-arrow {
-    font-size: 24px !important;
+  .dot-button-widget .dot-button-arrow {
+    font-size: 28px !important;
   }
 
   .dot-button-text .word {
@@ -93,6 +93,10 @@
 
   .dot-button-inner {
     align-items: center;
-    gap: 10px;
+    gap: 8px;
+  }
+
+  .dot-button-dots .dot-char {
+    font-size: 16px !important;
   }
 }

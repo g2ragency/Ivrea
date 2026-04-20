@@ -145,7 +145,7 @@ class Elementor_Widget_Hover_Text extends \Elementor\Widget_Base {
             [
                 'label' => __('Font Weight', 'elementor_addon'),
                 'type' => \Elementor\Controls_Manager::NUMBER,
-                'default' => 80,
+                'default' => 140,
                 'min' => 1,
                 'max' => 900,
                 'step' => 10,

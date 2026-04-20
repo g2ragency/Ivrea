@@ -110,6 +110,7 @@ class Elementor_Widget_Dot_Button extends \Elementor\Widget_Base {
                     'vw' => ['min' => 1, 'max' => 20, 'step' => 0.1],
                 ],
                 'default' => ['unit' => 'px', 'size' => 40],
+                'mobile_default' => ['unit' => 'px', 'size' => 20],
                 'selectors' => [
                     '{{WRAPPER}} .dot-button-text' => 'font-size: {{SIZE}}{{UNIT}} !important;',
                 ],
@@ -127,6 +128,7 @@ class Elementor_Widget_Dot_Button extends \Elementor\Widget_Base {
                     'vw' => ['min' => 1, 'max' => 20, 'step' => 0.1],
                 ],
                 'default' => ['unit' => 'px', 'size' => 60],
+                'mobile_default' => ['unit' => 'px', 'size' => 28],
                 'selectors' => [
                     '{{WRAPPER}} .dot-button-arrow' => 'font-size: {{SIZE}}{{UNIT}} !important;',
                 ],
