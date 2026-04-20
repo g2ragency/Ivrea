@@ -245,13 +245,10 @@
         });
 
         if (!isHovered) {
-            var angle = Math.atan2(delta.y, delta.x) * (180 / Math.PI);
-            var dist = Math.sqrt(delta.x * delta.x + delta.y * delta.y) * 0.04;
-
             gsap.set(cursorEl, {
-                rotate: angle,
-                scaleX: sc.cur + Math.min(dist, 0.5),
-                scaleY: sc.cur - Math.min(dist, 0.15)
+                rotate: 0,
+                scaleX: sc.cur,
+                scaleY: sc.cur
             });
         }
     }
@@ -286,13 +283,10 @@
                 pos.target.y = cy + dy * 0.15;
                 sc.target = HOVER_SCALE;
 
-                var angle = Math.atan2(dy, dx) * (180 / Math.PI);
-                var dist = Math.sqrt(dx * dx + dy * dy) * 0.01;
-
-                gsap.set(cursorEl, { rotate: angle });
                 gsap.to(cursorEl, {
-                    scaleX: HOVER_SCALE + Math.pow(Math.min(dist, 0.6), 3) * 3,
-                    scaleY: HOVER_SCALE - Math.pow(Math.min(dist, 0.3), 3) * 3,
+                    scaleX: HOVER_SCALE,
+                    scaleY: HOVER_SCALE,
+                    rotate: 0,
                     duration: 0.5,
                     ease: "power4.out",
                     overwrite: true
