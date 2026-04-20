@@ -205,40 +205,99 @@
     var cursorEl = document.querySelector(".cursor");
     if (!cursorEl || typeof gsap === "undefined") return;
 
-    var mouseX = -100, mouseY = -100;
-    var curX = -100, curY = -100;
-    var speed = 0.12;
-
-    function update() {
-        curX += (mouseX - curX) * speed;
-        curY += (mouseY - curY) * speed;
-
-        gsap.set(cursorEl, {
-            x: curX,
-            y: curY
-        });
+    /* ── vec2 helper ── */
+    function vec2(x, y) {
+        return {
+            x: x, y: y,
+            lerp: function(t, a) { this.x += (t.x - this.x) * a; this.y += (t.y - this.y) * a; return this; },
+            clone: function() { return vec2(this.x, this.y); },
+            sub: function(o) { this.x -= o.x; this.y -= o.y; return this; },
+            copy: function(o) { this.x = o.x; this.y = o.y; return this; }
+        };
     }
 
-    function onMouseMove(e) {
-        mouseX = e.clientX;
-        mouseY = e.clientY;
+    var pos = {
+        prev: vec2(-100, -100),
+        cur: vec2(-100, -100),
+        target: vec2(-100, -100),
+        lerp: 0.1
+    };
+    var sc = { cur: 1, target: 1, lerp: 0.1 };
+    var isHovered = false;
+    var hoverEl = null;
+    var registeredEls = new WeakSet();
+
+    function update() {
+        pos.cur.lerp(pos.target, pos.lerp);
+        sc.cur = gsap.utils.interpolate(sc.cur, sc.target, sc.lerp);
+
+        var delta = pos.cur.clone().sub(pos.prev);
+        pos.prev.copy(pos.cur);
+
+        gsap.set(cursorEl, {
+            x: pos.cur.x,
+            y: pos.cur.y
+        });
+
+        if (!isHovered) {
+            var angle = Math.atan2(delta.y, delta.x) * (180 / Math.PI);
+            var dist = Math.sqrt(delta.x * delta.x + delta.y * delta.y) * 0.04;
+
+            gsap.set(cursorEl, {
+                rotate: angle,
+                scaleX: sc.cur + Math.min(dist, 1),
+                scaleY: sc.cur - Math.min(dist, 0.3)
+            });
+        }
+    }
+
+    function onMove(x, y) {
+        if (isHovered && hoverEl) {
+            var b = hoverEl.getBoundingClientRect();
+            var cx = b.x + b.width / 2;
+            var cy = b.y + b.height / 2;
+            var dx = x - cx;
+            var dy = y - cy;
+
+            pos.target.x = cx + dx * 0.15;
+            pos.target.y = cy + dy * 0.15;
+            sc.target = 2;
+
+            var angle = Math.atan2(dy, dx) * (180 / Math.PI);
+            var dist = Math.sqrt(dx * dx + dy * dy) * 0.01;
+
+            gsap.set(cursorEl, { rotate: angle });
+            gsap.to(cursorEl, {
+                scaleX: sc.target + Math.pow(Math.min(dist, 0.6), 3) * 3,
+                scaleY: sc.target - Math.pow(Math.min(dist, 0.3), 3) * 3,
+                duration: 0.5,
+                ease: "power4.out",
+                overwrite: true
+            });
+        } else {
+            pos.target.x = x;
+            pos.target.y = y;
+            sc.target = 1;
+        }
     }
 
     function setupHoverTargets() {
         var selectors = 'a, button, [role="button"], .dot-button-link, .swiper-button-prev, .swiper-button-next, .logo-link, input, textarea, select, .btn-invia, .horizontal-card-link';
-        var hoverEls = document.querySelectorAll(selectors);
+        var els = document.querySelectorAll(selectors);
 
-        hoverEls.forEach(function(el) {
-            if (el.dataset.cursorBound) return;
-            el.dataset.cursorBound = "1";
+        els.forEach(function(el) {
+            if (registeredEls.has(el)) return;
+            registeredEls.add(el);
 
             el.addEventListener("pointerover", function(e) {
                 e.stopPropagation();
-                cursorEl.classList.add("is-hovering");
+                isHovered = true;
+                hoverEl = el;
             });
             el.addEventListener("pointerout", function(e) {
                 e.stopPropagation();
-                cursorEl.classList.remove("is-hovering");
+                isHovered = false;
+                hoverEl = null;
             });
         });
     }
@@ -246,7 +305,9 @@
     function init() {
         setupHoverTargets();
         gsap.ticker.add(update);
-        window.addEventListener("pointermove", onMouseMove);
+        window.addEventListener("pointermove", function(e) {
+            onMove(e.clientX, e.clientY);
+        });
     }
 
     if (document.readyState === "loading") {
@@ -255,12 +316,16 @@
         init();
     }
 
-    /* Re-scan for hover targets when Elementor widgets load */
+    /* Re-scan hover targets on Elementor widget load */
     if (window.elementorFrontend) {
         window.elementorFrontend.hooks.addAction("frontend/element_ready/global", function() {
             setupHoverTargets();
         });
     }
+
+    /* Re-scan after DOM changes (e.g. lazy loaded content) */
+    var observer = new MutationObserver(function() { setupHoverTargets(); });
+    observer.observe(document.body, { childList: true, subtree: true });
 })();
 </script>
 
