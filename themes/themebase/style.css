@@ -497,6 +497,35 @@ header.site-header {
   }
 }
 
+/* ── CUSTOM CURSOR ── */
+.cursor {
+  --cursor-size: 20px;
+  width: var(--cursor-size);
+  height: var(--cursor-size);
+  border-radius: 50%;
+  background: #000;
+  position: fixed;
+  left: 0;
+  top: 0;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 99999;
+  will-change: transform;
+}
+
+@media (pointer: coarse) {
+  .cursor {
+    display: none !important;
+  }
+}
+
+/* Hide default cursor on desktop */
+@media (pointer: fine) {
+  *, *::before, *::after {
+    cursor: none !important;
+  }
+}
+
 /* FOOTER */
 .site-footer {
   background: var(--black);
