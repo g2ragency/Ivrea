@@ -74,19 +74,24 @@
   }
 
   .dot-button-link {
-    padding: 6px 12px;
+    padding: 10px 16px;
     max-width: 100%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .dot-button-widget .dot-button-text,
   .dot-button-widget .dot-button-text .char {
     white-space: normal;
     font-size: 18px !important;
+    line-height: 1;
   }
 
   .dot-button-widget .dot-button-arrow,
   .dot-button-widget .dot-button-arrow .char {
     font-size: 22px !important;
+    line-height: 1;
   }
 
   .dot-button-text .word {
@@ -94,7 +99,9 @@
   }
 
   .dot-button-inner {
+    display: flex;
     align-items: center;
+    justify-content: center;
     gap: 8px;
   }
 }
