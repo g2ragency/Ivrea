@@ -314,6 +314,11 @@ class Elementor_Widget_Dot_Button extends \Elementor\Widget_Base {
                 var dotSize = parseFloat(widget.getAttribute('data-dot-size')) || 28;
                 var borderColor = widget.getAttribute('data-border-color') || '#737373';
 
+                /* Scale down on mobile */
+                if (window.innerWidth <= 768) {
+                    dotSize = Math.round(dotSize * 0.5);
+                }
+
                 var rect = linkEl.getBoundingClientRect();
                 var w = rect.width;
                 var h = rect.height;
