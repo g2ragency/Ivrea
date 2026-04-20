@@ -205,111 +205,42 @@
     var cursorEl = document.querySelector(".cursor");
     if (!cursorEl || typeof gsap === "undefined") return;
 
-    /* ── Simple vec2 helper ── */
-    function vec2(x, y) {
-        return {
-            x: x, y: y,
-            lerp: function(target, amount) {
-                this.x += (target.x - this.x) * amount;
-                this.y += (target.y - this.y) * amount;
-                return this;
-            },
-            clone: function() { return vec2(this.x, this.y); },
-            sub: function(other) { this.x -= other.x; this.y -= other.y; return this; },
-            copy: function(other) { this.x = other.x; this.y = other.y; return this; }
-        };
-    }
-
-    /* ── Cursor class ── */
-    var position = {
-        previous: vec2(-100, -100),
-        current: vec2(-100, -100),
-        target: vec2(-100, -100),
-        lerpAmount: 0.1
-    };
-    var scale = {
-        previous: 1,
-        current: 1,
-        target: 1,
-        lerpAmount: 0.1
-    };
-
-    var isHovered = false;
-    var hoverBoundsEl = null;
+    var mouseX = -100, mouseY = -100;
+    var curX = -100, curY = -100;
+    var speed = 0.12;
 
     function update() {
-        position.current.lerp(position.target, position.lerpAmount);
-        scale.current = gsap.utils.interpolate(scale.current, scale.target, scale.lerpAmount);
-
-        var delta = position.current.clone().sub(position.previous);
-        position.previous.copy(position.current);
-        scale.previous = scale.current;
+        curX += (mouseX - curX) * speed;
+        curY += (mouseY - curY) * speed;
 
         gsap.set(cursorEl, {
-            x: position.current.x,
-            y: position.current.y
+            x: curX,
+            y: curY
         });
-
-        if (!isHovered) {
-            var angle = Math.atan2(delta.y, delta.x) * (180 / Math.PI);
-            var distance = Math.sqrt(delta.x * delta.x + delta.y * delta.y) * 0.04;
-
-            gsap.set(cursorEl, {
-                rotate: angle,
-                scaleX: scale.current + Math.min(distance, 1),
-                scaleY: scale.current - Math.min(distance, 0.3)
-            });
-        }
     }
 
-    function updateTargetPosition(x, y) {
-        if (isHovered && hoverBoundsEl) {
-            var bounds = hoverBoundsEl.getBoundingClientRect();
-            var cx = bounds.x + bounds.width / 2;
-            var cy = bounds.y + bounds.height / 2;
-            var dx = x - cx;
-            var dy = y - cy;
-
-            position.target.x = cx + dx * 0.15;
-            position.target.y = cy + dy * 0.15;
-            scale.target = 2;
-
-            var angle = Math.atan2(dy, dx) * (180 / Math.PI);
-            var distance = Math.sqrt(dx * dx + dy * dy) * 0.01;
-
-            gsap.set(cursorEl, { rotate: angle });
-            gsap.to(cursorEl, {
-                scaleX: scale.target + Math.pow(Math.min(distance, 0.6), 3) * 3,
-                scaleY: scale.target - Math.pow(Math.min(distance, 0.3), 3) * 3,
-                duration: 0.5,
-                ease: "power4.out",
-                overwrite: true
-            });
-        } else {
-            position.target.x = x;
-            position.target.y = y;
-            scale.target = 1;
-        }
+    function onMouseMove(e) {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
     }
 
     function setupHoverTargets() {
-        var selectors = 'a, button, [role="button"], .dot-button-link, .swiper-button-prev, .swiper-button-next, .menu-item, .logo-link, input, textarea, select, .btn-invia, .horizontal-card-link';
+        var selectors = 'a, button, [role="button"], .dot-button-link, .swiper-button-prev, .swiper-button-next, .logo-link, input, textarea, select, .btn-invia, .horizontal-card-link';
         var hoverEls = document.querySelectorAll(selectors);
 
         hoverEls.forEach(function(el) {
-            el.addEventListener("pointerover", function() {
-                isHovered = true;
-                hoverBoundsEl = el;
+            if (el.dataset.cursorBound) return;
+            el.dataset.cursorBound = "1";
+
+            el.addEventListener("pointerover", function(e) {
+                e.stopPropagation();
+                cursorEl.classList.add("is-hovering");
             });
-            el.addEventListener("pointerout", function() {
-                isHovered = false;
-                hoverBoundsEl = null;
+            el.addEventListener("pointerout", function(e) {
+                e.stopPropagation();
+                cursorEl.classList.remove("is-hovering");
             });
         });
-    }
-
-    function onMouseMove(event) {
-        updateTargetPosition(event.clientX, event.clientY);
     }
 
     function init() {

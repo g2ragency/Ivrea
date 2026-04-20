@@ -510,7 +510,13 @@ header.site-header {
   transform: translate(-50%, -50%);
   pointer-events: none;
   z-index: 99999;
-  will-change: transform;
+  transition: width 0.35s cubic-bezier(0.25, 1, 0.5, 1),
+              height 0.35s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.cursor.is-hovering {
+  width: 50px;
+  height: 50px;
 }
 
 @media (pointer: coarse) {
