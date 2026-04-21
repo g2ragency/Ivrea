@@ -125,6 +125,23 @@ h4.ivrea-map-title {
     width: 10px;
     height: 10px;
   }
+
+  /* Info box: wrap text, limit width, keep inside map */
+  .ivrea-map-info {
+    white-space: normal;
+    width: 130px;
+  }
+
+  /* Pins on the right half: open box to the LEFT */
+  .ivrea-map-pin--3 .ivrea-map-info {
+    left: auto;
+    right: 100%;
+    transform: translate(-8px, -50%);
+  }
+  .ivrea-map-pin--3:hover .ivrea-map-info {
+    transform: translate(-8px, -50%);
+  }
+
   .ivrea-map-date {
     font-size: 10px;
     line-height: 14px;
