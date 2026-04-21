@@ -701,7 +701,7 @@ body.mobile-menu-open {
 /* FOOTER */
 .site-footer {
   background: var(--black);
-  padding-top: 100px;
+  padding-top: 105px;
   padding-bottom: 50px;
 }
 
@@ -715,27 +715,37 @@ body.mobile-menu-open {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
 }
 
-.footer-date,
-.footer-subtitle {
+.footer-date {
   color: var(--accent);
-  font-size: 30px;
+  font-size: 20px;
   font-weight: 140;
   margin: 0;
-  line-height: 0.8;
+  line-height: 1;
+  letter-spacing: 2px;
+}
+
+.footer-subtitle {
+  color: var(--accent);
+  font-size: 22px;
+  font-weight: 140;
+  margin: 0;
+  line-height: 1;
+  letter-spacing: 1px;
 }
 
 .footer-title {
   color: var(--white);
+  font-size: 120px;
   font-weight: 140;
-  margin: 0;
-  line-height: 0.8;
+  margin: 4px 0;
+  line-height: 0.85;
 }
 
 .footer-links {
-  margin-top: 100px;
+  margin-top: 80px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -767,5 +777,21 @@ body.mobile-menu-open {
   .site-footer {
     padding-left: 15px;
     padding-right: 15px;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .footer-title {
+    font-size: 64px;
+    line-height: 0.85;
+  }
+
+  .footer-date,
+  .footer-subtitle {
+    font-size: 16px;
+  }
+
+  .footer-links {
+    margin-top: 60px;
   }
 }

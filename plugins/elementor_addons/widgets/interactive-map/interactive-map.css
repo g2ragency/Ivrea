@@ -101,10 +101,22 @@ h4.ivrea-map-title {
 /* Mobile responsive */
 @media (max-width: 767px) {
   /* Pin positions relative to mobile SVG */
-  .ivrea-map-pin--1 { top: 40% !important; left: 30% !important; }
-  .ivrea-map-pin--2 { top: 75% !important; left: 37% !important; }
-  .ivrea-map-pin--3 { top: 47% !important; left: 66% !important; }
-  .ivrea-map-pin--dot { top: 16% !important; left: 64% !important; }
+  .ivrea-map-pin--1 {
+    top: 40% !important;
+    left: 30% !important;
+  }
+  .ivrea-map-pin--2 {
+    top: 75% !important;
+    left: 37% !important;
+  }
+  .ivrea-map-pin--3 {
+    top: 47% !important;
+    left: 66% !important;
+  }
+  .ivrea-map-pin--dot {
+    top: 16% !important;
+    left: 64% !important;
+  }
 
   .ivrea-map-pin img.flag-svg {
     height: 45px;

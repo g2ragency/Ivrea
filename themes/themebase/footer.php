@@ -1,9 +1,9 @@
 <footer class="site-footer">
 	<div class="footer-content">
 		<div class="footer-titles">
-			<h4 class="footer-date">19-20-21 GIUGNO 2026</h4>
-			<h3 class="footer-title">IVREA EX MACHINA</h3>
-			<h4 class="footer-subtitle">LA CITTÀ CHE VIDE IL FUTURO</h4>
+			<h4 class="footer-date">IVREA (TO) - 2026</h4>
+			<h3 class="footer-title">EX MACHINA</h3>
+			<h4 class="footer-subtitle">LA COMUNITÀ CHE VIDE IL FUTURO</h4>
 		</div>
 		<div class="footer-links">
 			<a href="https://instagram.com" target="_blank" rel="noopener">Instagram</a>
