@@ -228,7 +228,8 @@ header.site-header.nav-visible-scrolled {
 }
 
 .logo-link:hover {
-  opacity: 0.8;
+  color: var(--black);
+  opacity: 1;
 }
 
 .mobile-header-bar,
@@ -267,6 +268,7 @@ header.site-header.nav-visible-scrolled {
 
 .main-menu li a {
   position: relative;
+  z-index: 1;
   text-decoration: none;
   color: var(--black);
   text-transform: uppercase;
@@ -277,12 +279,13 @@ header.site-header.nav-visible-scrolled {
   line-height: 0.8;
   letter-spacing: 0;
   font-variant-numeric: lining-nums tabular-nums;
-  transition: 0.3s;
+  transition: color 0.2s, z-index 0s;
   display: inline-block;
 }
 
 .main-menu li a:hover {
-  opacity: 0.6;
+  color: var(--white);
+  z-index: 100000;
 }
 
 /* NAVBAR MOBILE */
