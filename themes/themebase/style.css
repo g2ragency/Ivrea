@@ -279,7 +279,9 @@ header.site-header.nav-visible-scrolled {
   line-height: 0.8;
   letter-spacing: 0;
   font-variant-numeric: lining-nums tabular-nums;
-  transition: color 0.2s, z-index 0s;
+  transition:
+    color 0.2s,
+    z-index 0s;
   display: inline-block;
 }
 
@@ -677,7 +679,7 @@ body.mobile-menu-open {
   top: 0;
   transform: translate(-50%, -50%) scale(0.5);
   pointer-events: none;
-  z-index: 99999;
+  z-index: 100002;
 }
 
 @media (pointer: coarse) {
