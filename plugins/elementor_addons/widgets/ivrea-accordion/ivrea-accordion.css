@@ -1,0 +1,102 @@
+.ivrea-accordion-wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.ivrea-accordion-item {
+  width: 100%;
+}
+
+.ivrea-accordion-header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 50px 0 58px 0;
+  text-align: left;
+  outline: none;
+}
+
+.ivrea-accordion-title {
+  color: var(--accent, #FF0000); /* Assuming Red is Accent */
+  font-family: "TINY5x3", monospace !important;
+  font-feature-settings: "ss03" 1;
+  font-weight: 140;
+  font-style: normal;
+  font-size: 40px;
+  line-height: 34px;
+  letter-spacing: 0%;
+  text-transform: uppercase;
+  font-variant-numeric: lining-nums tabular-nums;
+  margin: 0;
+}
+
+.ivrea-accordion-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease;
+}
+
+.ivrea-accordion-icon img {
+  width: auto;
+  height: auto;
+  display: block;
+}
+
+.ivrea-accordion-item.active .ivrea-accordion-icon {
+  transform: rotate(180deg);
+}
+
+.ivrea-accordion-content {
+  display: none; /* JS handles toggling */
+  padding-bottom: 58px;
+  width: 100%;
+}
+
+.ivrea-accordion-inner,
+.ivrea-accordion-inner p {
+  color: var(--black, #000000);
+  font-family: "Helvetica Now Display", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 18px;
+  line-height: 100%;
+  letter-spacing: 0%;
+  font-variant-numeric: lining-nums tabular-nums;
+  margin: 0;
+  max-width: 80%; /* Assuming standard width, mobile can go 100% */
+}
+
+/* Base line using background SVG image instead of raw border */
+.ivrea-accordion-divider {
+  width: 100%;
+  height: 2px;
+  background-image: url('/wp-content/uploads/2026/04/Line-8.svg');
+  background-repeat: repeat-x;
+  background-position: center;
+  opacity: 1; /* Adjust if svg has its own opacity */
+}
+
+/* MOBILE */
+@media only screen and (max-width: 768px) {
+  .ivrea-accordion-header {
+    padding: 30px 0 35px 0; /* Scaling padding down roughly */
+  }
+  .ivrea-accordion-title {
+    font-size: 24px;
+    line-height: 1.2;
+  }
+  .ivrea-accordion-inner,
+  .ivrea-accordion-inner p {
+    font-size: 16px;
+    max-width: 100%;
+  }
+  .ivrea-accordion-content {
+    padding-bottom: 35px;
+  }
+}
