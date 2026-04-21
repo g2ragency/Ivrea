@@ -303,7 +303,7 @@ header.site-header.nav-visible-scrolled {
 
   .mobile-header-bar {
     position: relative;
-    z-index: 101;
+    z-index: 100002;
     width: 100%;
     display: flex;
     align-items: center;
@@ -311,7 +311,6 @@ header.site-header.nav-visible-scrolled {
   }
 
   .mobile-logo-link {
-    transform: translateY(-0.625rem);
     margin: 0;
     line-height: 1;
     font-size: 42px;
