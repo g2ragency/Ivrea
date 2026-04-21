@@ -373,7 +373,7 @@ header.site-header.nav-visible-scrolled {
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    padding: 120px 12px 40px;
+    padding: 40px 12px 40px;
     box-sizing: border-box;
   }
 
