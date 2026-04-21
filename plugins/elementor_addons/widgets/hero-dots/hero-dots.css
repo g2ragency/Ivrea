@@ -166,7 +166,9 @@
     width: 100%;
     padding: 0 24px;
   }
-
+  .hero-dots-widget .hero-dots-top {
+    margin-bottom: -40px;
+  }
   .hero-dots-widget .hero-dots-title {
     font-size: 180px;
     white-space: normal;
@@ -181,12 +183,19 @@
     font-size: 60px;
   }
 }
-
+@media (max-width: 1440px) {
+  .hero-dots-widget .hero-dots-title {
+    font-size: 260px;
+  }
+}
 /* ── MOBILE ── */
 @media only screen and (max-width: 768px) {
   .hero-dots-widget .hero-dots-content {
     width: 100%;
     padding: 0 16px;
+  }
+  .hero-dots-widget .hero-dots-top {
+    margin-bottom: 0;
   }
 
   .hero-dots-widget .hero-dots-title {
