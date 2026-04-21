@@ -403,7 +403,6 @@
     var header = document.querySelector("header.site-header");
     if (!header) return;
 
-    var mqDesktop = window.matchMedia("(min-width: 1025px)");
     var lastY = window.scrollY || 0;
     var DELTA = 6;
 
@@ -412,13 +411,15 @@
     }
 
     function onScroll() {
-        if (!mqDesktop.matches) {
-            resetHeaderState();
-            lastY = window.scrollY || 0;
+        var currentY = window.scrollY || 0;
+
+        if (document.body.classList.contains("mobile-menu-open")) {
+            header.classList.remove("nav-hidden");
+            header.classList.add("nav-visible-scrolled");
+            lastY = currentY;
             return;
         }
 
-        var currentY = window.scrollY || 0;
         var diff = currentY - lastY;
 
         if (Math.abs(diff) < DELTA) return;

@@ -171,14 +171,12 @@ header.site-header {
     background-color 0.35s ease;
 }
 
-@media only screen and (min-width: 1025px) {
-  header.site-header.nav-hidden {
-    transform: translateY(-100%);
-  }
+header.site-header.nav-hidden {
+  transform: translateY(-100%);
+}
 
-  header.site-header.nav-visible-scrolled {
-    background: var(--accent);
-  }
+header.site-header.nav-visible-scrolled {
+  background: var(--accent);
 }
 
 /* Container generale per header */
@@ -286,7 +284,6 @@ header.site-header {
 @media only screen and (max-width: 768px) {
   header.site-header {
     background: transparent;
-    transform: none !important;
   }
 
   .header-container {
@@ -433,6 +430,7 @@ header.site-header {
 
   body.mobile-menu-open header.site-header {
     background: var(--black);
+    transform: translateY(0) !important;
   }
 }
 
