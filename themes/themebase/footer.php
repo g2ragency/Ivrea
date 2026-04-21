@@ -219,6 +219,8 @@
     /* Base scale: 0.5 = 20px visible. Hover scale: 1.15 = slightly larger hover state. */
     var BASE_SCALE = 0.5;
     var HOVER_SCALE = 1.15;
+    var BASE_OPACITY = 1;
+    var HOVER_OPACITY = 0.82;
     var LARGE_EL_THRESHOLD = 200; /* px — skip sticky-center for elements wider than this */
 
     var pos = {
@@ -248,7 +250,8 @@
             gsap.set(cursorEl, {
                 rotate: 0,
                 scaleX: sc.cur,
-                scaleY: sc.cur
+                scaleY: sc.cur,
+                opacity: BASE_OPACITY
             });
         }
     }
@@ -267,6 +270,7 @@
                 gsap.to(cursorEl, {
                     scaleX: HOVER_SCALE,
                     scaleY: HOVER_SCALE,
+                    opacity: HOVER_OPACITY,
                     rotate: 0,
                     duration: 0.3,
                     ease: "power2.out",
@@ -286,6 +290,7 @@
                 gsap.to(cursorEl, {
                     scaleX: HOVER_SCALE,
                     scaleY: HOVER_SCALE,
+                    opacity: HOVER_OPACITY,
                     rotate: 0,
                     duration: 0.5,
                     ease: "power4.out",

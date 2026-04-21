@@ -683,7 +683,7 @@ body.mobile-menu-open {
   top: 0;
   transform: translate(-50%, -50%) scale(0.5);
   pointer-events: none;
-  z-index: 99998;
+  z-index: 100002;
 }
 
 @media (pointer: coarse) {
