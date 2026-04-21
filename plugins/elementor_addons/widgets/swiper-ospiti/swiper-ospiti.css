@@ -109,6 +109,24 @@
   opacity: 0.2 !important;
 }
 
+/* PROGRESS BAR (mobile only) */
+.swiper-ospiti-widget .swiper-mobile-progress {
+  display: none;
+  flex: 1;
+  height: 4px;
+  background: var(--lightgrey);
+  border-radius: 50px;
+  overflow: hidden;
+}
+
+.swiper-ospiti-widget .swiper-mobile-progress-fill {
+  height: 100%;
+  width: 0%;
+  background: var(--black);
+  border-radius: 50px;
+  transition: width 0.15s ease;
+}
+
 /* MOBILE */
 @media only screen and (max-width: 768px) {
   .swiper-ospiti-widget .ospite-card {
@@ -130,5 +148,13 @@
 
   .swiper-ospiti-widget .swiper-nav {
     display: none;
+  }
+
+  .swiper-ospiti-widget .swiper-scrollbar {
+    display: none;
+  }
+
+  .swiper-ospiti-widget .swiper-mobile-progress {
+    display: block;
   }
 }

@@ -107,6 +107,7 @@ class Elementor_Widget_Swiper_Cards extends \Elementor\Widget_Base {
             </div>
             <div class="swiper-controls">
                 <div class="swiper-scrollbar"></div>
+                <div class="swiper-mobile-progress"><div class="swiper-mobile-progress-fill"></div></div>
                 <div class="swiper-nav">
                     <div class="swiper-button-prev">
                         <svg width="42" height="56" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg" style="transform: scaleX(-1);">
@@ -130,6 +131,8 @@ class Elementor_Widget_Swiper_Cards extends \Elementor\Widget_Base {
                 var swiperEl = container.querySelector(".swiper");
                 if (!swiperEl) return;
 
+                var progressFill = container.querySelector(".swiper-mobile-progress-fill");
+
                 new Swiper(swiperEl, {
                     slidesPerView: "auto",
                     spaceBetween: 16,
@@ -148,6 +151,13 @@ class Elementor_Widget_Swiper_Cards extends \Elementor\Widget_Base {
                             spaceBetween: 130,
                         }
                     },
+                    on: {
+                        progress: function(swiper, progress) {
+                            if (progressFill) {
+                                progressFill.style.width = (Math.min(1, Math.max(0, progress)) * 100) + "%";
+                            }
+                        }
+                    }
                 });
             }
 
