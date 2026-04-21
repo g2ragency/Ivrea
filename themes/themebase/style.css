@@ -311,7 +311,7 @@ header.site-header.nav-visible-scrolled {
   }
 
   .mobile-logo-link {
-    transform: translateY(8px);
+    transform: translateY(-0.625rem);
     margin: 0;
     line-height: 1;
     font-size: 42px;
@@ -736,7 +736,7 @@ body.mobile-menu-open {
   color: var(--accent);
   font-size: 31px;
   font-weight: 140;
-  margin-top: -0.130rem;
+  margin-top: -0.13rem;
   line-height: 1;
   letter-spacing: 0;
 }
