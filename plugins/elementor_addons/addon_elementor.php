@@ -135,8 +135,12 @@ final class Elementor_Addon_Widgets {
 		require_once( __DIR__ . '/widgets/stats/stats.php' );
 		require_once( __DIR__ . '/widgets/swiper-ospiti/swiper-ospiti.php' );
 		require_once( __DIR__ . '/widgets/hero-dots/hero-dots.php' );
-		require_once( __DIR__ . '/widgets/interactive-map/interactive-map.php' );
+                require_once( __DIR__ . '/widgets/interactive-map/interactive-map.php' );
                 require_once( __DIR__ . '/widgets/ivrea-accordion/ivrea-accordion.php' );
+		
+		//HOMEPAGE
+		$widgets_manager->register( new \Elementor_Widget_Countdown() );
+		$widgets_manager->register( new \Elementor_Widget_Hero_Text() );
 		$widgets_manager->register( new \Elementor_Widget_Scroll_Text() );
 		$widgets_manager->register( new \Elementor_Widget_Swiper_Cards() );
                 $widgets_manager->register( new \Elementor_Widget_Swiper_Cards_Grid() );
@@ -145,8 +149,9 @@ final class Elementor_Addon_Widgets {
 		$widgets_manager->register( new \Elementor_Widget_Dot_Button() );
 		$widgets_manager->register( new \Elementor_Widget_Stats() );
 		$widgets_manager->register( new \Elementor_Widget_Swiper_Ospiti() );
-		$widgets_manager->register( new \Elementor_Widget_Hero_Dots() );
-		$widgets_manager->register( new \Elementor_Widget_Interactive_Map() );
+                $widgets_manager->register( new \Elementor_Widget_Hero_Dots() );
+                $widgets_manager->register( new \Elementor_Widget_Interactive_Map() );
+                $widgets_manager->register( new \Elementor_Widget_Ivrea_Accordion() );
 		
 	
 	}	public function init_controls() {
