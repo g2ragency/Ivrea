@@ -227,14 +227,14 @@
   .hero-dots-widget .hero-dots-top {
     margin-bottom: 2rem;
     flex-direction: column;
-    gap: 16px;
+    gap: 0;
     align-items: center;
     justify-content: center;
   }
 
   .hero-dots-widget .hero-dots-title {
-    font-size: 19vw;
-    line-height: 0.9;
+    font-size: 26vw;
+    line-height: 0;
     white-space: normal;
     text-align: center;
     margin: 0 0 2rem 0 !important;
@@ -244,8 +244,9 @@
   .hero-dots-widget .hero-dots-subtitle,
   .hero-dots-widget .hero-dots-subtitle .char {
     font-size: 7vw !important;
-    line-height: 1.1;
+    line-height: 1;
     text-align: center;
+    margin-top: 0;
   }
 
   .hero-dots-widget .hero-dots-top-text {

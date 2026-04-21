@@ -111,7 +111,7 @@
   width: 0%;
   background: var(--black);
   border-radius: 50px;
-  transition: width 0.15s ease;
+  will-change: width;
 }
 
 /* MOBILE */

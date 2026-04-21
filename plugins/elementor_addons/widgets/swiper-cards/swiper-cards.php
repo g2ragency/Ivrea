@@ -154,7 +154,11 @@ class Elementor_Widget_Swiper_Cards extends \Elementor\Widget_Base {
                     on: {
                         progress: function(swiper, progress) {
                             if (progressFill) {
-                                progressFill.style.width = (Math.min(1, Math.max(0, progress)) * 100) + "%";
+                                var minW = 15;
+                                var w = minW + progress * (100 - minW);
+                                // Ensure it doesn't go magically backwards during heavy bounce
+                                w = Math.max(0, w);
+                                progressFill.style.width = w + "%";
                             }
                         }
                     }
