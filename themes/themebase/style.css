@@ -187,7 +187,7 @@ header.site-header {
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  padding: 16px 0px;
+  padding: 24px 0px;
   max-width: 1360px;
   margin: auto;
   box-sizing: border-box;
@@ -205,6 +205,9 @@ header.site-header {
 
 /* Contenitore del logo, centrato */
 .logo-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   text-align: center;
   flex: 0 0 auto;
 }
@@ -214,8 +217,8 @@ header.site-header {
   font-family: "TINY5x3", monospace;
   font-size: 50px;
   font-weight: 140;
-  line-height: 0;
-  display: block;
+  line-height: 1;
+  display: inline-block;
   color: var(--lightlightgrey);
   text-decoration: none;
   letter-spacing: 2px;
