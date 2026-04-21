@@ -130,6 +130,10 @@
   margin: 0;
 }
 
+.hero-dots-widget .hero-dots-subtitle {
+  white-space: nowrap;
+}
+
 /* ── Chars (variable font hover) ── */
 .hero-dots-widget .word {
   display: inline-block;
@@ -145,8 +149,9 @@
   cursor: default;
 }
 
-.hero-dots-widget:hover {
-  cursor: none;
+.hero-dots-widget,
+.hero-dots-widget * {
+  cursor: auto;
 }
 
 /* ── Pointer events ── */
@@ -169,11 +174,11 @@
 
   .hero-dots-widget .hero-dots-subtitle,
   .hero-dots-widget .hero-dots-subtitle .char {
-    font-size: 4vw;
+    font-size: 60px;
   }
 
   .hero-dots-widget .hero-dots-top-text {
-    font-size: 2.5vw;
+    font-size: 60px;
   }
 }
 

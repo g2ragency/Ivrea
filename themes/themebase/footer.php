@@ -216,9 +216,9 @@
         };
     }
 
-    /* Base scale: 0.5 = 20px visible. Hover scale: 1.0 = 40px visible. Never upscales. */
+    /* Base scale: 0.5 = 20px visible. Hover scale: 1.15 = slightly larger hover state. */
     var BASE_SCALE = 0.5;
-    var HOVER_SCALE = 1.0;
+    var HOVER_SCALE = 1.15;
     var LARGE_EL_THRESHOLD = 200; /* px — skip sticky-center for elements wider than this */
 
     var pos = {
