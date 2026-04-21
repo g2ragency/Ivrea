@@ -614,7 +614,7 @@ body.mobile-menu-open {
   line-height: 1;
 }
 
-/* ── NEWSLETTER MOBILE ── */
+/* â”€â”€ NEWSLETTER MOBILE â”€â”€ */
 @media only screen and (max-width: 768px) {
   .newsletter-row {
     padding-right: 0;
@@ -668,7 +668,7 @@ body.mobile-menu-open {
   }
 }
 
-/* ── CUSTOM CURSOR ── */
+/* â”€â”€ CUSTOM CURSOR â”€â”€ */
 @media (pointer: fine) {
   html,
   body,
@@ -720,28 +720,29 @@ body.mobile-menu-open {
 
 .footer-date {
   color: var(--accent);
-  font-size: 20px;
+  font-size: 31px;
   font-weight: 140;
   margin: 0;
   line-height: 1;
-  letter-spacing: 2px;
+  letter-spacing: 0%;
 }
 
 .footer-subtitle {
   color: var(--accent);
-  font-size: 22px;
+  font-size: 31px;
   font-weight: 140;
-  margin: 0;
+  margin-top: -0.75rem;
   line-height: 1;
-  letter-spacing: 1px;
+  letter-spacing: 0;
 }
 
 .footer-title {
   color: var(--white);
-  font-size: 120px;
+  font-size: 100px;
   font-weight: 140;
-  margin: 4px 0;
-  line-height: 0.85;
+  margin-top: -3rem;
+  line-height: 1;
+  margin-bottom: 0;
 }
 
 .footer-links {
@@ -772,7 +773,7 @@ body.mobile-menu-open {
   line-height: 1;
 }
 
-/* ── FOOTER MOBILE ── */
+/* â”€â”€ FOOTER MOBILE â”€â”€ */
 @media only screen and (max-width: 1024px) {
   .site-footer {
     padding-left: 15px;
