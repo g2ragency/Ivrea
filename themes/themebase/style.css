@@ -614,7 +614,7 @@ body.mobile-menu-open {
   line-height: 1;
 }
 
-/* â”€â”€ NEWSLETTER MOBILE â”€â”€ */
+/* Ã¢â€â‚¬Ã¢â€â‚¬ NEWSLETTER MOBILE Ã¢â€â‚¬Ã¢â€â‚¬ */
 @media only screen and (max-width: 768px) {
   .newsletter-row {
     padding-right: 0;
@@ -668,7 +668,7 @@ body.mobile-menu-open {
   }
 }
 
-/* â”€â”€ CUSTOM CURSOR â”€â”€ */
+/* Ã¢â€â‚¬Ã¢â€â‚¬ CUSTOM CURSOR Ã¢â€â‚¬Ã¢â€â‚¬ */
 @media (pointer: fine) {
   html,
   body,
@@ -731,7 +731,7 @@ body.mobile-menu-open {
   color: var(--accent);
   font-size: 31px;
   font-weight: 140;
-  margin-top: -0.75rem;
+  margin-top: -0.130rem;
   line-height: 1;
   letter-spacing: 0;
 }
@@ -773,7 +773,7 @@ body.mobile-menu-open {
   line-height: 1;
 }
 
-/* â”€â”€ FOOTER MOBILE â”€â”€ */
+/* Ã¢â€â‚¬Ã¢â€â‚¬ FOOTER MOBILE Ã¢â€â‚¬Ã¢â€â‚¬ */
 @media only screen and (max-width: 1024px) {
   .site-footer {
     padding-left: 15px;
@@ -784,12 +784,13 @@ body.mobile-menu-open {
 @media only screen and (max-width: 768px) {
   .footer-title {
     font-size: 64px;
-    line-height: 0.85;
+    line-height: 1;
+    margin-top: -2rem;
   }
 
   .footer-date,
   .footer-subtitle {
-    font-size: 16px;
+    font-size: 20px;
   }
 
   .footer-links {
