@@ -35,7 +35,10 @@ class Elementor_Widget_Interactive_Map extends \Elementor\Widget_Base {
     protected function render() {
         ?>
         <div class="ivrea-map-wrap">
-            <img src="/wp-content/uploads/2026/04/Mappa-Ivrea-No-Flag.svg" alt="Mappa Ivrea" class="ivrea-map-bg">
+            <picture>
+                <source media="(max-width: 767px)" srcset="/wp-content/uploads/2026/04/Mappa-Ivrea-mobile.svg">
+                <img src="/wp-content/uploads/2026/04/Mappa-Ivrea-desktop.svg" alt="Mappa Ivrea" class="ivrea-map-bg">
+            </picture>
 
             <!-- Punto 1: OFFICINE H -->
             <div class="ivrea-map-pin" style="top: 45%; left: 42%;">
