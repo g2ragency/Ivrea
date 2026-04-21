@@ -166,7 +166,9 @@ header.site-header {
   width: 100%;
   background: transparent;
   transform: translateY(0);
-  transition: transform 0.35s ease, background-color 0.35s ease;
+  transition:
+    transform 0.35s ease,
+    background-color 0.35s ease;
 }
 
 @media only screen and (min-width: 1025px) {
@@ -212,6 +214,8 @@ header.site-header {
   font-family: "TINY5x3", monospace;
   font-size: 50px;
   font-weight: 140;
+  line-height: 0;
+  display: block;
   color: var(--lightlightgrey);
   text-decoration: none;
   letter-spacing: 2px;
