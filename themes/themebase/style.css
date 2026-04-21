@@ -670,13 +670,7 @@ body.mobile-menu-open {
 
 /* ── CUSTOM CURSOR ── */
 * {
-  cursor: none !important;
-}
-
-@media (pointer: coarse) {
-  * {
-    cursor: auto !important;
-  }
+  cursor: default !important;
 }
 
 .cursor {
