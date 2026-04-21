@@ -162,7 +162,7 @@ button {
 /* NAVBAR */
 header.site-header {
   position: fixed;
-  z-index: 99;
+  z-index: 100001;
   width: 100%;
   background: transparent;
   transform: translateY(0);
@@ -285,7 +285,6 @@ header.site-header.nav-visible-scrolled {
 
 .main-menu li a:hover {
   color: var(--white);
-  z-index: 100000;
 }
 
 /* NAVBAR MOBILE */
