@@ -22,7 +22,7 @@
 }
 
 .ivrea-accordion-title {
-  color: var(--accent, #FF0000); /* Assuming Red is Accent */
+  color: var(--accent, #ff0000); /* Assuming Red is Accent */
   font-family: "TINY5x3", monospace !important;
   font-feature-settings: "ss03" 1;
   font-weight: 140;

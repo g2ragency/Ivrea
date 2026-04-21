@@ -107,6 +107,15 @@ class Elementor_Widget_Hero_Dots extends \Elementor\Widget_Base {
             'tab'   => \Elementor\Controls_Manager::TAB_STYLE,
         ]);
 
+        $this->add_responsive_control('title_font_size', [
+            'label'       => __('Dimensione Font Titolo', 'elementor_addon'),
+            'type'        => \Elementor\Controls_Manager::SLIDER,
+            'size_units'  => ['px', 'vw', 'rem', 'em'],
+            'selectors'   => [
+                '{{WRAPPER}} .hero-dots-widget .hero-dots-title' => 'font-size: {{SIZE}}{{UNIT}} !important;',
+            ],
+        ]);
+
         $this->add_responsive_control('widget_height', [
             'label'       => __('Altezza Widget', 'elementor_addon'),
             'type'        => \Elementor\Controls_Manager::SLIDER,
