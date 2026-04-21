@@ -178,6 +178,11 @@ class Elementor_Widget_Swiper_Ospiti extends \Elementor\Widget_Base {
                                 w = Math.max(0, w);
                                 progressFill.style.width = w + "%";
                             }
+                        },
+                        setTransition: function(swiper, duration) {
+                            if (progressFill) {
+                                progressFill.style.transitionDuration = duration + "ms";
+                            }
                         }
                     }
                 });
