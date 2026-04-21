@@ -269,9 +269,14 @@ header.site-header.nav-visible-scrolled {
   position: relative;
   text-decoration: none;
   color: var(--black);
-  text-transform: capitalize;
-  font-family: "Helvetica Now Display Bold", sans-serif;
+  text-transform: uppercase;
+  font-family: "TINY5x3", monospace;
+  font-feature-settings: "ss03" 1;
+  font-weight: 140;
   font-size: 16px;
+  line-height: 0.8;
+  letter-spacing: 0;
+  font-variant-numeric: lining-nums tabular-nums;
   transition: 0.3s;
   display: inline-block;
 }
@@ -288,7 +293,7 @@ header.site-header.nav-visible-scrolled {
 
   .header-container {
     position: relative;
-    padding: 16px 20px;
+    padding: 12px 12px;
     max-width: 100%;
   }
 
@@ -361,7 +366,7 @@ header.site-header.nav-visible-scrolled {
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    padding: 120px 24px 28px;
+    padding: 120px 12px 40px;
     box-sizing: border-box;
   }
 
