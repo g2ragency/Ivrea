@@ -219,7 +219,7 @@ header.site-header.nav-visible-scrolled {
   display: inline-block;
   margin: 0;
   padding: 0;
-  transform: translateY(-10px);
+  transform: translateY(-0.625rem);
   color: var(--lightlightgrey);
   text-decoration: none;
   letter-spacing: 2px;
@@ -311,7 +311,7 @@ header.site-header.nav-visible-scrolled {
   }
 
   .mobile-logo-link {
-    transform: translateY(-10px);
+    transform: translateY(-0.625rem);
     margin: 0;
     line-height: 1;
     font-size: 42px;
