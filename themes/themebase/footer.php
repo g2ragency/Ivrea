@@ -347,6 +347,56 @@
 })();
 </script>
 
+<script>
+(function() {
+    "use strict";
+
+    var header = document.querySelector("header.site-header");
+    if (!header) return;
+
+    var mqDesktop = window.matchMedia("(min-width: 1025px)");
+    var lastY = window.scrollY || 0;
+    var DELTA = 6;
+
+    function resetHeaderState() {
+        header.classList.remove("nav-hidden", "nav-visible-scrolled");
+    }
+
+    function onScroll() {
+        if (!mqDesktop.matches) {
+            resetHeaderState();
+            lastY = window.scrollY || 0;
+            return;
+        }
+
+        var currentY = window.scrollY || 0;
+        var diff = currentY - lastY;
+
+        if (Math.abs(diff) < DELTA) return;
+
+        if (currentY <= 10) {
+            resetHeaderState();
+            lastY = currentY;
+            return;
+        }
+
+        if (diff > 0) {
+            header.classList.add("nav-hidden");
+            header.classList.remove("nav-visible-scrolled");
+        } else {
+            header.classList.remove("nav-hidden");
+            header.classList.add("nav-visible-scrolled");
+        }
+
+        lastY = currentY;
+    }
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    onScroll();
+})();
+</script>
+
 <?php wp_footer(); ?>
 </body>
 

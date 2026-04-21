@@ -165,6 +165,18 @@ header.site-header {
   z-index: 99;
   width: 100%;
   background: transparent;
+  transform: translateY(0);
+  transition: transform 0.35s ease, background-color 0.35s ease;
+}
+
+@media only screen and (min-width: 1025px) {
+  header.site-header.nav-hidden {
+    transform: translateY(-100%);
+  }
+
+  header.site-header.nav-visible-scrolled {
+    background: var(--accent);
+  }
 }
 
 /* Container generale per header */
