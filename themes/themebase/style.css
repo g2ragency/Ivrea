@@ -673,7 +673,9 @@ body.mobile-menu-open {
   html,
   body,
   body * {
-    cursor: none !important;
+    cursor: default !important;
+    user-select: none !important;
+    -webkit-user-select: none !important;
   }
 }
 
