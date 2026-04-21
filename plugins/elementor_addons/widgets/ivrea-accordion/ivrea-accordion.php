@@ -103,9 +103,9 @@ class Elementor_Widget_Ivrea_Accordion extends \Elementor\Widget_Base {
             echo '    <span class="ivrea-accordion-icon"><img src="/wp-content/uploads/2026/03/arrow-down-ivrea.png" alt="Toggle"></span>';
             echo '  </button>';
             echo '  <div class="ivrea-accordion-content" ' . $display_style . '>';
-            echo '    <div class="ivrea-accordion-inner">';
+            echo '    <div class="ivrea-accordion-inner-wrapper"><div class="ivrea-accordion-inner">';
             echo        wp_kses_post($item['item_content']);
-            echo '    </div>';
+            echo '    </div></div>';
             echo '  </div>';
             
             // Adding the separating SVG line after each item (the top item border is usually rendered via CSS or we can do it via bottom borders of SVG)
@@ -141,7 +141,8 @@ class Elementor_Widget_Ivrea_Accordion extends \Elementor\Widget_Base {
                     // Toggle current
                     if (!isActive) {
                         item.classList.add('active');
-                        
+                    } else {
+                        item.classList.remove('active');
                     }
                 });
             });

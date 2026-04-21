@@ -62,18 +62,22 @@
   width: 100%;
 }
 
+.ivrea-accordion-inner-wrapper {
+  overflow: hidden;
+}
+
 .ivrea-accordion-item.active .ivrea-accordion-content {
   grid-template-rows: 1fr;
 }
 
 .ivrea-accordion-content {
-  overflow: hidden;
+  /* Removed redundant overflow */
 }
 
 .ivrea-accordion-inner {
   overflow: hidden;
   padding-bottom: 58px;
-  min-height: 0;
+  /* Removed min-height, grid wrapper should handle it */
 }
 
 .ivrea-accordion-inner,
