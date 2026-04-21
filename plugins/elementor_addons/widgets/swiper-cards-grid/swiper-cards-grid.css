@@ -1,0 +1,104 @@
+.swiper-cards-grid-widget {
+  width: 100%;
+  overflow: visible;
+}
+
+.swiper-cards-grid-widget .swiper {
+  overflow: visible;
+}
+
+.swiper-cards-grid-widget .swiper-wrapper {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+}
+
+.swiper-cards-grid-widget .swiper-slide {
+  width: 100%;
+  height: auto;
+}
+
+.swiper-cards-grid-widget .swiper-card {
+  background: var(--white);
+  border-radius: 5px;
+  padding: 24px;
+  width: 100%;
+  box-sizing: border-box;
+  min-height: 280px;
+  height: 100%;
+}
+
+.swiper-cards-grid-widget .swiper-card-title {
+  font-family: "TINY5x3", monospace !important;
+  font-feature-settings: "ss03" 1;
+  font-weight: 140;
+  line-height: 0.8;
+  color: var(--accent);
+  text-transform: uppercase;
+  margin: 0 0 20px 0;
+}
+
+.swiper-cards-grid-widget .swiper-card-description {
+  font-family: "Helvetica Now Display", sans-serif !important;
+  font-size: 18px;
+  line-height: 1.4;
+  color: var(--grey);
+  margin: 0;
+}
+
+/* CONTROLS (mobile only) */
+.swiper-cards-grid-widget .swiper-controls {
+  display: none;
+}
+
+.swiper-cards-grid-widget .swiper-mobile-progress {
+  display: none;
+  flex: 1;
+  height: 4px;
+  background: var(--lightgrey);
+  border-radius: 50px;
+  overflow: hidden;
+}
+
+.swiper-cards-grid-widget .swiper-mobile-progress-fill {
+  height: 100%;
+  width: 0%;
+  background: var(--black);
+  border-radius: 50px;
+  transition: width 0.15s ease;
+}
+
+/* MOBILE */
+@media only screen and (max-width: 768px) {
+  .swiper-cards-grid-widget .swiper-wrapper {
+    display: flex;
+    gap: unset;
+  }
+
+  .swiper-cards-grid-widget .swiper-slide {
+    width: auto;
+  }
+
+  .swiper-cards-grid-widget .swiper-card {
+    width: 300px;
+    padding: 24px;
+  }
+
+  .swiper-cards-grid-widget .swiper-card-title {
+    font-size: 36px;
+  }
+
+  .swiper-cards-grid-widget .swiper-card-description {
+    font-size: 16px;
+  }
+
+  .swiper-cards-grid-widget .swiper-controls {
+    display: flex;
+    align-items: center;
+    margin-top: 40px;
+  }
+
+  .swiper-cards-grid-widget .swiper-mobile-progress {
+    display: block;
+  }
+}
