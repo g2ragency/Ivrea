@@ -137,6 +137,7 @@ final class Elementor_Addon_Widgets {
 		require_once( __DIR__ . '/widgets/hero-dots/hero-dots.php' );
                 require_once( __DIR__ . '/widgets/interactive-map/interactive-map.php' );
                 require_once( __DIR__ . '/widgets/ivrea-accordion/ivrea-accordion.php' );
+                require_once( __DIR__ . '/widgets/grid-ospiti/grid-ospiti.php' );
 		
 		//HOMEPAGE
 		$widgets_manager->register( new \Elementor_Widget_Countdown() );
@@ -152,6 +153,7 @@ final class Elementor_Addon_Widgets {
                 $widgets_manager->register( new \Elementor_Widget_Hero_Dots() );
                 $widgets_manager->register( new \Elementor_Widget_Interactive_Map() );
                 $widgets_manager->register( new \Elementor_Widget_Ivrea_Accordion() );
+                $widgets_manager->register( new \Elementor_Widget_Grid_Ospiti() );
 		
 	
 	}	public function init_controls() {
