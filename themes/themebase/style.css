@@ -285,7 +285,8 @@ header.site-header {
 /* NAVBAR MOBILE */
 @media only screen and (max-width: 768px) {
   header.site-header {
-    background: var(--black);
+    background: transparent;
+    transform: none !important;
   }
 
   .header-container {
@@ -304,7 +305,7 @@ header.site-header {
   }
 
   .mobile-logo-link {
-    transform: none;
+    transform: translateY(-10px);
     margin: 0;
     line-height: 1;
     font-size: 42px;
@@ -354,6 +355,8 @@ header.site-header {
   .mobile-menu-panel {
     position: fixed;
     inset: 0;
+    width: 100vw;
+    min-height: 100dvh;
     z-index: 100;
     background: var(--black);
     color: var(--white);
@@ -426,6 +429,10 @@ header.site-header {
     font-variant-numeric: lining-nums tabular-nums;
     text-decoration: none;
     color: #cccccc;
+  }
+
+  body.mobile-menu-open header.site-header {
+    background: var(--black);
   }
 }
 
