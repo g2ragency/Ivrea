@@ -217,8 +217,11 @@ header.site-header {
   font-family: "TINY5x3", monospace;
   font-size: 50px;
   font-weight: 140;
-  line-height: 1;
+  line-height: 0.8;
   display: inline-block;
+  margin: 0;
+  padding: 0;
+  transform: translateY(-3px);
   color: var(--lightlightgrey);
   text-decoration: none;
   letter-spacing: 2px;
