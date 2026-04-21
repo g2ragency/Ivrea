@@ -90,7 +90,7 @@
   align-items: baseline;
   justify-content: space-between;
   width: 100%;
-  margin-bottom: 0;
+  margin-bottom: -80px;
 }
 
 .hero-dots-widget .hero-dots-top-text {
@@ -127,7 +127,7 @@
   line-height: 0.8;
   color: var(--black);
   text-transform: uppercase;
-  margin: 0;
+  margin: 10px;
 }
 
 .hero-dots-widget .hero-dots-subtitle {
