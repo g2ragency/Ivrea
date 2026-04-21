@@ -201,28 +201,38 @@
   .hero-dots-widget .hero-dots-content {
     width: 100%;
     padding: 0 16px;
+    justify-content: center;
+    align-items: center;
   }
+  
   .hero-dots-widget .hero-dots-top {
-    margin-bottom: 0;
+    margin-bottom: 2rem;
+    flex-direction: column;
+    gap: 16px;
+    align-items: center;
+    justify-content: center;
   }
 
   .hero-dots-widget .hero-dots-title {
-    font-size: 14vw;
+    font-size: 19vw;
+    line-height: 0.9;
     white-space: normal;
+    text-align: center;
+    margin: 0 0 2rem 0 !important;
+    word-break: break-word;
   }
 
   .hero-dots-widget .hero-dots-subtitle,
   .hero-dots-widget .hero-dots-subtitle .char {
     font-size: 7vw !important;
-  }
-
-  .hero-dots-widget .hero-dots-top {
-    flex-direction: column;
-    gap: 10px;
+    line-height: 1.1;
+    text-align: center;
   }
 
   .hero-dots-widget .hero-dots-top-text {
-    font-size: 5vw;
+    font-size: 7vw;
     white-space: normal;
+    line-height: 1;
+    text-align: center;
   }
 }

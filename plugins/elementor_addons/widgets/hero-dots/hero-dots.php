@@ -71,6 +71,31 @@ class Elementor_Widget_Hero_Dots extends \Elementor\Widget_Base {
         ]);
 
         $this->end_controls_section();
+
+        /* ── STILE ── */
+        $this->start_controls_section('style_section', [
+            'label' => __('Stile', 'elementor_addon'),
+            'tab'   => \Elementor\Controls_Manager::TAB_STYLE,
+        ]);
+
+        $this->add_responsive_control('widget_height', [
+            'label'       => __('Altezza Widget', 'elementor_addon'),
+            'type'        => \Elementor\Controls_Manager::SLIDER,
+            'size_units'  => ['px', 'vh', 'rem'],
+            'range'       => [
+                'px' => ['min' => 200, 'max' => 1500],
+                'vh' => ['min' => 10, 'max' => 100],
+            ],
+            'selectors'   => [
+                '{{WRAPPER}} .hero-dots-widget' => 'height: {{SIZE}}{{UNIT}};',
+            ],
+            'default' => [
+                'unit' => 'vh',
+                'size' => 100,
+            ],
+        ]);
+
+        $this->end_controls_section();
     }
 
     protected function render() {
