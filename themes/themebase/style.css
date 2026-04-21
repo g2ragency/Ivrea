@@ -648,10 +648,11 @@ body.mobile-menu-open {
     position: relative;
     right: auto;
     top: auto;
-    align-self: stretch;
+    align-self: center;
     font-size: 28px;
     padding: 12px 28px;
-    width: 100%;
+    width: calc(100% - 20px);
+    margin: 0 10px;
     box-sizing: border-box;
     text-align: center;
     justify-content: center;
