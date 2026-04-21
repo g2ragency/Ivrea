@@ -669,6 +669,16 @@ body.mobile-menu-open {
 }
 
 /* ── CUSTOM CURSOR ── */
+* {
+  cursor: none !important;
+}
+
+@media (pointer: coarse) {
+  * {
+    cursor: auto !important;
+  }
+}
+
 .cursor {
   width: 40px;
   height: 40px;
