@@ -219,7 +219,7 @@ header.site-header.nav-visible-scrolled {
   display: inline-block;
   margin: 0;
   padding: 0;
-  transform: translateY(-15px);
+  transform: translateY(-10px);
   color: var(--lightlightgrey);
   text-decoration: none;
   letter-spacing: 2px;
@@ -273,7 +273,7 @@ header.site-header.nav-visible-scrolled {
   font-family: "TINY5x3", monospace;
   font-feature-settings: "ss03" 1;
   font-weight: 140;
-  font-size: 16px;
+  font-size: 24px;
   line-height: 0.8;
   letter-spacing: 0;
   font-variant-numeric: lining-nums tabular-nums;
