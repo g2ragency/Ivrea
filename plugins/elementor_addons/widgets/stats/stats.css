@@ -122,7 +122,8 @@
   }
 
   .stats-number {
-    font-size: 125px;
+    font-size: 120px!important;
+    margin-top: -42px;
   }
 
   .stats-label {
