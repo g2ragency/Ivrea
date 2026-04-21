@@ -366,28 +366,26 @@
     var mqMobile = window.matchMedia("(max-width: 768px)");
     var savedScrollY = 0;
 
+    function preventTouchMove(e) {
+        if (document.body.classList.contains("mobile-menu-open")) {
+            e.preventDefault();
+        }
+    }
+
     function openMenu() {
         header.classList.remove("nav-hidden");
         header.classList.add("nav-visible-scrolled");
-        /* iOS Safari scroll lock: freeze body at current position */
-        savedScrollY = window.scrollY || window.pageYOffset;
-        document.body.style.position = "fixed";
-        document.body.style.top = "-" + savedScrollY + "px";
-        document.body.style.width = "100%";
         document.body.classList.add("mobile-menu-open");
         toggle.setAttribute("aria-expanded", "true");
         panel.removeAttribute("hidden");
+        document.addEventListener("touchmove", preventTouchMove, { passive: false });
     }
 
     function closeMenu() {
-        /* iOS Safari scroll lock: restore scroll position */
-        document.body.style.position = "";
-        document.body.style.top = "";
-        document.body.style.width = "";
-        window.scrollTo(0, savedScrollY);
         document.body.classList.remove("mobile-menu-open");
         toggle.setAttribute("aria-expanded", "false");
         panel.setAttribute("hidden", "");
+        document.removeEventListener("touchmove", preventTouchMove);
     }
 
     toggle.addEventListener("click", function() {
