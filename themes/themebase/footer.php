@@ -366,6 +366,8 @@
     var mqMobile = window.matchMedia("(max-width: 768px)");
 
     function openMenu() {
+        header.classList.remove("nav-hidden");
+        header.classList.add("nav-visible-scrolled");
         document.body.classList.add("mobile-menu-open");
         toggle.setAttribute("aria-expanded", "true");
         panel.removeAttribute("hidden");

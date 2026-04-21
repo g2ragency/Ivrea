@@ -362,8 +362,11 @@ header.site-header.nav-visible-scrolled {
     position: fixed;
     inset: 0;
     width: 100vw;
-    min-height: 100dvh;
-    z-index: 100;
+    height: 100%;
+    /* iOS Safari fill-available fallback */
+    height: -webkit-fill-available;
+    height: 100dvh;
+    z-index: 100001;
     background: var(--black);
     color: var(--white);
     display: flex;
@@ -440,6 +443,7 @@ header.site-header.nav-visible-scrolled {
   body.mobile-menu-open header.site-header {
     background: var(--black);
     transform: translateY(0) !important;
+    transition: none !important;
   }
 }
 
