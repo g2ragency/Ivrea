@@ -129,7 +129,7 @@ h4.ivrea-map-title {
   /* Info box: wrap text, limit width, keep inside map */
   .ivrea-map-info {
     white-space: normal;
-    width: 130px;
+    width: 180px;
   }
 
   /* Pins on the right half: open box to the LEFT */
