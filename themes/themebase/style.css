@@ -221,7 +221,7 @@ header.site-header {
   display: inline-block;
   margin: 0;
   padding: 0;
-  transform: translateY(-3px);
+  transform: translateY(-15px);
   color: var(--lightlightgrey);
   text-decoration: none;
   letter-spacing: 2px;
