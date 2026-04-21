@@ -95,7 +95,7 @@ class Elementor_Widget_Ivrea_Accordion extends \Elementor\Widget_Base {
 
         foreach ( $settings['accordion_items'] as $index => $item ) {
             $is_active = $index === 0 ? 'active' : '';
-            $display_style = $index === 0 ? 'style="display: block;"' : '';
+            $display_style = '';
 
             echo '<div class="ivrea-accordion-item ' . esc_attr($is_active) . '">';
             echo '  <button class="ivrea-accordion-header">';
@@ -135,13 +135,13 @@ class Elementor_Widget_Ivrea_Accordion extends \Elementor\Widget_Base {
                     allItems.forEach(function(otherItem) {
                         otherItem.classList.remove('active');
                         var otherContent = otherItem.querySelector('.ivrea-accordion-content');
-                        if (otherContent) otherContent.style.display = 'none';
+                        
                     });
 
                     // Toggle current
                     if (!isActive) {
                         item.classList.add('active');
-                        content.style.display = 'block';
+                        
                     }
                 });
             });

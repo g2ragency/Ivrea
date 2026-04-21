@@ -56,9 +56,24 @@
 }
 
 .ivrea-accordion-content {
-  display: none; /* JS handles toggling */
-  padding-bottom: 58px;
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   width: 100%;
+}
+
+.ivrea-accordion-item.active .ivrea-accordion-content {
+  grid-template-rows: 1fr;
+}
+
+.ivrea-accordion-content {
+  overflow: hidden;
+}
+
+.ivrea-accordion-inner {
+  overflow: hidden;
+  padding-bottom: 58px;
+  min-height: 0;
 }
 
 .ivrea-accordion-inner,
@@ -99,7 +114,7 @@
     font-size: 16px;
     max-width: 100%;
   }
-  .ivrea-accordion-content {
+  .ivrea-accordion-inner {
     padding-bottom: 35px;
   }
 }
