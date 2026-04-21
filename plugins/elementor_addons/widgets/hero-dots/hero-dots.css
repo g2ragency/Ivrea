@@ -234,7 +234,7 @@
 
   .hero-dots-widget .hero-dots-title {
     font-size: 26vw;
-    line-height: 0;
+    line-height: 0.8;
     white-space: normal;
     text-align: center;
     margin: 0 0 2rem 0 !important;

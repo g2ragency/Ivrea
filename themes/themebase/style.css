@@ -641,7 +641,9 @@ body.mobile-menu-open {
   }
 
   .newsletter-row .form-control {
-    width: 100%;
+    width: 100% !important;
+    margin: 0 !important;
+    box-sizing: border-box !important;
   }
 
   .newsletter-row .btn-invia {
@@ -651,8 +653,8 @@ body.mobile-menu-open {
     align-self: center;
     font-size: 28px;
     padding: 12px 28px;
-    width: calc(100% - 20px);
-    margin: 0 10px;
+    width: calc(100% - 12px);
+    margin: 0 6px;
     box-sizing: border-box;
     text-align: center;
     justify-content: center;
