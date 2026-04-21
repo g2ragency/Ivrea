@@ -136,10 +136,7 @@ final class Elementor_Addon_Widgets {
 		require_once( __DIR__ . '/widgets/swiper-ospiti/swiper-ospiti.php' );
 		require_once( __DIR__ . '/widgets/hero-dots/hero-dots.php' );
 		require_once( __DIR__ . '/widgets/interactive-map/interactive-map.php' );
-		
-		//HOMEPAGE
-		$widgets_manager->register( new \Elementor_Widget_Countdown() );
-		$widgets_manager->register( new \Elementor_Widget_Hero_Text() );
+                require_once( __DIR__ . '/widgets/ivrea-accordion/ivrea-accordion.php' );
 		$widgets_manager->register( new \Elementor_Widget_Scroll_Text() );
 		$widgets_manager->register( new \Elementor_Widget_Swiper_Cards() );
                 $widgets_manager->register( new \Elementor_Widget_Swiper_Cards_Grid() );
