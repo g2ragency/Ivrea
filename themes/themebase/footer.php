@@ -354,6 +354,55 @@
     var header = document.querySelector("header.site-header");
     if (!header) return;
 
+    var toggle = header.querySelector(".mobile-menu-toggle");
+    var panel = header.querySelector(".mobile-menu-panel");
+    if (!toggle || !panel) return;
+
+    var mqMobile = window.matchMedia("(max-width: 768px)");
+
+    function openMenu() {
+        document.body.classList.add("mobile-menu-open");
+        toggle.setAttribute("aria-expanded", "true");
+        panel.removeAttribute("hidden");
+    }
+
+    function closeMenu() {
+        document.body.classList.remove("mobile-menu-open");
+        toggle.setAttribute("aria-expanded", "false");
+        panel.setAttribute("hidden", "");
+    }
+
+    toggle.addEventListener("click", function() {
+        if (document.body.classList.contains("mobile-menu-open")) {
+            closeMenu();
+        } else {
+            openMenu();
+        }
+    });
+
+    panel.querySelectorAll("a").forEach(function(link) {
+        link.addEventListener("click", function() {
+            closeMenu();
+        });
+    });
+
+    window.addEventListener("resize", function() {
+        if (!mqMobile.matches) {
+            closeMenu();
+        }
+    });
+
+    closeMenu();
+})();
+</script>
+
+<script>
+(function() {
+    "use strict";
+
+    var header = document.querySelector("header.site-header");
+    if (!header) return;
+
     var mqDesktop = window.matchMedia("(min-width: 1025px)");
     var lastY = window.scrollY || 0;
     var DELTA = 6;

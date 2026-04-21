@@ -205,7 +205,7 @@
 
   .hero-dots-widget .hero-dots-subtitle,
   .hero-dots-widget .hero-dots-subtitle .char {
-    font-size: 7vw;
+    font-size: 7vw!important;
   }
 
   .hero-dots-widget .hero-dots-top {

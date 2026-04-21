@@ -40,6 +40,16 @@
   <div id="page" class="site">
     <header class="site-header">
 	  <div class="header-container">
+		<div class="mobile-header-bar">
+		  <a href="<?php echo esc_url(home_url('/')); ?>" class="logo-link mobile-logo-link">
+		    EX MACHINA
+		  </a>
+		  <button class="mobile-menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu-panel" aria-label="Apri menu">
+		    <img class="icon-open" src="/wp-content/uploads/2026/04/hamburger-menu.svg" alt="Apri menu" />
+		    <img class="icon-close" src="/wp-content/uploads/2026/04/menu-close.svg" alt="Chiudi menu" />
+		  </button>
+		</div>
+
 		<!-- Menu a sinistra -->
 		<div class="nav-left">
 		  <?php
@@ -67,6 +77,31 @@
 			  'container'      => false,
 			));
 		  ?>
+		</div>
+
+		<div id="mobile-menu-panel" class="mobile-menu-panel" hidden>
+		  <nav class="mobile-menu-main" aria-label="Menu mobile principale">
+			<?php
+			  wp_nav_menu(array(
+				'theme_location' => 'primary-left',
+				'menu_class'     => 'mobile-main-menu-list',
+				'container'      => false,
+			  ));
+			  wp_nav_menu(array(
+				'theme_location' => 'primary-right',
+				'menu_class'     => 'mobile-main-menu-list',
+				'container'      => false,
+			  ));
+			?>
+		  </nav>
+
+		  <div class="mobile-menu-footer-links">
+			<a href="https://instagram.com" target="_blank" rel="noopener">Instagram</a>
+			<span>|</span>
+			<a href="https://facebook.com" target="_blank" rel="noopener">Facebook</a>
+			<span>|</span>
+			<a href="/privacy-policy">Privacy Policy</a>
+		  </div>
 		</div>
 	  </div>
 	</header>
