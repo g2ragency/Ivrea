@@ -10,7 +10,7 @@
 .swiper-cards-grid-widget .swiper-wrapper {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 30px;
+  gap: 24px;
 }
 
 .swiper-cards-grid-widget .swiper-slide {

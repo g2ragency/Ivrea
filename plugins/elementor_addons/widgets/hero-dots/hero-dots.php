@@ -35,39 +35,68 @@ class Elementor_Widget_Hero_Dots extends \Elementor\Widget_Base {
             'tab'   => \Elementor\Controls_Manager::TAB_CONTENT,
         ]);
 
+        $this->add_responsive_control('vertical_alignment', [
+            'label' => __('Allineamento Verticale', 'elementor_addon'),
+            'type' => \Elementor\Controls_Manager::CHOOSE,
+            'options' => [
+                'flex-start' => [ 'title' => 'Alto', 'icon' => 'eicon-v-align-top' ],
+                'center'     => [ 'title' => 'Centro', 'icon' => 'eicon-v-align-middle' ],
+                'flex-end'   => [ 'title' => 'Basso', 'icon' => 'eicon-v-align-bottom' ],
+            ],
+            'default' => 'center',
+            'selectors' => [
+                '{{WRAPPER}} .hero-dots-content' => 'justify-content: {{VALUE}};',
+            ],
+        ]);
+
         $this->add_control('top_left', [
-            'label'   => __('Testo in alto – sinistra', 'elementor_addon'),
-            'type'    => \Elementor\Controls_Manager::TEXT,
+            'label'   => __('Testo alto-sinistra (Desktop)', 'elementor_addon'),
+            'type'    => \Elementor\Controls_Manager::TEXTAREA,
             'default' => 'IVREA (TO)',
-            'label_block' => true,
+        ]);
+        $this->add_control('top_left_mobile', [
+            'label'   => __('Testo alto-sinistra (Mobile)', 'elementor_addon'),
+            'type'    => \Elementor\Controls_Manager::TEXTAREA,
         ]);
 
         $this->add_control('top_center', [
-            'label'   => __('Testo in alto – centro', 'elementor_addon'),
-            'type'    => \Elementor\Controls_Manager::TEXT,
+            'label'   => __('Testo alto-centro (Desktop)', 'elementor_addon'),
+            'type'    => \Elementor\Controls_Manager::TEXTAREA,
             'default' => '19-20-21',
-            'label_block' => true,
+        ]);
+        $this->add_control('top_center_mobile', [
+            'label'   => __('Testo alto-centro (Mobile)', 'elementor_addon'),
+            'type'    => \Elementor\Controls_Manager::TEXTAREA,
         ]);
 
         $this->add_control('top_right', [
-            'label'   => __('Testo in alto – destra', 'elementor_addon'),
-            'type'    => \Elementor\Controls_Manager::TEXT,
+            'label'   => __('Testo alto-destra (Desktop)', 'elementor_addon'),
+            'type'    => \Elementor\Controls_Manager::TEXTAREA,
             'default' => 'GIUGNO 26',
-            'label_block' => true,
+        ]);
+        $this->add_control('top_right_mobile', [
+            'label'   => __('Testo alto-destra (Mobile)', 'elementor_addon'),
+            'type'    => \Elementor\Controls_Manager::TEXTAREA,
         ]);
 
         $this->add_control('title_text', [
-            'label'   => __('Titolo', 'elementor_addon'),
-            'type'    => \Elementor\Controls_Manager::TEXT,
+            'label'   => __('Titolo (Desktop)', 'elementor_addon'),
+            'type'    => \Elementor\Controls_Manager::TEXTAREA,
             'default' => 'EX MACHINA',
-            'label_block' => true,
+        ]);
+        $this->add_control('title_text_mobile', [
+            'label'   => __('Titolo (Mobile)', 'elementor_addon'),
+            'type'    => \Elementor\Controls_Manager::TEXTAREA,
         ]);
 
         $this->add_control('subtitle_text', [
-            'label'   => __('Sottotitolo', 'elementor_addon'),
+            'label'   => __('Sottotitolo (Desktop)', 'elementor_addon'),
             'type'    => \Elementor\Controls_Manager::TEXTAREA,
             'default' => "LA COMUNITÀ CHE\nVIDE IL FUTURO",
-            'label_block' => true,
+        ]);
+        $this->add_control('subtitle_text_mobile', [
+            'label'   => __('Sottotitolo (Mobile)', 'elementor_addon'),
+            'type'    => \Elementor\Controls_Manager::TEXTAREA,
         ]);
 
         $this->end_controls_section();
@@ -101,6 +130,13 @@ class Elementor_Widget_Hero_Dots extends \Elementor\Widget_Base {
     protected function render() {
         $s  = $this->get_settings_for_display();
         $id = $this->get_id();
+        
+        // Fallback for mobile missing versions
+        $top_left_m   = !empty($s['top_left_mobile']) ? $s['top_left_mobile'] : $s['top_left'];
+        $top_center_m = !empty($s['top_center_mobile']) ? $s['top_center_mobile'] : $s['top_center'];
+        $top_right_m  = !empty($s['top_right_mobile']) ? $s['top_right_mobile'] : $s['top_right'];
+        $title_m      = !empty($s['title_text_mobile']) ? $s['title_text_mobile'] : $s['title_text'];
+        $subtitle_m   = !empty($s['subtitle_text_mobile']) ? $s['subtitle_text_mobile'] : $s['subtitle_text'];
         ?>
 
         <div class="hero-dots-widget" id="hero-dots-<?php echo esc_attr($id); ?>">
@@ -117,15 +153,29 @@ class Elementor_Widget_Hero_Dots extends \Elementor\Widget_Base {
             <!-- Content overlay -->
             <div class="hero-dots-content">
 
-                <div class="hero-dots-top">
-                    <span class="hero-dots-top-text" data-split-hover><?php echo esc_html($s['top_left']); ?></span>
-                    <span class="hero-dots-top-text" data-split-hover><?php echo esc_html($s['top_center']); ?></span>
-                    <span class="hero-dots-top-text" data-split-hover><?php echo esc_html($s['top_right']); ?></span>
+                <!-- Desktop Content -->
+                <div class="hero-dots-inner-content d-version-desktop">
+                    <div class="hero-dots-top">
+                        <span class="hero-dots-top-text" data-split-hover><?php echo nl2br(esc_html($s['top_left'])); ?></span>
+                        <span class="hero-dots-top-text" data-split-hover><?php echo nl2br(esc_html($s['top_center'])); ?></span>
+                        <span class="hero-dots-top-text" data-split-hover><?php echo nl2br(esc_html($s['top_right'])); ?></span>
+                    </div>
+
+                    <h1 class="hero-dots-title" data-split-hover><?php echo nl2br(esc_html($s['title_text'])); ?></h1>
+                    <p class="hero-dots-subtitle" data-split-hover><?php echo nl2br(esc_html($s['subtitle_text'])); ?></p>
                 </div>
 
-                <h1 class="hero-dots-title" data-split-hover><?php echo esc_html($s['title_text']); ?></h1>
+                <!-- Mobile Content -->
+                <div class="hero-dots-inner-content d-version-mobile">
+                    <div class="hero-dots-top">
+                        <span class="hero-dots-top-text" data-split-hover><?php echo nl2br(esc_html($top_left_m)); ?></span>
+                        <span class="hero-dots-top-text" data-split-hover><?php echo nl2br(esc_html($top_center_m)); ?></span>
+                        <span class="hero-dots-top-text" data-split-hover><?php echo nl2br(esc_html($top_right_m)); ?></span>
+                    </div>
 
-                <p class="hero-dots-subtitle" data-split-hover><?php echo nl2br(esc_html($s['subtitle_text'])); ?></p>
+                    <h1 class="hero-dots-title" data-split-hover><?php echo nl2br(esc_html($title_m)); ?></h1>
+                    <p class="hero-dots-subtitle" data-split-hover><?php echo nl2br(esc_html($subtitle_m)); ?></p>
+                </div>
 
             </div>
         </div>
@@ -386,6 +436,12 @@ class Elementor_Widget_Hero_Dots extends \Elementor\Widget_Base {
                 function animate() {
                     var needsUpdate = false;
                     allChars.forEach(function(ch) {
+                        var r = ch.getBoundingClientRect();
+                        if(r.width === 0 && r.height === 0) {
+                            ch._targetWeight = TEXT_MIN_WEIGHT;
+                            ch._currentWeight = TEXT_MIN_WEIGHT;
+                            return;
+                        }
                         if (tiltActive && isTouchDevice) {
                             /* ── Gyroscope mode: weight based on char position ── */
                             var r = ch.getBoundingClientRect();
@@ -396,7 +452,6 @@ class Elementor_Widget_Hero_Dots extends \Elementor\Widget_Base {
                             ch._targetWeight = TEXT_MIN_WEIGHT + influence * (TEXT_MAX_WEIGHT - TEXT_MIN_WEIGHT);
                             needsUpdate = true;
                         } else if (isHovering) {
-                            var r = ch.getBoundingClientRect();
                             var cx = r.left + r.width / 2;
                             var cy = r.top + r.height / 2;
                             var dx = textMouseX - cx;
