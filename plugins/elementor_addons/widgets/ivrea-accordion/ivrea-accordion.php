@@ -91,6 +91,7 @@ class Elementor_Widget_Ivrea_Accordion extends \Elementor\Widget_Base {
         }
 
         echo '<div class="ivrea-accordion-wrapper" id="ivrea-accordion-' . esc_attr($widget_id) . '">';
+        echo '  <img src="/wp-content/uploads/2026/04/Line-8.svg" class="ivrea-accordion-divider" alt="" aria-hidden="true">';
 
         foreach ( $settings['accordion_items'] as $index => $item ) {
             $is_active = $index === 0 ? 'active' : '';
@@ -108,7 +109,7 @@ class Elementor_Widget_Ivrea_Accordion extends \Elementor\Widget_Base {
             echo '  </div>';
             
             // Adding the separating SVG line after each item (the top item border is usually rendered via CSS or we can do it via bottom borders of SVG)
-            echo '  <div class="ivrea-accordion-divider"></div>';
+            echo '  <img src="/wp-content/uploads/2026/04/Line-8.svg" class="ivrea-accordion-divider" alt="" aria-hidden="true">';
             echo '</div>';
         }
 
