@@ -622,13 +622,15 @@ body.mobile-menu-open {
 /* Ã¢â€â‚¬Ã¢â€â‚¬ NEWSLETTER MOBILE Ã¢â€â‚¬Ã¢â€â‚¬ */
 @media only screen and (max-width: 768px) {
   .newsletter-row {
-    padding-right: 0;
+    padding: 0 12px;
+    box-sizing: border-box;
     flex-direction: column;
     gap: 16px;
   }
 
   .newsletter-row p {
     width: 100%;
+    box-sizing: border-box;
     flex-direction: column;
     gap: 12px;
     margin: 0;
