@@ -819,3 +819,113 @@ body.mobile-menu-open {
   -webkit-font-variant-numeric: lining-nums tabular-nums;
   font-variant-numeric: lining-nums tabular-nums;
 }
+
+/* Contact Form 7 Custom Style */
+.custom-cf7-form {
+  width: 100%;
+  max-width: 888px;
+  margin: 0 auto;
+}
+
+.custom-cf7-form .form-row {
+  margin-bottom: 24px;
+  display: flex;
+  gap: 24px;
+}
+
+.custom-cf7-form .form-row-2 {
+  flex-wrap: wrap;
+}
+
+.custom-cf7-form .form-row-2 .form-group {
+  flex: 1;
+  min-width: calc(50% - 12px);
+}
+
+.custom-cf7-form .form-group {
+  width: 100%;
+}
+
+.custom-cf7-form input[type="text"],
+.custom-cf7-form input[type="email"],
+.custom-cf7-form textarea {
+  width: 100%;
+  background-color: #F0F0F0;
+  border: none;
+  border-radius: 60px;
+  padding: 15px 30px;
+  font-family: "TINY5x3", monospace !important;
+  font-feature-settings: "ss03" 1;
+  font-weight: 140;
+  font-style: normal;
+  font-size: 40px;
+  line-height: 34px;
+  color: var(--grey, #666);
+  outline: none;
+  text-transform: uppercase;
+  -webkit-font-variant-numeric: lining-nums tabular-nums;
+  font-variant-numeric: lining-nums tabular-nums;
+  vertical-align: middle;
+}
+
+.custom-cf7-form textarea {
+  border-radius: 30px; /* Textareas look better with slightly smaller radius or keep 60px if large enough, but 60 is given */
+  min-height: 200px;
+  resize: vertical;
+  padding: 30px;
+}
+
+.custom-cf7-form input::placeholder,
+.custom-cf7-form textarea::placeholder {
+  font-family: "TINY5x3", monospace !important;
+  font-weight: 140;
+  font-style: normal;
+  font-size: 40px;
+  line-height: 34px;
+  letter-spacing: 0%;
+  vertical-align: middle;
+  text-transform: uppercase;
+  -webkit-font-variant-numeric: lining-nums tabular-nums;
+  font-variant-numeric: lining-nums tabular-nums;
+  color: var(--grey, #666);
+  opacity: 1;
+}
+
+/* Button mimicking other site buttons */
+.custom-cf7-form .submit-row .wpcf7-submit {
+  width: 100%;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: var(--accent, #ff3333);
+  font-family: "TINY5x3", monospace !important;
+  font-feature-settings: "ss03" 1;
+  font-weight: 140;
+  font-size: 40px;
+  line-height: 34px;
+  text-transform: uppercase;
+  padding: 20px 36px;
+  cursor: pointer;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* Simulated black dashed border if we can't use the complex GSAP structure */
+  border-radius: 60px;
+  box-shadow: none;
+  background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='60' ry='60' stroke='black' stroke-width='4' stroke-dasharray='4%2c 8' stroke-dashoffset='0' stroke-linecap='square'/%3e%3c/svg%3e");
+  transition: all 0.3s ease;
+}
+
+.custom-cf7-form .submit-row .wpcf7-submit:hover {
+  background-color: var(--black, #000);
+  background-image: none;
+  color: var(--white, #fff);
+}
+
+/* Response message styling CF7 */
+.custom-cf7-form .wpcf7-response-output {
+  border-radius: 10px;
+  font-family: "Helvetica Now Display", sans-serif;
+  margin-top: 24px;
+}
