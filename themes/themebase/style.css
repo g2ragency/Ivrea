@@ -813,7 +813,7 @@ body.mobile-menu-open {
   font-family: "Helvetica Now Display", sans-serif;
   font-weight: 700;
   font-style: normal; /* "Bold" is covered by weight 700 */
-  font-size: 16px;
+  font-size: 16px !important;
   line-height: 22px;
   letter-spacing: 0;
   -webkit-font-variant-numeric: lining-nums tabular-nums;
