@@ -60,15 +60,17 @@ jQuery(window).on("elementor/frontend/init", () => {
           // Just update content softly
           isAnimating = true;
           // Reset previous active arrow
-          if (activeCardIndex !== -1)
-            cards[activeCardIndex].querySelector(
-              ".ospite-toggle-icon",
-            ).style.transform = "rotate(0deg)";
+          if (activeCardIndex !== -1) {
+            const oldCardIcon = cards[activeCardIndex].querySelector(
+              ".ospite-toggle-icon span",
+            );
+            if (oldCardIcon) oldCardIcon.style.transform = "rotate(0deg)";
+          }
 
           // Activate new one
           activeCardIndex = index;
-          card.querySelector(".ospite-toggle-icon").style.transform =
-            "rotate(180deg)";
+          const newCardIcon = card.querySelector(".ospite-toggle-icon span");
+          if (newCardIcon) newCardIcon.style.transform = "rotate(180deg)";
 
           detailsBox.style.opacity = "0";
           setTimeout(() => {
@@ -87,14 +89,14 @@ jQuery(window).on("elementor/frontend/init", () => {
             // Close existing first
             closeBox(() => {
               activeCardIndex = index;
-              card.querySelector(".ospite-toggle-icon").style.transform =
-                "rotate(180deg)";
+              const newIcon = card.querySelector(".ospite-toggle-icon span");
+              if (newIcon) newIcon.style.transform = "rotate(180deg)";
               openBox(card, lastInRow);
             });
           } else {
             activeCardIndex = index;
-            card.querySelector(".ospite-toggle-icon").style.transform =
-              "rotate(180deg)";
+            const newIcon = card.querySelector(".ospite-toggle-icon span");
+            if (newIcon) newIcon.style.transform = "rotate(180deg)";
             openBox(card, lastInRow);
           }
         }
@@ -110,8 +112,10 @@ jQuery(window).on("elementor/frontend/init", () => {
 
       detailsBox.style.display = "block";
       detailsBox.style.height = "0px";
-      detailsBox.style.opacity = "1";
-      detailsBox.style.transition = "height 0.4s ease, opacity 0.3s ease";
+      detailsBox.style.marginTop = "-30px"; // Start cancelled gap
+      detailsBox.style.marginBottom = "0px";
+      detailsBox.style.opacity = "0";
+      detailsBox.style.transition = "height 0.4s ease, margin 0.4s ease, opacity 0.3s ease";
 
       // Calc height
       setTimeout(() => {
@@ -119,6 +123,9 @@ jQuery(window).on("elementor/frontend/init", () => {
           ".guest-details-inner",
         ).offsetHeight;
         detailsBox.style.height = height + "px";
+        detailsBox.style.marginTop = "-4px";
+        detailsBox.style.marginBottom = "-6px";
+        detailsBox.style.opacity = "1";
 
         setTimeout(() => {
           detailsBox.style.height = "auto"; // allow responsive reflows after open
@@ -132,8 +139,8 @@ jQuery(window).on("elementor/frontend/init", () => {
       isAnimating = true;
 
       const card = cards[activeCardIndex];
-      card.querySelector(".ospite-toggle-icon").style.transform =
-        "rotate(0deg)";
+      const iconSpan = card.querySelector(".ospite-toggle-icon span");
+      if (iconSpan) iconSpan.style.transform = "rotate(0deg)";
 
       // Lock height for transition
       const currentHeight = detailsBox.offsetHeight;
@@ -143,6 +150,9 @@ jQuery(window).on("elementor/frontend/init", () => {
       detailsBox.offsetHeight;
 
       detailsBox.style.height = "0px";
+      detailsBox.style.marginTop = "-30px";
+      detailsBox.style.marginBottom = "0px";
+      detailsBox.style.opacity = "0";
 
       setTimeout(() => {
         detailsBox.style.display = "none";
