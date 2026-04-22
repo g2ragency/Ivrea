@@ -881,9 +881,8 @@ body.mobile-menu-open {
   font-weight: 140;
   font-style: normal;
   font-size: 40px;
-  line-height: 34px;
+  line-height: 1;
   letter-spacing: 0%;
-  vertical-align: middle;
   text-transform: uppercase;
   -webkit-font-variant-numeric: lining-nums tabular-nums;
   font-variant-numeric: lining-nums tabular-nums;
