@@ -59,12 +59,17 @@
 }
 
 .grid-ospiti-widget .ospite-toggle-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
   font-family: "TINY5x3", monospace !important;
   font-feature-settings: "ss03" 1;
   font-weight: 140;
   font-style: normal;
   font-size: 40px;
-  line-height: 34px;
+  line-height: 1;
   letter-spacing: 0%;
   text-align: center;
   text-transform: uppercase;
@@ -72,12 +77,13 @@
   -webkit-font-variant-numeric: lining-nums tabular-nums;
   font-variant-numeric: lining-nums tabular-nums;
   transition: transform 0.3s ease;
+  transform-origin: center center;
 }
 
 /* DETAILS BOX */
 .grid-ospiti-widget .guest-details-box {
   grid-column: 1 / -1;
-  background: #F0F0F0;
+  background: #f0f0f0;
   border-radius: 5px;
   overflow: hidden;
   margin-top: -4px; /* to compensate the gap and make it exactly 26px from cards? 26px vs 30px gap */
@@ -125,7 +131,7 @@
 }
 
 .grid-ospiti-widget .gd-info {
-  margin-top: 40px;
+  margin-top: 130px;
 }
 
 .grid-ospiti-widget .gd-info,
