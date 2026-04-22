@@ -115,7 +115,8 @@ jQuery(window).on("elementor/frontend/init", () => {
       detailsBox.style.marginTop = "-30px"; // Start cancelled gap
       detailsBox.style.marginBottom = "0px";
       detailsBox.style.opacity = "0";
-      detailsBox.style.transition = "height 0.4s ease, margin 0.4s ease, opacity 0.3s ease";
+      detailsBox.style.transition =
+        "height 0.4s ease, margin 0.4s ease, opacity 0.3s ease";
 
       // Calc height
       setTimeout(() => {
