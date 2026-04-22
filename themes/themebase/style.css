@@ -899,21 +899,24 @@ body.mobile-menu-open {
 }
 
 /* === CF7 Dot Submit Button === */
-.dot-button-widget {
-  display: inline-block;
+.cf7-dot-submit.dot-button-widget {
+  display: block;
+  width: 100%;
 }
 
-.dot-button-link {
+.cf7-dot-submit .dot-button-link {
   position: relative;
-  display: inline-flex;
+  display: flex;
   align-items: center;
   justify-content: center;
-  padding: 5px 36px;
+  width: 100%;
+  padding: 16px 36px;
   text-decoration: none;
   color: inherit;
   cursor: pointer;
   background: none;
   border: none;
+  box-sizing: border-box;
 }
 
 .dot-button-dots {
@@ -943,39 +946,31 @@ body.mobile-menu-open {
   z-index: 1;
 }
 
-.dot-button-text,
-.dot-button-arrow {
+.cf7-dot-submit .dot-button-text,
+.cf7-dot-submit .dot-button-arrow {
   font-family: "TINY5x3", monospace !important;
   font-feature-settings: "ss03" 1;
-  font-weight: 100;
-  line-height: 0.8;
+  font-size: 40px;
+  font-weight: 140;
+  line-height: 34px;
   text-transform: uppercase;
   display: inline-block;
   white-space: nowrap;
+  font-variant-numeric: lining-nums tabular-nums;
 }
 
-.dot-button-text .word {
+.cf7-dot-submit .dot-button-text .word {
   display: inline-block;
 }
 
-.dot-button-text .char,
-.dot-button-arrow .char {
+.cf7-dot-submit .dot-button-text .char,
+.cf7-dot-submit .dot-button-arrow .char {
   display: inline-block;
   color: inherit;
   font-family: "TINY5x3", monospace !important;
 }
 
 @media only screen and (max-width: 768px) {
-  .cf7-dot-submit.dot-button-widget {
-    display: block;
-    max-width: 100%;
-  }
-
-  .cf7-dot-submit .dot-button-link {
-    padding: 20px 24px;
-    max-width: 100%;
-  }
-
   .cf7-dot-submit .dot-button-text {
     white-space: normal;
   }
