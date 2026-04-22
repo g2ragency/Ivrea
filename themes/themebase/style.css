@@ -850,16 +850,16 @@ body.mobile-menu-open {
 .custom-cf7-form input[type="email"],
 .custom-cf7-form textarea {
   width: 100%;
-  background-color: #F0F0F0;
+  background-color: #f0f0f0;
   border: none;
   border-radius: 60px;
-  padding: 15px 30px;
+  padding: 22px 30px 8px 30px;
   font-family: "TINY5x3", monospace !important;
   font-feature-settings: "ss03" 1;
   font-weight: 140;
   font-style: normal;
   font-size: 40px;
-  line-height: 34px;
+  line-height: 1; /* Resetting line-height to ensure better vertical centering */
   color: var(--grey, #666);
   outline: none;
   text-transform: uppercase;
@@ -869,10 +869,10 @@ body.mobile-menu-open {
 }
 
 .custom-cf7-form textarea {
-  border-radius: 30px; /* Textareas look better with slightly smaller radius or keep 60px if large enough, but 60 is given */
+  border-radius: 30px; 
   min-height: 200px;
   resize: vertical;
-  padding: 30px;
+  padding: 22px 30px 22px 30px;
 }
 
 .custom-cf7-form input::placeholder,
@@ -893,6 +893,7 @@ body.mobile-menu-open {
 
 /* Button mimicking other site buttons */
 .custom-cf7-form .submit-row .wpcf7-submit {
+  position: relative;
   width: 100%;
   background: transparent;
   border: none;
@@ -906,21 +907,52 @@ body.mobile-menu-open {
   text-transform: uppercase;
   padding: 20px 36px;
   cursor: pointer;
-  position: relative;
-  display: flex;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  /* Simulated black dashed border if we can't use the complex GSAP structure */
-  border-radius: 60px;
-  box-shadow: none;
-  background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='60' ry='60' stroke='black' stroke-width='4' stroke-dasharray='4%2c 8' stroke-dashoffset='0' stroke-linecap='square'/%3e%3c/svg%3e");
+  overflow: visible;
   transition: all 0.3s ease;
 }
 
+.custom-cf7-form .submit-row .wpcf7-submit .dot-border {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.custom-cf7-form .submit-row .wpcf7-submit .dot-border .dot-char {
+  position: absolute;
+  font-family: "TINY5x3", monospace !important;
+  font-feature-settings: "ss03" 1;
+  font-weight: 80;
+  line-height: 1;
+  display: block;
+  text-align: center;
+  color: var(--black, #000); /* Will be controlled by JS localDotColor if needed but safe fallback */
+}
+
+.custom-cf7-form .submit-row .wpcf7-submit .btn-text {
+  position: relative;
+  z-index: 1;
+  display: flex;
+}
+
+.custom-cf7-form .submit-row .wpcf7-submit .btn-text .char {
+  display: inline-block;
+  font-family: "TINY5x3", monospace !important;
+  font-feature-settings: "ss03" 1;
+  color: inherit;
+  font-size: 40px;
+  line-height: 34px;
+}
+
 .custom-cf7-form .submit-row .wpcf7-submit:hover {
-  background-color: var(--black, #000);
-  background-image: none;
   color: var(--white, #fff);
+  background: var(--black, #000);
+  border-radius: 60px;
 }
 
 /* Response message styling CF7 */

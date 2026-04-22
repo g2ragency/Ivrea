@@ -113,9 +113,19 @@
         }
     }
 
-    function initNewsletterDotBtn(){
-        var btn = document.querySelector(".newsletter-row .btn-invia");
+    function initDotBtn(selector, localDotColor){
+        var btn = document.querySelector(selector);
         if(!btn) return;
+
+        /* If input submit, replace with button */
+        if(btn.tagName.toLowerCase() === 'input'){
+            var temp = document.createElement('button');
+            temp.className = btn.className;
+            temp.textContent = btn.value;
+            temp.type = btn.type;
+            btn.replaceWith(temp);
+            btn = temp;
+        }
 
         /* Wrap button text in .btn-text span */
         var textSpan = document.createElement("span");
@@ -133,7 +143,10 @@
         splitIntoChars(textSpan);
 
         /* Place dots */
+        var originalDotColor = DOT_COLOR;
+        if(localDotColor) DOT_COLOR = localDotColor;
         placeDots(btn, dotBorder);
+        if(localDotColor) DOT_COLOR = originalDotColor;
 
         /* Gather all animated chars */
         var allChars = btn.querySelectorAll(".char");
@@ -189,8 +202,13 @@
         });
     }
 
-    if(document.readyState === "loading") document.addEventListener("DOMContentLoaded", initNewsletterDotBtn);
-    else initNewsletterDotBtn();
+    function initAllDots(){
+        initDotBtn(".newsletter-row .btn-invia", "#f0f0f0");
+        initDotBtn(".custom-cf7-form .submit-row .wpcf7-submit", "#000000"); // black dots for CF7
+    }
+
+    if(document.readyState === "loading") document.addEventListener("DOMContentLoaded", initAllDots);
+    else initAllDots();
 })();
 </script>
 
