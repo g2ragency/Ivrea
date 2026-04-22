@@ -288,8 +288,7 @@
         var linkEl = widget.querySelector('.dot-button-link');
         var dotSize = parseFloat(widget.getAttribute('data-dot-size')) || 28;
         var borderColor = widget.getAttribute('data-border-color') || '#737373';
-        var rect = linkEl.getBoundingClientRect();
-        var w = rect.width, h = rect.height;
+        var w = linkEl.offsetWidth, h = linkEl.offsetHeight;
         var spacing = dotSize * 0.55;
         var points = getRoundedRectPoints(w, h, BORDER_RADIUS, spacing);
         dotsContainer.innerHTML = '';
@@ -398,7 +397,12 @@
 
         input.replaceWith(widget);
 
-        initDotButton('dot-button-cf7-submit');
+        /* Defer until layout is complete so offsetWidth/offsetHeight are correct */
+        requestAnimationFrame(function () {
+            requestAnimationFrame(function () {
+                initDotButton('dot-button-cf7-submit');
+            });
+        });
     }
 
     if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', initCF7Submit);

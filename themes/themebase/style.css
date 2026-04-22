@@ -891,6 +891,16 @@ body.mobile-menu-open {
   opacity: 1;
 }
 
+/* Reset button element so it inherits dot-button-link styles cleanly */
+.custom-cf7-form .submit-row button.dot-button-link {
+  background: transparent;
+  border: none;
+  outline: none;
+  -webkit-appearance: none;
+  appearance: none;
+  padding: 20px 36px;
+}
+
 /* Response message styling CF7 */
 .custom-cf7-form .wpcf7-response-output {
   border-radius: 10px;
