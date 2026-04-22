@@ -139,7 +139,9 @@ class Elementor_Widget_Grid_Ospiti extends \Elementor\Widget_Base {
                                 <h4 class="ospite-name"><?php echo esc_html($guest['guest_name']); ?></h4>
                                 <p class="ospite-job"><?php echo esc_html($guest['guest_job']); ?></p>
                             </div>
-                            <div class="ospite-toggle-icon">↓</div>
+                            <div class="ospite-toggle-icon">
+                                <span>↓</span>
+                            </div>
                         </div>
 
                         <!-- Hidden Data for JS -->
