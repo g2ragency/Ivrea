@@ -794,8 +794,8 @@ body.mobile-menu-open {
 @media only screen and (max-width: 768px) {
   .footer-title {
     font-size: 64px;
-    line-height: 1.4;
-    margin-top: -1rem;
+    line-height: 1;
+    margin-top: 0rem;
   }
 
   .footer-date,
