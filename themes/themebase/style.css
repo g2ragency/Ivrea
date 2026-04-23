@@ -795,7 +795,7 @@ body.mobile-menu-open {
   .footer-title {
     font-size: 64px;
     line-height: 1;
-    margin-top: 0rem;
+    margin-top: -1rem;
   }
 
   .footer-date,
