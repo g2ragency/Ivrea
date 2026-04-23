@@ -970,6 +970,53 @@ body.mobile-menu-open {
 }
 
 @media only screen and (max-width: 768px) {
+  .custom-cf7-form .form-row {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .custom-cf7-form .form-row-2 .form-group {
+    min-width: 100%;
+  }
+
+  .custom-cf7-form input[type="text"],
+  .custom-cf7-form input[type="email"],
+  .custom-cf7-form textarea,
+  .contact-us-form .form-control {
+    font-size: 20px !important;
+    padding: 16px 24px;
+    border-radius: 40px;
+  }
+
+  .custom-cf7-form textarea {
+    border-radius: 20px;
+    min-height: 140px;
+  }
+
+  .custom-cf7-form input::placeholder,
+  .custom-cf7-form textarea::placeholder,
+  .contact-us-form .form-control::placeholder {
+    font-size: 20px !important;
+  }
+
+  .cf7-dot-submit.dot-button-widget {
+    max-width: calc(100% - 20px); /* Leave space for dots */
+    margin: 0 auto; /* Center it */
+    box-sizing: border-box;
+  }
+
+  .cf7-dot-submit .dot-button-link {
+    padding: 12px 24px;
+  }
+
+  .cf7-dot-submit .dot-button-text,
+  .cf7-dot-submit .dot-button-arrow,
+  .cf7-dot-submit .dot-button-text .char,
+  .cf7-dot-submit .dot-button-arrow .char {
+    font-size: 24px !important;
+    line-height: normal;
+  }
+
   .cf7-dot-submit .dot-button-text {
     white-space: normal;
   }
