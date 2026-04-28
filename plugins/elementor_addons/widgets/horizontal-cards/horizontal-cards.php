@@ -161,11 +161,11 @@ class Elementor_Widget_Horizontal_Cards extends \Elementor\Widget_Base {
                             <<?php echo $tag; ?> class="horizontal-card-link"<?php echo $link_attr; ?>>
                                 <div class="horizontal-card-layout">
                                     <div class="horizontal-card-content">
-                                        <h2 class="horizontal-card-title" data-split-hover data-tilt-min="140" data-tilt-max="240"><?php echo esc_html($title); ?></h2>
+                                        <h2 class="horizontal-card-title"><?php echo esc_html($title); ?></h2>
                                         <p class="horizontal-card-description"><?php echo esc_html($description); ?></p>
 
                                         <div class="horizontal-card-arrow" aria-hidden="true">
-                                            <span class="arrow-text" data-split-hover data-tilt-min="80" data-tilt-max="240">→</span>
+                                            <span class="arrow-text" data-split-hover>→</span>
                                         </div>
                                     </div>
 
@@ -185,14 +185,11 @@ class Elementor_Widget_Horizontal_Cards extends \Elementor\Widget_Base {
         (function () {
             "use strict";
 
-            /* ---- Hover + tilt effect (variable font weight)
-               Applied to every [data-split-hover] inside the section.
-               Each element can declare its base/max weights via
-               data-tilt-min / data-tilt-max (defaults: 80 / 240). ---- */
+            /* ---- Arrow hover effect (variable font weight) ---- */
             var ARROW_RADIUS = 200;
             var ARROW_LERP = 0.08;
-            var DEFAULT_MIN_WEIGHT = 80;
-            var DEFAULT_MAX_WEIGHT = 240;
+            var ARROW_MIN_WEIGHT = 80;
+            var ARROW_MAX_WEIGHT = 240;
 
             /* ── Gyroscope state ── */
             var isTouchDevice = "ontouchstart" in window || navigator.maxTouchPoints > 0;
@@ -216,53 +213,24 @@ class Elementor_Widget_Horizontal_Cards extends \Elementor\Widget_Base {
 
             function lerp(a, b, t) { return a + (b - a) * t; }
 
-            function splitChars(el) {
-                var minW = parseInt(el.getAttribute('data-tilt-min'), 10);
-                var maxW = parseInt(el.getAttribute('data-tilt-max'), 10);
-                if (isNaN(minW)) minW = DEFAULT_MIN_WEIGHT;
-                if (isNaN(maxW)) maxW = DEFAULT_MAX_WEIGHT;
-
-                /* Preserve <br> as line breaks; split text nodes per word/char. */
-                var html = el.innerHTML;
-                var lines = html.split(/<br\s*\/?>/i);
+            function splitArrowChars(el) {
+                var text = el.textContent;
                 el.innerHTML = '';
-                el.setAttribute('aria-label', el.textContent);
-
-                for (var l = 0; l < lines.length; l++) {
-                    var lineText = lines[l].replace(/<[^>]*>/g, '');
-                    var words = lineText.split(/(\s+)/);
-                    for (var w = 0; w < words.length; w++) {
-                        var part = words[w];
-                        if (part === '') continue;
-                        if (/^\s+$/.test(part)) {
-                            el.appendChild(document.createTextNode(part));
-                            continue;
-                        }
-                        var wordSpan = document.createElement('span');
-                        wordSpan.classList.add('word');
-                        for (var i = 0; i < part.length; i++) {
-                            var span = document.createElement('span');
-                            span.classList.add('char');
-                            span.textContent = part[i];
-                            span._minWeight = minW;
-                            span._maxWeight = maxW;
-                            span._currentWeight = minW;
-                            span._targetWeight = minW;
-                            wordSpan.appendChild(span);
-                        }
-                        el.appendChild(wordSpan);
-                    }
-                    if (l < lines.length - 1) {
-                        el.appendChild(document.createElement('br'));
-                    }
+                for (var i = 0; i < text.length; i++) {
+                    var span = document.createElement('span');
+                    span.classList.add('char');
+                    span.textContent = text[i];
+                    span._currentWeight = ARROW_MIN_WEIGHT;
+                    span._targetWeight = ARROW_MIN_WEIGHT;
+                    el.appendChild(span);
                 }
             }
 
             function initArrowHover(section) {
-                var splitEls = section.querySelectorAll('[data-split-hover]');
-                splitEls.forEach(function (el) { splitChars(el); });
+                var arrows = section.querySelectorAll('.arrow-text[data-split-hover]');
+                arrows.forEach(function (arrow) { splitArrowChars(arrow); });
 
-                var allChars = section.querySelectorAll('[data-split-hover] .char');
+                var allChars = section.querySelectorAll('.horizontal-card-arrow .char');
                 if (allChars.length === 0) return;
 
                 var isHovering = false;
@@ -272,14 +240,13 @@ class Elementor_Widget_Horizontal_Cards extends \Elementor\Widget_Base {
                 function animate() {
                     var needsUpdate = false;
                     allChars.forEach(function (ch) {
-                        var minW = ch._minWeight, maxW = ch._maxWeight;
                         if (tiltActive && isTouchDevice) {
                             var r = ch.getBoundingClientRect();
                             var normX = (r.left + r.width / 2) / window.innerWidth * 2 - 1;
                             var normY = (r.top + r.height / 2) / window.innerHeight * 2 - 1;
                             var influence = tiltGamma * normX + tiltBeta * normY;
                             influence = Math.max(0, Math.min(1, influence));
-                            ch._targetWeight = minW + influence * (maxW - minW);
+                            ch._targetWeight = ARROW_MIN_WEIGHT + influence * (ARROW_MAX_WEIGHT - ARROW_MIN_WEIGHT);
                             needsUpdate = true;
                         } else if (isHovering) {
                             var r = ch.getBoundingClientRect();
@@ -290,12 +257,12 @@ class Elementor_Widget_Horizontal_Cards extends \Elementor\Widget_Base {
                             if (dist < ARROW_RADIUS) {
                                 var ratio = 1 - dist / ARROW_RADIUS;
                                 ratio = ratio * ratio;
-                                ch._targetWeight = minW + ratio * (maxW - minW);
+                                ch._targetWeight = ARROW_MIN_WEIGHT + ratio * (ARROW_MAX_WEIGHT - ARROW_MIN_WEIGHT);
                             } else {
-                                ch._targetWeight = minW;
+                                ch._targetWeight = ARROW_MIN_WEIGHT;
                             }
                         } else {
-                            ch._targetWeight = minW;
+                            ch._targetWeight = ARROW_MIN_WEIGHT;
                         }
                         ch._currentWeight = lerp(ch._currentWeight, ch._targetWeight, ARROW_LERP);
                         if (Math.abs(ch._currentWeight - ch._targetWeight) > 0.5) needsUpdate = true;
