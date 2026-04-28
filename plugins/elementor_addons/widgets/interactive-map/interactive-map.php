@@ -44,7 +44,7 @@ class Elementor_Widget_Interactive_Map extends \Elementor\Widget_Base {
             <div class="ivrea-map-pin ivrea-map-pin--1" style="top: 45%; left: 42%;">
                 <img src="/wp-content/uploads/2026/04/Flag.svg" alt="Bandiera" class="flag-svg">
                 <div class="ivrea-map-info">
-                    <div class="ivrea-map-date">19 Giugno</div>
+                   <!-- <div class="ivrea-map-date">19 Giugno</div> -->
                     <h4 class="ivrea-map-title">MUSEO<br>TECNLOGIC@METE</h4>
                     <div class="ivrea-map-street">Via Giuseppe di Vittorio, 29<br>10015 Ivrea TO</div>
                 </div>
@@ -54,7 +54,7 @@ class Elementor_Widget_Interactive_Map extends \Elementor\Widget_Base {
             <div class="ivrea-map-pin ivrea-map-pin--2" style="top: 87%; left: 45%;">
                 <img src="/wp-content/uploads/2026/04/Flag.svg" alt="Bandiera" class="flag-svg">
                 <div class="ivrea-map-info">
-                    <div class="ivrea-map-date">20 Giugno</div>
+                   <!-- <div class="ivrea-map-date">20 Giugno</div>-->
                     <h4 class="ivrea-map-title">OFFICINE H</h4>
                     <div class="ivrea-map-street">Via Beneficio di Santa Lucia<br>10015 Ivrea TO</div>
                 </div>
@@ -64,7 +64,7 @@ class Elementor_Widget_Interactive_Map extends \Elementor\Widget_Base {
             <div class="ivrea-map-pin ivrea-map-pin--3" style="top: 50%; left: 57%;">
                 <img src="/wp-content/uploads/2026/04/Flag.svg" alt="Bandiera" class="flag-svg">
                 <div class="ivrea-map-info">
-                    <div class="ivrea-map-date">21 Giugno</div>
+                   <!-- <div class="ivrea-map-date">21 Giugno</div> -->
                     <h4 class="ivrea-map-title">FABBRICA DEI<br>MATTONI ROSSI</h4>
                     <div class="ivrea-map-street">Via Guglielmo Jervis, 16<br>10015 Ivrea TO</div>
                 </div>
