@@ -43,7 +43,7 @@
 }
 
 .download-card-icon img {
-  width: 24px;
+  width: 40px;
   height: auto;
   object-fit: contain;
   filter: brightness(0); /* Make black instead of red if the arrow image is red */
