@@ -480,7 +480,14 @@ class Elementor_Widget_Hero_Dots extends \Elementor\Widget_Base {
                         if (Math.abs(ch._currentWeight - ch._targetWeight) > 0.5) needsUpdate = true;
                         ch.style.fontWeight = Math.round(ch._currentWeight);
                     });
-                    if (needsUpdate || isHovering || tiltActive) animId = requestAnimationFrame(animate);
+                    /* On touch devices we keep the loop alive unconditionally:
+                       the deviceorientation event might fire AFTER the first
+                       frame (especially on iOS, where it only starts after the
+                       gyro-permission CTA), so if we let the loop stop based
+                       on tiltActive=false we'd never react to tilt on the
+                       title. The canvas dots loop is permanent for the same
+                       reason. */
+                    if (needsUpdate || isHovering || tiltActive || isTouchDevice) animId = requestAnimationFrame(animate);
                     else animId = null;
                 }
 
