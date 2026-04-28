@@ -102,7 +102,7 @@
   align-items: baseline;
   justify-content: space-between;
   width: 100%;
-  margin-bottom: -5rem;
+  margin-bottom: -1rem;
   padding-left: 1rem;
   padding-right: 1rem;
 }
@@ -187,7 +187,7 @@
     padding: 0 24px;
   }
   .hero-dots-widget .hero-dots-top {
-    margin-bottom: -2.5rem;
+    margin-bottom: -1rem;
   }
   .hero-dots-widget .hero-dots-title {
     font-size: 180px;
@@ -225,7 +225,7 @@
   }
 
   .hero-dots-widget .hero-dots-top {
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
     flex-direction: column;
     gap: 0;
     align-items: center;
