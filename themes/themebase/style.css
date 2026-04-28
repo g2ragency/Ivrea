@@ -56,6 +56,15 @@ body.home footer {
   font-weight: 100 900;
   font-style: normal;
   font-display: swap;
+  /* TINY5x3 ships with broken vertical metrics:
+     OS/2 winAscent=1000 / winDescent=0 on a 1000-unit em, but glyphs
+     only occupy y in [0, ~500]. That leaves ~50% of every em as empty
+     space ABOVE each glyph, which scales with font-size and breaks any
+     vertical alignment. We rewrite the metrics so the line box matches
+     the real glyph bounds. */
+  ascent-override: 50%;
+  descent-override: 0%;
+  line-gap-override: 0%;
 }
 
 @font-face {
@@ -725,34 +734,30 @@ body.mobile-menu-open {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 8px;
+  /* Spacing between the 3 lines. Now that TINY5x3 metrics are fixed via
+     @font-face overrides, this gap is the ONLY thing controlling the
+     vertical rhythm and it stays consistent at every viewport size. */
+  gap: 0.18em;
 }
 
-.footer-date {
-  color: var(--accent);
-  font-size: 31px;
-  font-weight: 140;
+.footer-date,
+.footer-subtitle,
+.footer-title {
   margin: 0;
   line-height: 1;
-  letter-spacing: 0%;
+  font-weight: 140;
+  letter-spacing: 0;
 }
 
+.footer-date,
 .footer-subtitle {
   color: var(--accent);
   font-size: 31px;
-  font-weight: 140;
-  margin-top: -0.13rem;
-  line-height: 1;
-  letter-spacing: 0;
 }
 
 .footer-title {
   color: var(--white);
   font-size: 100px;
-  font-weight: 140;
-  margin-top: -3rem;
-  line-height: 1;
-  margin-bottom: 0;
 }
 
 .footer-links {
@@ -794,8 +799,6 @@ body.mobile-menu-open {
 @media only screen and (max-width: 768px) {
   .footer-title {
     font-size: 64px;
-    line-height: 1;
-    margin-top: -1rem;
   }
 
   .footer-date,
