@@ -94,7 +94,7 @@ class Elementor_Widget_Ivrea_Accordion extends \Elementor\Widget_Base {
         echo '  <img src="/wp-content/uploads/2026/04/Line-8.svg" class="ivrea-accordion-divider" alt="" aria-hidden="true">';
 
         foreach ( $settings['accordion_items'] as $index => $item ) {
-            $is_active = $index === 0 ? 'active' : '';
+            $is_active = '';
             $display_style = '';
 
             echo '<div class="ivrea-accordion-item ' . esc_attr($is_active) . '">';
