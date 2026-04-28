@@ -1,0 +1,72 @@
+/* DOWNLOAD CARDS GRID */
+.download-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  width: 100%;
+}
+
+.download-card-item {
+  background-color: #f2f2f2; /* Light grey background */
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-decoration: none;
+  border-radius: 5px;
+  min-height: 200px;
+  transition: background-color 0.3s ease;
+}
+
+.download-card-item:hover {
+  background-color: #e6e6e6; /* Slight hover effect */
+}
+
+.download-card-title {
+  color: var(--accent, #ff0000); /* Red text like the accordion title */
+  font-family: "TINY5x3", monospace !important;
+  font-feature-settings: "ss03" 1;
+  font-weight: 140;
+  font-style: normal;
+  font-size: 32px;
+  line-height: 1.1;
+  letter-spacing: 0%;
+  text-transform: uppercase;
+  font-variant-numeric: lining-nums tabular-nums;
+  margin: 0 0 20px 0;
+}
+
+.download-card-icon {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+.download-card-icon img {
+  width: 24px;
+  height: auto;
+  object-fit: contain;
+  filter: brightness(0); /* Make black instead of red if the arrow image is red */
+}
+
+/* RESPONSIVE */
+@media only screen and (max-width: 1024px) {
+  .download-cards-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .download-cards-grid {
+    grid-template-columns: repeat(2, 1fr); /* 2 per riga anche da mobile */
+    gap: 15px;
+  }
+  
+  .download-card-item {
+    padding: 20px;
+  }
+  
+  .download-card-title {
+    font-size: 24px;
+  }
+}

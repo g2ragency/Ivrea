@@ -138,6 +138,7 @@ final class Elementor_Addon_Widgets {
                 require_once( __DIR__ . '/widgets/interactive-map/interactive-map.php' );
                 require_once( __DIR__ . '/widgets/ivrea-accordion/ivrea-accordion.php' );
                 require_once( __DIR__ . '/widgets/grid-ospiti/grid-ospiti.php' );
+                require_once( __DIR__ . '/widgets/download-cards/download-cards.php' );
 		
 		//HOMEPAGE
 		$widgets_manager->register( new \Elementor_Widget_Countdown() );
@@ -148,6 +149,7 @@ final class Elementor_Addon_Widgets {
 		$widgets_manager->register( new \Elementor_Widget_Hover_Text() );
 		$widgets_manager->register( new \Elementor_Widget_Horizontal_Cards() );
 		$widgets_manager->register( new \Elementor_Widget_Dot_Button() );
+		$widgets_manager->register( new \Elementor_Widget_Download_Cards() );
 		$widgets_manager->register( new \Elementor_Widget_Stats() );
 		$widgets_manager->register( new \Elementor_Widget_Swiper_Ospiti() );
                 $widgets_manager->register( new \Elementor_Widget_Hero_Dots() );
