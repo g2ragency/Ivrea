@@ -40,8 +40,18 @@ class Elementor_Widget_Interactive_Map extends \Elementor\Widget_Base {
                 <img src="/wp-content/uploads/2026/04/Mappa-Ivrea-desktop.svg" alt="Mappa Ivrea" class="ivrea-map-bg">
             </picture>
 
-            <!-- Punto 1: OFFICINE H -->
+            <!-- Punto 1: MUSEO TECNOLOGIC@METE -->
             <div class="ivrea-map-pin ivrea-map-pin--1" style="top: 45%; left: 42%;">
+                <img src="/wp-content/uploads/2026/04/Flag.svg" alt="Bandiera" class="flag-svg">
+                <div class="ivrea-map-info">
+                    <div class="ivrea-map-date">19 Giugno</div>
+                    <h4 class="ivrea-map-title">MUSEO<br>TECNLOGIC@METE</h4>
+                    <div class="ivrea-map-street">Via Giuseppe di Vittorio, 29<br>10015 Ivrea TO</div>
+                </div>
+            </div>
+
+            <!-- Punto 2: OFFICINE H -->
+            <div class="ivrea-map-pin ivrea-map-pin--2" style="top: 87%; left: 45%;">
                 <img src="/wp-content/uploads/2026/04/Flag.svg" alt="Bandiera" class="flag-svg">
                 <div class="ivrea-map-info">
                     <div class="ivrea-map-date">20 Giugno</div>
@@ -50,23 +60,13 @@ class Elementor_Widget_Interactive_Map extends \Elementor\Widget_Base {
                 </div>
             </div>
 
-            <!-- Punto 2: FABBRICA DEI MATTONI ROSSI -->
-            <div class="ivrea-map-pin ivrea-map-pin--2" style="top: 87%; left: 45%;">
+            <!-- Punto 3:  FABBRICA DEI MATTONI ROSSI -->
+            <div class="ivrea-map-pin ivrea-map-pin--3" style="top: 50%; left: 57%;">
                 <img src="/wp-content/uploads/2026/04/Flag.svg" alt="Bandiera" class="flag-svg">
                 <div class="ivrea-map-info">
                     <div class="ivrea-map-date">21 Giugno</div>
                     <h4 class="ivrea-map-title">FABBRICA DEI<br>MATTONI ROSSI</h4>
                     <div class="ivrea-map-street">Via Guglielmo Jervis, 16<br>10015 Ivrea TO</div>
-                </div>
-            </div>
-
-            <!-- Punto 3:  MUSEO TECNOLOGIC@METE-->
-            <div class="ivrea-map-pin ivrea-map-pin--3" style="top: 50%; left: 57%;">
-                <img src="/wp-content/uploads/2026/04/Flag.svg" alt="Bandiera" class="flag-svg">
-                <div class="ivrea-map-info">
-                    <div class="ivrea-map-date">19 Giugno</div>
-                    <h4 class="ivrea-map-title">MUSEO<br>TECNLOGIC@METE</h4>
-                    <div class="ivrea-map-street">Via Giuseppe di Vittorio, 29<br>10015 Ivrea TO</div>
                 </div>
             </div>
 
