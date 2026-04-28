@@ -19,7 +19,7 @@
 }
 
 .download-card-item:hover {
-  background-color: #e6e6e6; /* Slight hover effect */
+
 }
 
 .download-card-title {
@@ -28,8 +28,8 @@
   font-feature-settings: "ss03" 1;
   font-weight: 140;
   font-style: normal;
-  font-size: 32px;
-  line-height: 1.1;
+  font-size: 40px;
+  line-height: 34px;
   letter-spacing: 0%;
   text-transform: uppercase;
   font-variant-numeric: lining-nums tabular-nums;
@@ -67,6 +67,7 @@
   }
   
   .download-card-title {
-    font-size: 24px;
+    font-size: 26px!Important;
+    line-height: 1;
   }
 }
