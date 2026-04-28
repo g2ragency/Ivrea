@@ -186,7 +186,7 @@ class Elementor_Widget_Dot_Button extends \Elementor\Widget_Base {
 
             var RADIUS = 300;
             var LERP_SPEED = 0.08;
-            var MIN_WEIGHT = 80;
+            var MIN_WEIGHT = 140;
             var MAX_WEIGHT = 240;
             var BORDER_RADIUS = 50;
 
@@ -414,6 +414,18 @@ class Elementor_Widget_Dot_Button extends \Elementor\Widget_Base {
                     placeDots(widget);
                     allChars = widget.querySelectorAll('.char');
                 });
+
+                /* Recalculate after the TINY5x3 font finishes loading.
+                   Without this, the first render can use the monospace
+                   fallback (different metrics → different link height),
+                   so the dotted border is placed for the wrong box and
+                   the text ends up looking off-center on slow devices. */
+                if (document.fonts && document.fonts.ready) {
+                    document.fonts.ready.then(function () {
+                        placeDots(widget);
+                        allChars = widget.querySelectorAll('.char');
+                    });
+                }
             }
 
             function init() {
