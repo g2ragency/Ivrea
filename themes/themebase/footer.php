@@ -6,9 +6,7 @@
 			<h4 class="footer-subtitle">LA COMUNITÀ CHE VIDE IL FUTURO</h4>
 		</div>
 		<div class="footer-links">
-			<a href="https://instagram.com" target="_blank" rel="noopener">Instagram</a>
-			<span class="footer-separator">|</span>
-			<a href="https://facebook.com" target="_blank" rel="noopener">Facebook</a>
+			<span>Copyright 2026 | All Rights Reserved</span>
 			<span class="footer-separator">|</span>
 			<a href="/privacy-policy">Privacy Policy</a>
 		</div>
