@@ -38,6 +38,7 @@ html {
 }
 
 /* HOMEPAGE COMING SOON */
+/* 
 body.home,
 body.home html {
   height: 100vh;
@@ -47,7 +48,8 @@ body.home html {
 body.home .site-header,
 body.home footer {
   display: none;
-}
+} 
+*/
 
 @font-face {
   font-family: "TINY5x3";
