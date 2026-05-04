@@ -863,7 +863,7 @@ body.mobile-menu-open {
   font-style: normal;
   font-size: 40px;
   line-height: 1; /* Resetting line-height to ensure better vertical centering */
-  color: var(--grey, #666);
+  color: #000;
   outline: none;
   text-transform: uppercase;
   -webkit-font-variant-numeric: lining-nums tabular-nums;
