@@ -5,7 +5,7 @@
 
 .grid-ospiti-widget .grid-container {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 30px;
 }
 
@@ -108,7 +108,7 @@
 }
 
 .grid-ospiti-widget .guest-details-left {
-  flex: 0 0 calc(33.333% - 13.33px); /* approx one column width minus gap */
+  flex: 0 0 calc(25% - 22.5px); /* approx one column width minus gap */
   display: flex;
   flex-direction: column;
   justify-content: space-between;
