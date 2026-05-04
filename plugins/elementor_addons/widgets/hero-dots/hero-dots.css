@@ -243,14 +243,14 @@
 
   .hero-dots-widget .hero-dots-subtitle,
   .hero-dots-widget .hero-dots-subtitle .char {
-    font-size: 7vw !important;
+    font-size: 8vw !important;
     line-height: 1;
     text-align: center;
     margin-top: 0;
   }
 
   .hero-dots-widget .hero-dots-top-text {
-    font-size: 7vw;
+    font-size: 8vw !important;
     white-space: normal;
     line-height: 1;
     text-align: center;
