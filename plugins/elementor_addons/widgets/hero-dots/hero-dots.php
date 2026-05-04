@@ -198,7 +198,7 @@ class Elementor_Widget_Hero_Dots extends \Elementor\Widget_Base {
             var tiltGamma = 0;
             var tiltBeta  = 0;
             var tiltActive = false;
-            var TILT_DEADZONE = 3;
+            var TILT_DEADZONE = 1;
 
             function onDeviceOrientation(e) {
                 if (e.gamma === null && e.beta === null) return;
@@ -207,8 +207,8 @@ class Elementor_Widget_Hero_Dots extends \Elementor\Widget_Base {
                 var b = (e.beta || 0) - 45;
                 if (Math.abs(g) < TILT_DEADZONE) g = 0;
                 if (Math.abs(b) < TILT_DEADZONE) b = 0;
-                tiltGamma = Math.max(-1, Math.min(1, g / 35));
-                tiltBeta  = Math.max(-1, Math.min(1, b / 35));
+                tiltGamma = Math.max(-1, Math.min(1, g / 10));
+                tiltBeta  = Math.max(-1, Math.min(1, b / 10));
             }
 
             /* ── Dot-grid background with cursor repulsion + gyroscope tilt ── */
