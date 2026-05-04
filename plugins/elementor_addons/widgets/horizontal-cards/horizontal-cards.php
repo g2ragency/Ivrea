@@ -409,14 +409,17 @@ class Elementor_Widget_Horizontal_Cards extends \Elementor\Widget_Base {
                         /* Card never goes further left than its stack position */
                         var finalLeft = Math.max(currentLeft, minLeft);
 
-                        card.style.left = finalLeft + 'px';
-                        card.style.width = CARD_WIDTH + 'px';
+                        card.style.transform = 'translate3d(' + finalLeft + 'px, -50%, 0)';
                         /* Later cards (higher index) sit on top of earlier cards */
                         card.style.zIndex = i;
                     }
                 }
 
                 /* Initial positioning */
+                cards.forEach(function(c, idx) { 
+                    c.style.width = CARD_WIDTH + 'px'; 
+                    c.style.zIndex = idx; 
+                });
                 window.addEventListener('scroll', onScroll, { passive: true });
                 onScroll();
 
@@ -449,6 +452,7 @@ class Elementor_Widget_Horizontal_Cards extends \Elementor\Widget_Base {
                     lastMinLeft = LEFT_PAD + (cards.length - 1) * STACKED_WIDTH;
                     scrollLength = lastNatural - lastMinLeft;
                     spacer.style.height = (window.innerHeight + scrollLength) + 'px';
+                    cards.forEach(function(c) { c.style.width = CARD_WIDTH + 'px'; });
                     onScroll();
                 });
             }

@@ -25,7 +25,8 @@
   border-radius: 5px;
   box-sizing: border-box;
   overflow: hidden;
-  will-change: left;
+  will-change: transform;
+  left: 0;
 }
 
 .horizontal-cards-section .horizontal-card-link {
