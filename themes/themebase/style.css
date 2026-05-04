@@ -776,7 +776,8 @@ body.mobile-menu-open {
   gap: 8px;
 }
 
-.footer-links a {
+.footer-links a,
+.footer-copyright {
   font-family: "Helvetica Now Display Bold", sans-serif !important;
   font-size: 16px;
   color: var(--lightgrey);
