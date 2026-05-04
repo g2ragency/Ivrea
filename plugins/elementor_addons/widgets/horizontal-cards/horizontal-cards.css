@@ -27,6 +27,8 @@
   overflow: hidden;
   will-change: transform;
   left: 0;
+  backface-visibility: hidden;
+  contain: layout paint;
 }
 
 .horizontal-cards-section .horizontal-card-link {
@@ -136,6 +138,10 @@
 }
 
 @media only screen and (max-width: 768px) {
+  .horizontal-cards-section {
+    transform: translateZ(0);
+  }
+
   .horizontal-cards-section .horizontal-card {
     width: calc(100vw - 30px);
     height: 520px;

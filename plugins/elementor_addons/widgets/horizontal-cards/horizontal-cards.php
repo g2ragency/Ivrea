@@ -349,8 +349,16 @@ class Elementor_Widget_Horizontal_Cards extends \Elementor\Widget_Base {
                 /* State */
                 var isFixed = false;
                 var isDone = false;
+                var scrollTicking = false;
 
                 function onScroll() {
+                    if (scrollTicking) return;
+                    scrollTicking = true;
+                    requestAnimationFrame(updateHorizontalCards);
+                }
+
+                function updateHorizontalCards() {
+                    scrollTicking = false;
                     var spacerRect = spacer.getBoundingClientRect();
                     var spacerTop = spacerRect.top;
                     var spacerBottom = spacerRect.bottom;
@@ -410,8 +418,6 @@ class Elementor_Widget_Horizontal_Cards extends \Elementor\Widget_Base {
                         var finalLeft = Math.max(currentLeft, minLeft);
 
                         card.style.transform = 'translate3d(' + finalLeft + 'px, -50%, 0)';
-                        /* Later cards (higher index) sit on top of earlier cards */
-                        card.style.zIndex = i;
                     }
                 }
 
