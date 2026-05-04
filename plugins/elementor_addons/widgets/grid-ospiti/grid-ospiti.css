@@ -48,7 +48,7 @@
   line-height: 0.8;
   color: var(--black, #000);
   text-transform: uppercase;
-  margin: 0 0 8px 0;
+  margin: 0 0 6px 0;
 }
 
 .grid-ospiti-widget .ospite-job {
@@ -199,6 +199,7 @@
   }
   .grid-ospiti-widget .ospite-image {
     aspect-ratio: 432 / 541;
+    margin-bottom: 13px;
   }
   .grid-ospiti-widget .ospite-name {
     font-size: 26px;
