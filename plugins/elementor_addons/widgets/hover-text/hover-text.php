@@ -199,7 +199,7 @@ class Elementor_Widget_Hover_Text extends \Elementor\Widget_Base {
                 if (Math.abs(g) < TILT_DEADZONE) g = 0;
                 if (Math.abs(b) < TILT_DEADZONE) b = 0;
                 tiltGamma = Math.max(-1, Math.min(1, g / 10));
-                tiltBeta  = Math.max(-1, Math.min(1, b / 10));
+                tiltBeta  = Math.max(-1, Math.min(1, b / 4));
             }
 
             if (isTouchDevice) {
