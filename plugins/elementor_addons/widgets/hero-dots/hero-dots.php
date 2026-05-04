@@ -99,6 +99,18 @@ class Elementor_Widget_Hero_Dots extends \Elementor\Widget_Base {
             'type'    => \Elementor\Controls_Manager::TEXTAREA,
         ]);
 
+        $this->add_control(
+            'show_scroll_down',
+            [
+                'label' => __('Mostra Freccia Scroll', 'elementor_addon'),
+                'type' => \Elementor\Controls_Manager::SWITCHER,
+                'label_on' => __('Sì', 'elementor_addon'),
+                'label_off' => __('No', 'elementor_addon'),
+                'return_value' => 'yes',
+                'default' => '',
+            ]
+        );
+
         $this->end_controls_section();
 
         /* ── STILE ── */
@@ -187,6 +199,12 @@ class Elementor_Widget_Hero_Dots extends \Elementor\Widget_Base {
                 </div>
 
             </div>
+
+            <?php if ( isset($s['show_scroll_down']) && 'yes' === $s['show_scroll_down'] ) : ?>
+                <div class="hero-scroll-down" id="hero-dots-scroll-<?php echo esc_attr($id); ?>">
+                    <span class="hero-scroll-down-arrow" data-split-hover>↓</span>
+                </div>
+            <?php endif; ?>
         </div>
 
         <script>
@@ -199,6 +217,20 @@ class Elementor_Widget_Hero_Dots extends \Elementor\Widget_Base {
             var tiltBeta  = 0;
             var tiltActive = false;
             var TILT_DEADZONE = 1;
+
+            // Scroll down arrow functionality
+            var arrow = document.getElementById("hero-dots-scroll-<?php echo esc_attr($id); ?>");
+            if (arrow && !arrow.dataset.scrollBound) {
+                arrow.dataset.scrollBound = "true";
+                arrow.addEventListener("click", function() {
+                    var currentSection = arrow.closest('.elementor-section') || arrow.closest('section');
+                    if (currentSection && currentSection.nextElementSibling) {
+                        currentSection.nextElementSibling.scrollIntoView({ behavior: 'smooth' });
+                    } else {
+                        window.scrollBy({ top: window.innerHeight, behavior: 'smooth' });
+                    }
+                });
+            }
 
             function onDeviceOrientation(e) {
                 if (e.gamma === null && e.beta === null) return;

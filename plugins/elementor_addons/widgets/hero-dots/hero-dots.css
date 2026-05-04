@@ -7,6 +7,49 @@
   background: #ff3333;
 }
 
+/* Scroll Down Arrow */
+.hero-scroll-down {
+  position: absolute;
+  bottom: 60px;
+  left: 50%;
+  transform: translateX(-50%);
+  cursor: pointer;
+  z-index: 50;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero-scroll-down .hero-scroll-down-arrow {
+  color: #000;
+  font-family: "TINY5x3", monospace !important;
+  font-feature-settings: "ss03" 1;
+  font-size: 50px;
+  font-weight: 140;
+  line-height: 1;
+  text-transform: uppercase;
+  display: inline-block;
+  white-space: nowrap;
+  font-variant-numeric: lining-nums tabular-nums;
+}
+
+.hero-scroll-down-arrow .word {
+  display: inline-block;
+}
+
+.hero-scroll-down-arrow .char {
+  display: inline-block;
+  color: inherit;
+  font-family: "TINY5x3", monospace !important;
+  font-weight: 80;
+  will-change: font-weight;
+  transition: transform 0.3s ease;
+}
+
+.hero-scroll-down:hover .hero-scroll-down-arrow .char {
+  transform: translateY(5px);
+}
+
 .hero-dots-widget .hero-dots-canvas {
   position: absolute;
   top: 0;
