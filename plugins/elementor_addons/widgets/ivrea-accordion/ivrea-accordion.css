@@ -100,7 +100,12 @@
 /* Base line using background SVG image instead of raw border */
 .ivrea-accordion-divider {
   width: 100%;
-  height: auto;
+  height: 4px;
+  background-image: url("/wp-content/uploads/2026/04/Line-8.svg");
+  background-repeat: repeat-x;
+  background-position: left center;
+  background-size: auto 100%;
+  image-rendering: pixelated;
   display: block;
   border: none;
   margin: 0;

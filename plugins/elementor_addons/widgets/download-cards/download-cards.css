@@ -19,7 +19,6 @@
 }
 
 .download-card-item:hover {
-
 }
 
 .download-card-title {
@@ -46,7 +45,9 @@
   width: 40px;
   height: auto;
   object-fit: contain;
-  filter: brightness(0); /* Make black instead of red if the arrow image is red */
+  filter: brightness(
+    0
+  ); /* Make black instead of red if the arrow image is red */
 }
 
 /* RESPONSIVE */
@@ -58,16 +59,16 @@
 
 @media only screen and (max-width: 768px) {
   .download-cards-grid {
-    grid-template-columns: repeat(2, 1fr); /* 2 per riga anche da mobile */
+    grid-template-columns: repeat(1, 1fr); /* 1 per riga da mobile */
     gap: 15px;
   }
-  
+
   .download-card-item {
     padding: 20px;
   }
-  
+
   .download-card-title {
-    font-size: 26px!Important;
+    font-size: 26px !important;
     line-height: 1;
   }
 }
