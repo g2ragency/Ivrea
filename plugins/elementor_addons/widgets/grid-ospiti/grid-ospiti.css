@@ -48,7 +48,7 @@
   line-height: 0.8;
   color: var(--black, #000);
   text-transform: uppercase;
-  margin: 0 0 6px 0;
+  margin: 0 0 8px 0;
 }
 
 .grid-ospiti-widget .ospite-job {
@@ -184,7 +184,7 @@
 @media only screen and (max-width: 768px) {
   .grid-ospiti-widget .grid-container {
     grid-template-columns: repeat(2, 1fr);
-    gap: 15px;
+    gap: 20px 15px; /* Maggior gap verticale, stesso gap orizzontale */
   }
   .grid-ospiti-widget .guest-details-inner {
     flex-direction: column;
@@ -199,7 +199,7 @@
   }
   .grid-ospiti-widget .ospite-image {
     aspect-ratio: 432 / 541;
-    margin-bottom: 13px;
+    margin-bottom: 15px;
   }
   .grid-ospiti-widget .ospite-name {
     font-size: 26px;
